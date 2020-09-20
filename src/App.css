@@ -1,154 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
+
 .App {
   text-align: center;
-  }
+}
 
-  #full_back{
-  background: #403B4A;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E7E9BB, #403B4A);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E7E9BB, #403B4A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+#full_back {
+  /* background: #403b4a;
+  background: -webkit-linear-gradient(to right, #e7e9bb, #403b4a);
+  background: linear-gradient(to right, #e7e9bb, #403b4a); */
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 ul > li {
-    list-style-type: none;
-    }
-    .container_login, .container_register, .container_project, .container_profile {
-      margin-top: 10%;
-      }
+  list-style-type: none;
+}
+.container_login,
+.container_register,
+.container_project,
+.container_profile {
+  margin-top: 10%;
+}
 
-      .card.rounded-circle{
-        background: #232526;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        float: right;
-        opacity: 0.8;
-      }
+.card.rounded-circle {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  float: right;
+  opacity: 0.8;
+}
 
-    .container_dashboard{
-     background-image: url('/backDashboard.jpg');
-     width: 200%;
-     height: 1200px;
-     background-repeat: no-repeat;
-     background-size: auto;
-     background-size:cover;
-     opacity: 0.45;
-     position: relative
-    }
+.container_dashboard {
+  background-image: url("/backDashboard.jpg");
+  width: 200%;
+  height: 1200px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: cover;
+  opacity: 0.45;
+  position: relative;
+}
 
-    .container_dashboard_1{
-      background: #1F1C2C;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to top, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to top, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      width: 200%;
-      height: 1200px;
-      background-repeat: no-repeat;
-      background-size: auto;
-      background-size:cover;
-      opacity: 0.8;
-      position: relative
-      
-  }
+.container_dashboard_1 {
+  background: #1f1c2c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #928dab,
+    #1f1c2c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #928dab,
+    #1f1c2c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 200%;
+  height: 1200px;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: cover;
+  opacity: 0.8;
+  position: relative;
+}
 
-    .flex-container{
-     display: flex;
-     width: 100%;
-     /* flex-wrap: nowrap; */
-     
-   }
+.flex-container {
+  display: flex;
+  width: 100%;
+  /* flex-wrap: nowrap; */
+}
 
-   .flex-container > div{
-    margin: 10px;
-    text-align: center;
-   }
-   
-   #plusSign{
-    width: 10%;
-    margin-top: 5%;
-   }
-  #Edit, #Delete{
-    width: 15%;
-   }
-  .nav_elements {  
-    color: #B4B4C4;
-    font-size: 20px;
-    margin-right: 30%;
-    font-family: 'Raleway, Open Sans, sans-serif';
-  }
-  .button_text{
-    color: #B4B4C4;
-    font-size: 25px;
-    font-family: 'Raleway, Open Sans, sans-serif';
-  }
+.flex-container > div {
+  margin: 10px;
+  text-align: center;
+}
 
- .form_text {
-    font-weight: bold;
-    font: 16px Raleway, "Open Sans", sans-serif;
-    color: #32325D
-  }
-  .form_title_text{
-    font-weight: bold;
-    font: 25px Raleway, "Open Sans", sans-serif;
-    color: #32325D;
-    
-  }
-    
-#top_footer > h1{
-  color: #B4B4C4;
+#plusSign {
+  width: 10%;
+  margin-top: 5%;
+}
+#Edit,
+#Delete {
+  width: 15%;
+}
+.nav_elements {
+  color: #b4b4c4;
+  font-size: 20px;
+  margin-right: 30%;
+  font-family: "Raleway, Open Sans, sans-serif";
+}
+.button_text {
+  color: #b4b4c4;
+  font-size: 25px;
+  font-family: "Raleway, Open Sans, sans-serif";
+}
+
+.form_text {
+  font-weight: bold;
+  font: 16px Raleway, "Open Sans", sans-serif;
+  color: #32325d;
+}
+.form_title_text {
+  font-weight: bold;
+  font: 25px Raleway, "Open Sans", sans-serif;
+  color: #32325d;
+}
+
+#top_footer > h1 {
+  color: #b4b4c4;
   font: 28px Raleway, "Open Sans", sans-serif;
   font-weight: bold;
-  }
+}
 
 li {
   float: left;
 }
 
-.card-text{
-  color: #B4B4C4;
+.card-text {
+  color: #b4b4c4;
   font: 24px Raleway, "Open Sans", sans-serif;
   font-weight: bold;
 }
-.card-body > h6{
-  color: #B4B4C4;
+.card-body > h6 {
+  color: #b4b4c4;
   font: 18px Raleway, "Open Sans", sans-serif;
-  }
-  .card-title{
-    color: rgb(212, 200, 200)
-  }
-footer{
-  color: #32325D;
+}
+.card-title {
+  color: rgb(212, 200, 200);
+}
+footer {
+  color: #32325d;
   font: 14px Raleway, "Open Sans", sans-serif;
 }
-#footer{
+#footer {
   width: 70%;
   margin-left: 15%;
 }
-#main{
+#main {
   margin-top: 100px;
-  background: #403B4A;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E7E9BB, #403B4A);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E7E9BB, #403B4A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #403b4a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e7e9bb,
+    #403b4a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e7e9bb,
+    #403b4a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.main_text {
+  font-weight: bold;
+  font: 50px Raleway, "Open Sans", sans-serif;
+  color: #32325d;
+}
 
- }
- .main_text{
-    font-weight: bold;
-    font: 50px Raleway, "Open Sans", sans-serif;
-    color: #32325D
- }
-
- #sub_text{
+#sub_text {
   font: 18px Raleway, "Open Sans", sans-serif;
-  color: #32325D
- }
+  color: #32325d;
+}
 
-
- .jumbotron.mt-5{
-  background: #403B4A;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E7E9BB, #403B4A);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E7E9BB, #403B4A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.jumbotron.mt-5 {
+  background: #403b4a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e7e9bb,
+    #403b4a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e7e9bb,
+    #403b4a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-color: transparent;
   border-radius: 0%;
+}
 
- }
- 
 .App-logo {
   height: 40vmin;
 }
@@ -168,21 +203,16 @@ footer{
   color: #09d3ac;
 }
 
-
-.socialMedia{
+.socialMedia {
   width: 75%;
 }
-.logoIron{
+.logoIron {
   width: 30%;
   border-radius: 10px 10px;
-  opacity: 0.45
+  opacity: 0.45;
 }
 
-
-
-
 /* input file styling */
-
 
 /************************************************
 
@@ -208,10 +238,6 @@ NAVBAR STYLING
 
   padding: 0 8px;
 } */
-
-
-
-
 
 /************************************************
 
@@ -298,7 +324,7 @@ NAVBAR STYLING
 
 
 /* PROJECT LIST STYLING */
-/* *************************************************/ 
+/* *************************************************/
 
 /* .project-list-container {
   background-color: grey;
@@ -321,60 +347,67 @@ NAVBAR STYLING
 
   margin: 0 15px;
   margin-right: 40px;
-} */ 
+} */
 
 /* video styling */
 
-.container_video{
+.container_video {
   margin-top: 15%;
   margin-left: -10%;
   display: flex;
   width: 100%;
 }
 
-.container_video > div{
+.container_video > div {
   margin: 10px;
   text-align: center;
- }
+}
 
- .creationSub{
+.creationSub {
   margin-top: 20%;
   display: flex;
   width: 100%;
- }
-
- .creationSub > div{
-  margin: 10px;
-  text-align: center;
- }
-
-#show-subtitles{
-  background: #232526;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  margin-top: -15%;
-  width: "600px"
 }
 
+.creationSub > div {
+  margin: 10px;
+  text-align: center;
+}
 
-  #subtitle-list{
-    color: white;
-    list-style: none;
-    width: 700px;   
-    opacity: 0.8; 
-  }
+#show-subtitles {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin-top: -15%;
+  width: "600px";
+}
 
+#subtitle-list {
+  color: white;
+  list-style: none;
+  width: 700px;
+  opacity: 0.8;
+}
 
-  .each-sub > td{
-    padding: 5px;
-  }
+.each-sub > td {
+  padding: 5px;
+}
 
-#video{
+#video {
   width: 600px;
   border: 0.5px solid black;
 }
 
-#download-button, #creation-button {
+#download-button,
+#creation-button {
   margin-top: 100px;
   opacity: 0.7;
 }
@@ -555,7 +588,7 @@ NAVBAR STYLING
   background-size: cover;
   background-position: 0 0;
   color: #ffffff;
-  
+
   position: relative;
   left: -100%;
   height: 100%;
@@ -617,21 +650,36 @@ NAVBAR STYLING
 
 /* adding styling to the modal */
 
-.modal-content{
-  background: #232526;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.modal-content {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.modal-header > h4{
+.modal-header > h4 {
   text-align: center;
   color: white;
 }
 
 .modal-body > textarea {
-background: #000000;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-color: white
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
 }
-
