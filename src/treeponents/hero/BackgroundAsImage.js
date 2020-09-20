@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, withRouter } from 'react-router-dom'
+
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
@@ -58,23 +60,37 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
 export default () => {
   const navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">
-        About
-      </NavLink>
+
+      <Link to="/">
+    
+        <NavLink href="#">
+          About
+       </NavLink>
+   
+      </Link>
+
       <NavLink href="#">
         Blog
       </NavLink>
+   
       <NavLink href="#">
         Locations
       </NavLink>
+   
       <NavLink href="#">
         Pricing
       </NavLink>
+   
     </NavLinks>,
+
     <NavLinks key={2}>
-      <PrimaryLink href="/#">
-       Login
+    
+     <Link to="/login">
+        <PrimaryLink href="#">
+          Login
       </PrimaryLink>
+      </Link>
+   
     </NavLinks>
   ];
 
@@ -91,7 +107,13 @@ export default () => {
               <br />
               <SlantedBackground>Easier Subtitles</SlantedBackground>
             </Heading>
-            <PrimaryAction>Get Started</PrimaryAction>
+
+            <Link to="signup">
+
+              <PrimaryAction>Get Started</PrimaryAction>
+
+            </Link>
+
           </LeftColumn>
           <RightColumn>
             <StyledResponsiveVideoEmbed

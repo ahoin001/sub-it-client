@@ -1,13 +1,15 @@
 import React from "react";
+import { Link, withRouter } from 'react-router-dom'
+
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
-import { Container as ContainerBase } from "../misc/Layouts";
+import { Container as ContainerBase } from "../../treeponents/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import illustration from "../../images/signup-illustration.svg";
-import logo from "images/logo.svg";
-import googleIconImageSrc from "images/google-icon.png";
-import twitterIconImageSrc from "images/twitter-icon.png";
+import logo from "../../images/logo.svg";
+import googleIconImageSrc from "../../images/google-icon.png";
+import twitterIconImageSrc from "../../images/twitter-icon.png";
 import { ReactComponent as SignUpIcon } from "feather-icons/dist/icons/user-plus.svg";
 
 const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`;
@@ -56,7 +58,7 @@ const IllustrationImage = styled.div`
 export default ({
   logoLinkUrl = "#",
   illustrationImageSrc = illustration,
-  headingText = "Sign Up For Treact",
+  headingText = "Sign Up For SubIt",
   socialButtons = [
     {
       iconImageSrc: googleIconImageSrc,
@@ -75,13 +77,18 @@ export default ({
   privacyPolicyUrl = "#",
   signInUrl = "#"
 }) => (
-  <AnimationRevealPage disable>
+  <AnimationRevealPage disabled>
     <Container>
       <Content>
         <MainContainer>
-          <LogoLink href={logoLinkUrl}>
+        
+        <Link to="/"> 
+         <LogoLink href={logoLinkUrl}>
             <LogoImage src={logo} />
           </LogoLink>
+          </Link>
+         
+          
           <MainContent>
             <Heading>{headingText}</Heading>
             <FormContainer>
@@ -126,9 +133,9 @@ export default ({
             </FormContainer>
           </MainContent>
         </MainContainer>
-        <IllustrationContainer>
+        {/* <IllustrationContainer>
           <IllustrationImage imageSrc={illustrationImageSrc} />
-        </IllustrationContainer>
+        </IllustrationContainer> */}
       </Content>
     </Container>
   </AnimationRevealPage>
