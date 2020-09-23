@@ -17,7 +17,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import HomeTree from './pages/Home/Home.jsx'
 import SignUpTree from './pages/SignUp/SignUp.jsx'
-import LoginTree from './pages/aLogin/Login.jsx'
+import LoginTree from './pages/Login/Login.jsx'
 
 
 
