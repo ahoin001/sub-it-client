@@ -55,17 +55,23 @@ class Login extends Component {
     localStorage.setItem('currentUser', userName);
 
     // Imported from user function
-    login(user).then(res => {
-      if (res) {
-        console.log(res.userDoc.userName)
+    login(user)
+    .then( (res) => {
+     
+
+        console.log(`******************************************** LOGIN`)
+        console.log(res)
         localStorage.setItem('currentUserId', res.userDoc._id);
         localStorage.setItem('currentUserName', res.userDoc.userName);
 
         this.props.history.push(`/dashboard/${res.userDoc._id}`)
-      }
-      else {
-        alert('Please, provide correct credentials')
-      }
+      
+      // else {
+      //   alert('Please, provide correct credentials')
+      // }
+    })
+    .catch(error => {
+      console.log(error)
     })
 
 

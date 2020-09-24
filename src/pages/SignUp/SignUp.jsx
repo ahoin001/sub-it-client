@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { register } from '../../util/UserFunctions'
+import { register } from '../../util/UtilityUserFunctions'
 import { Link, withRouter } from 'react-router-dom'
 
 // Needed for Treact
@@ -71,7 +71,6 @@ const SignUpTree = () => {
   let SubmitButtonIcon = SignUpIcon
   let tosUrl = "#"
   let privacyPolicyUrl = "#"
-  let signInUrl = "#"
 
   return (
 
@@ -126,7 +125,8 @@ const SignUpTree = () => {
 
                   <SubmitButton
                     type="submit"
-                    onClick={submitUser}>
+                    onClick={submitUser}
+                    >
 
                     <SubmitButtonIcon
                       className="icon"
@@ -151,6 +151,7 @@ const SignUpTree = () => {
                     Already have an account?{" "}
 
                     <Link to="login">
+                    {/* TODO Check previous commits for styling of this */}
                       Sign In
                     </Link>
 

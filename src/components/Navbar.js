@@ -9,7 +9,10 @@ class Navbar extends Component {
     this.props.history.push(`/login`)
   }
 
+
   render() {
+
+    console.log('NAAVVVV',localStorage.usertoken)
     const loginRegLink = (
      
       <ul >
@@ -60,6 +63,8 @@ class Navbar extends Component {
              <img className="logoIron" src="/2.png" alt="blah"/></span></Link>
           </li>
          </ul>
+
+         {/* Change nav depending on user signed in */}
         <span className="navbar-text">{localStorage.usertoken ? userLink : loginRegLink}</span>
     </div>
     </nav>

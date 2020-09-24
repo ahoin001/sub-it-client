@@ -17,6 +17,7 @@ const StyledHeader = styled(Header)`
     ${tw`text-gray-100 hover:text-primary-500`}
   }
 `;
+
 const Container = styled.div`
   ${tw`relative -mx-8 -mt-8 bg-center bg-cover`}
   background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
@@ -58,39 +59,63 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
 `;
 
 export default () => {
+
+  const logOut = (e) => {
+    e.preventDefault()
+    localStorage.removeItem('usertoken');
+    localStorage.removeItem('currentUserId');
+    localStorage.removeItem('currentUserName');
+    // this.props.history.push(`/login`)
+  }
+
+
   const navLinks = [
     <NavLinks key={1}>
 
-      <Link to="/">
-    
-        <NavLink href="#">
-          About
+      {/* <Link to="/"> */}
+
+      <NavLink href="#">
+        About
        </NavLink>
-   
-      </Link>
+
+      {/* </Link> */}
 
       <NavLink href="#">
         Blog
       </NavLink>
-   
+
       <NavLink href="#">
         Locations
       </NavLink>
-   
+
       <NavLink href="#">
         Pricing
       </NavLink>
-   
+
     </NavLinks>,
 
     <NavLinks key={2}>
-    
-     <Link to="/login">
-        <PrimaryLink href="#">
-          Login
-      </PrimaryLink>
-      </Link>
-   
+
+    {console.log(localStorage)}
+      {localStorage.currentUserId
+        ?
+        <Link to="/">
+          <PrimaryLink href="#" >
+            <button onClick={logOut}> Logout</button>
+          </PrimaryLink>
+        </Link>
+       
+
+        :
+
+        <Link to="/login">
+          <PrimaryLink href="#">
+            Login
+          </PrimaryLink>
+        </Link>
+      }
+
+
     </NavLinks>
   ];
 

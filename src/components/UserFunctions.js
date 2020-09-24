@@ -30,7 +30,8 @@ export const googleRegister = newUser => {
 
 export const login = user => {
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/login`, {
+    // .post(`${process.env.REACT_APP_API_URL}/login`, {
+    .post(`http://localhost:8000/users/login`, {
       userName: user.userName,
       email: user.email,
       password: user.password
