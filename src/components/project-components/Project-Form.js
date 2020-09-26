@@ -3,7 +3,7 @@ import axios from "axios";
 
 import FileViewer from 'react-file-viewer';
 
-import Dropzone from '../dropzone'
+// import Dropzone from '../dropzone'
 
 class ProjectForm extends React.Component {
 
@@ -84,7 +84,7 @@ class ProjectForm extends React.Component {
 
                 <h2> Video Info </h2>
 
-                <form name='myForm' onSubmit={event => this.handleSubmit(event)} >
+                <form name='myForm'  enctype="multipart/form-data" onSubmit={event => this.handleSubmit(event)} >
 
                     <label> Video Title: </label>
                     <input
@@ -124,7 +124,7 @@ class ProjectForm extends React.Component {
 
                     <br /> <label> Video File: </label>
 
-                    <Dropzone updateParent={this.updateStateFileIfFileAdded.bind(this)} />
+                    {/* <Dropzone updateParent={this.updateStateFileIfFileAdded.bind(this)} /> */}
                     
                     <button> Update </button>
 

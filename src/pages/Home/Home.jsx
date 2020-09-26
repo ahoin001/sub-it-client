@@ -11,10 +11,10 @@ import Summary from '../../treeponents/features/ThreeColWithSideImage'
 
 import Footer from '../../treeponents/footers/MiniCenteredFooter'
 
-const Home = () => {
+const Home = (props) => {
     return (
         <AnimationRevealPage disabled >
-            <Hero />
+            <Hero login={props.login} logOut={props.logOut}/>
             <Features />
             <Summary />
             <Footer />

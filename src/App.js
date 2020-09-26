@@ -10,6 +10,7 @@ import LoginTree from './pages/Login/Login.jsx'
 import Navbar from './components/Navbar'
 // import Home from './components/Home'
 import NavbarTree from './components/navbartree/navbar'
+import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
 
 import ProjectsList from './components/ProjectsList'
 import Projectform from './components/Project_form';
@@ -31,26 +32,34 @@ const App = () => {
     // this.props.history.push(`/login`)
   }
 
+  const login = (thing) => {
+    console.log(thing)
+    setUser(true)
+  }
+  
+
   return (
 
     <Router>
 
       {/* <Route exact path="/" component={HomeTree} /> */}
+      <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 
       {/* <StyledHeader links={navLinks} /> */}
 
       <div className="container">
-      <NavbarTree logOut={logOut}/>
+        <NavbarTree logOut={logOut} />
         {/* <Navbar /> */}
 
         <Route exact path="/signup" component={SignUpTree} />
-        <Route exact path="/login" component={LoginTree} />
+        <Route exact path="/login" component={() => <LoginTree login={login} />} />
         {/* <Route exact path="/login" component={Login} /> */}
 
         <Route path="/dashboard" component={ProjectsList} />
         <Route path="/project" component={ProjectDetails} />
         <Route path="/update" component={Update} />
-        <Route exact path="/form" component={Projectform} />
+        {/* <Route exact path="/form" component={Projectform} /> */}
+        <Route exact path="/form" component={ProjectFormTree} />
 
       </div>
 

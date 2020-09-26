@@ -58,15 +58,15 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
   }
 `;
 
-export default () => {
+export default (props) => {
 
-  const logOut = (e) => {
-    e.preventDefault()
-    localStorage.removeItem('usertoken');
-    localStorage.removeItem('currentUserId');
-    localStorage.removeItem('currentUserName');
-    // this.props.history.push(`/login`)
-  }
+  // const logOut = (e) => {
+  //   e.preventDefault()
+  //   localStorage.removeItem('usertoken');
+  //   localStorage.removeItem('currentUserId');
+  //   localStorage.removeItem('currentUserName');
+  //   // this.props.history.push(`/login`)
+  // }
 
 
   const navLinks = [
@@ -96,25 +96,23 @@ export default () => {
 
     <NavLinks key={2}>
 
-    {console.log(localStorage)}
       {localStorage.currentUserId
         ?
+
         <Link to="/">
-          <PrimaryLink href="#" >
-            <button onClick={logOut}> Logout</button>
-          </PrimaryLink>
+          <PrimaryLink onClick={(e) => props.logOut(e)} href="#">
+            Logout
+                    </PrimaryLink>
         </Link>
-       
 
         :
 
         <Link to="/login">
           <PrimaryLink href="#">
             Login
-          </PrimaryLink>
+              </PrimaryLink>
         </Link>
       }
-
 
     </NavLinks>
   ];
