@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { register } from '../../util/UtilityUserFunctions'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // Needed for Treact
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
@@ -14,7 +14,7 @@ import {
   Container,
   Content,
   MainContainer,
-  LogoLink,
+  // LogoLink,
   LogoImage,
   MainContent,
   Heading,

@@ -20,7 +20,7 @@ class SubtitleCreation extends React.Component {
 
   componentDidMount() {
     let thisProjectId = this.props.projectId;
-    axios.get(`${process.env.REACT_APP_API_URL}/subtitles/${thisProjectId}`)
+    axios.get(`http://localhost:8000/projects/api/subtitles/${thisProjectId}`)
       .then((response) => {
         this.setState({ subtitles: response.data.subArray });
         this.listSubtitles();
@@ -128,7 +128,7 @@ class SubtitleCreation extends React.Component {
     let tracks = document.querySelector('video').textTracks;
     let video = document.getElementById('video');
     let cuesLength = tracks[0].cues.length;
-    
+
     // set cue text to the text typed in the modal
     let theText = document.getElementById('this-sub-text').value;
     tracks[0].cues[cuesLength - 1].text = theText;
@@ -156,7 +156,8 @@ class SubtitleCreation extends React.Component {
         this.listOneSubtitle(this.state.text, this.state.inTimeVTT, this.state.outTimeVTT);
 
         // Post request to push current subtitle to the database
-        axios.post(`${process.env.REACT_APP_API_URL}/${thisProjectId}/add-sub`, thisSubtitle)
+        axios.post(`${process.env.REACT_APP_API_URL}/${thisProjectId}/add-sub`,
+          thisSubtitle)
           .then(function (response) {
             console.log(response);
           })
@@ -190,7 +191,7 @@ class SubtitleCreation extends React.Component {
   downloadSub = () => {
     let thisProjectId = this.props.projectId;
     let downloadVTT = `WEBVTT`
-    axios.get(`${process.env.REACT_APP_API_URL}/subtitles/${thisProjectId}`)
+    axios.get(`http://localhost:8000/projects/api/subtitles/${thisProjectId}`)
       .then((response) => {
         this.setState({ download: response.data.subArray });
         let finishedSubs = this.state.download;
@@ -208,9 +209,11 @@ class SubtitleCreation extends React.Component {
 
     return (
       <div>
+
         <div>
           <button id='creation-button' className="btn btn-secondary" onClick={this.createSub}>In Time</button>
         </div>
+
         <div className="creationSub">
 
           {/* Subtitle Modal */}
@@ -225,16 +228,22 @@ class SubtitleCreation extends React.Component {
           </div>  */}
 
           <div className="modal" id="myModal">
+
             <div className="modal-dialog modal-dialog-centered">
+
               <div className="modal-content">
+
                 <div className="modal-header">
                   <h4 className="modal-title">The text must be shorter than 80 characters</h4>
                   <button type="button" className="close" onClick={this.cancelSubtitle} data-dismiss="modal"></button>
                 </div>
+
                 <div className="modal-body">
                   <textarea id="this-sub-text" rows="2" cols="50" maxLength="80"></textarea>
                 </div>
+
                 <div className="modal-footer">
+
                   <button type="button" className="btn btn-danger" data-dismiss="modal" id="cancel-btn"
                     onClick={this.cancelSubtitle}>Close</button>
 
@@ -242,9 +251,13 @@ class SubtitleCreation extends React.Component {
                     onClick={this.saveSubtitle}>Save</button>
 
                 </div>
+
               </div>
+
             </div>
+
           </div>
+
           {/* Subtitle list div */}
           <div>
             <div id='show-subtitles'>

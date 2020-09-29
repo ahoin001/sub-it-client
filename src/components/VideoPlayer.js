@@ -1,29 +1,18 @@
 import React from 'react';
 
-class VideoPlayer extends React.Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    }
-  }
+const VideoPlayer = ({videoURL}) => {
 
-  render() {
-
-    return(
+  return (
     <div>
-    <div id='video-container'>
-      <video id="video" crossOrigin="anonymous" autoPlay controls preload="metadata">
-      <source src={this.props.videoURL} />
-        <track id="my-subs" label="English" kind="subtitles" srcLang="en" src="" default/> 
+      <div id='video-container'>
+        <video id="video" crossOrigin="anonymous" autoPlay controls preload="metadata">
+          <source src={videoURL} />
+          <track id="my-subs" label="English" kind="subtitles" srcLang="en" src="" default />
         </video>
-    </div>      
+      </div>
     </div>
+  );
 
-    );
-  }
-}
+};
 
 export default VideoPlayer;
-
