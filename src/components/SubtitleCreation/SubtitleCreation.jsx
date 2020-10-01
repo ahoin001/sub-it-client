@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
 
+import Modal from '../../shared/modal/Modal'
+
 // ! Currently makes request for all subs each time sub is added, works, but come back and 
 // ! make this more efficient
 
@@ -17,8 +19,10 @@ const SubtitleCreation = ({ projectId }) => {
         inTimeVTT: '',
         outTimeVTT: '',
         subtitles: [],
-        download: []
+        download: [],
     })
+
+    const [modalVisible, setModalVisible] = useState(false)
 
     useEffect(() => {
 
@@ -90,6 +94,9 @@ const SubtitleCreation = ({ projectId }) => {
           <td>${sub.outTimeVTT}</td>
         </tr>
         `;
+
+            return '';
+
         })
 
     }
@@ -167,7 +174,13 @@ const SubtitleCreation = ({ projectId }) => {
 
             button.innerHTML = 'In Time';
         }
+
+        if (button.innerHTML = 'Out Time') {
+            setModalVisible(!modalVisible)
+        }
+
     };
+
 
     // function to display subtitle text modal after endTime has been set
     const completeSub = () => {
@@ -247,6 +260,7 @@ const SubtitleCreation = ({ projectId }) => {
     const downloadSub = () => {
 
         let downloadVTT = `WEBVTT`
+
         axios.get(`http://localhost:8000/projects/api/subtitles/${projectId}`)
             .then((response) => {
 
@@ -255,11 +269,10 @@ const SubtitleCreation = ({ projectId }) => {
                 //     download: response.data.subArray
                 // })
 
-
-
                 let finishedSubs = subTitleState.subtitles;
                 finishedSubs.map((sub) => {
                     downloadVTT += `\n\n${sub.inTimeVTT} --> ${sub.outTimeVTT}\n${sub.text}`;
+                    return ''
                 });
                 let blob = new Blob([downloadVTT], { type: "text/plain;charset=utf-8", endings: 'native' });
                 FileSaver.saveAs(blob, 'subtitles.vtt');
@@ -278,7 +291,10 @@ const SubtitleCreation = ({ projectId }) => {
 
             <div className="creationSub">
 
-                <div className="modal" id="myModal">
+
+                <Modal Visible={modalVisible} />
+
+                {/* <div className="modal" id="myModal">
 
                     <div className="modal-dialog modal-dialog-centered">
 
@@ -307,7 +323,8 @@ const SubtitleCreation = ({ projectId }) => {
 
                     </div>
 
-                </div>
+                </div> */}
+
 
                 {/* Subtitle list div */}
                 <div>

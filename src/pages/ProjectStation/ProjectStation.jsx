@@ -1,8 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import SubtitleCreation from '../../components/SubtitleCreation/SubtitleCreation'
 
 // import SubtitleCreation from '../../components/SubtitleCreation';
+
+
+import { StationContainer } from './Project-Station-styles'
 
 import VideoPlayer from '../../components/VideoPlayer'
 
@@ -12,7 +15,9 @@ const ProjectStation = (props) => {
 
     console.log('I AM STATE OF STATIONl: ', projectInfo)
 
-    const [videoControl, setvideoControl] = useState({
+    const [videoControl,
+        setvideoControl
+    ] = useState({
         projectInfo: projectInfo,
         ready: false,
         pip: false,
@@ -29,17 +34,17 @@ const ProjectStation = (props) => {
         currentProjectId: '',
     })
 
-    const playVideo = () => {
-        // You can use the play method as normal on your video ref
-        this.refs.vidRef.play();
+    // const playVideo = () => {
+    //     // You can use the play method as normal on your video ref
+    //     this.refs.vidRef.play();
 
-    };
+    // };
 
-    const pauseVideo = () => {
-        // Pause as well
-        this.refs.vidRef.pause();
-        this.refs.vidRef.currentTime = 0;
-    };
+    // const pauseVideo = () => {
+    //     // Pause as well
+    //     this.refs.vidRef.pause();
+    //     this.refs.vidRef.currentTime = 0;
+    // };
 
     let video;
 
@@ -52,20 +57,18 @@ const ProjectStation = (props) => {
     // console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@: `,process.env.REACT_APP_API_URL)
 
     return (
-        <div className="container_video">
+        // <div className="container_video">
 
-            <div>{video}</div>
-            {/* <div id='video-container'>
-                    <video id="video" crossOrigin="anonymous" autoPlay controls preload="metadata">
-                    <source src={this.state.videoURL} />
-                    <track id="my-subs" label="English" kind="subtitles" srcLang="en" src="" default/> 
-                    </video>
-                </div> */}
+        <StationContainer>
 
-            {/* TODO: Get projectID from URL */}
+            <div className="video">{video}</div>
+
             <div><SubtitleCreation projectId={projectInfo.id} /></div>
 
-        </div>
+        </StationContainer>
+
+
+        // </div>
 
     );
 };

@@ -1,7 +1,14 @@
 // **** NAV
 import tw from "twin.macro";
 import styled from "styled-components";
-import Header, { NavLink, NavLinks, PrimaryLink, LogoLink, NavToggle, DesktopNavLinks } from "../../treeponents/headers/light";
+import Header, {
+  NavLink,
+  // NavLinks,
+  // PrimaryLink,
+  LogoLink,
+  NavToggle,
+  DesktopNavLinks
+} from "../../treeponents/headers/light";
 
 export const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none bg-gray-400`}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import './App.css';
+// import './App.css';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import {Container} from './App-Styles.jsx'
 
 // import Home from './components/Home'
 import NavbarTree from './components/navbartree/navbar'
@@ -15,11 +17,11 @@ import ProjectStation from './pages/ProjectStation/ProjectStation'
 
 
 // Old
-import Navbar from './components/Navbar'
+// import Navbar from './components/Navbar'
 // import ProjectsList from './components/ProjectsList'
-import Projectform from './components/Project_form';
-import ProjectDetails from './components/ProjectDetailPage';
-import Update from './components/Update';
+// import Projectform from './components/Project_form';
+// import ProjectDetails from './components/ProjectDetailPage';
+// import Update from './components/Update';
 
 const App = () => {
 
@@ -46,14 +48,14 @@ const App = () => {
 
     <Router>
 
-      {/* <Route exact path="/" component={HomeTree} /> */}
+      {/* <Container><Route exact path="/" component={HomeTree} /> */}
       <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 
       {/* <StyledHeader links={navLinks} /> */}
 
       <div className="container">
 
-
+    
         {/* ***************************** */}
 
         <NavbarTree logOut={logOut} />
@@ -72,10 +74,14 @@ const App = () => {
         {/* <Route path="/dashboard" component={ProjectsList} /> */}
         {/* <Route path="/project/:projectId" component={ProjectDetails} /> */}
 
-        <Route path="/update" component={Update} />
+        {/* <Route path="/update" component={Update} /> */}
         {/* <Route exact path="/form" component={Projectform} /> */}
 
       </div>
+      
+      {/* </Container> */}
+
+      
 
     </Router>
 
