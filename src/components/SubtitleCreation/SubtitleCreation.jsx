@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
 
+import { Table } from 'reactstrap';
+
+import { Button } from './SubtitleCreation-Styles'
+
+import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
 import Modal from '../../shared/modal/Modal'
+
 
 // ! Currently makes request for all subs each time sub is added, works, but come back and 
 // ! make this more efficient
@@ -15,7 +21,7 @@ const SubtitleCreation = ({ projectId }) => {
         subInit: false,
         inTime: 0,
         outTime: 0,
-        text: '',
+        subtitleToSave: '',
         inTimeVTT: '',
         outTimeVTT: '',
         subtitles: [],
@@ -23,6 +29,20 @@ const SubtitleCreation = ({ projectId }) => {
     })
 
     const [modalVisible, setModalVisible] = useState(false)
+
+
+    const genericSync = (event) => {
+
+        console.log("==============================================================Target is: ", event.target)
+        console.log("==============================================================Value is: ", event.target.value)
+
+        // Destructure to get naame and value for target 
+        const { name, value } = event.target;
+        setSubTitleState({ ...subTitleState, [name]: value })
+
+    }
+
+
 
     useEffect(() => {
 
@@ -175,9 +195,9 @@ const SubtitleCreation = ({ projectId }) => {
             button.innerHTML = 'In Time';
         }
 
-        if (button.innerHTML = 'Out Time') {
-            setModalVisible(!modalVisible)
-        }
+        // if (button.innerHTML = 'Out Time') {
+        //     setModalVisible(!modalVisible)
+        // }
 
     };
 
@@ -185,19 +205,30 @@ const SubtitleCreation = ({ projectId }) => {
     // function to display subtitle text modal after endTime has been set
     const completeSub = () => {
         let modal = document.getElementById('myModal');
-        modal.style.display = 'block';
+
+        // modal.style.display = 'block';
+
+        setModalVisible(true)
+
     };
 
     const saveSubtitle = async () => {
 
-        let modal = document.getElementById('myModal')
+        // let modal = document.getElementById('myModal')
         let tracks = document.querySelector('video').textTracks;
         let video = document.getElementById('video');
         let cuesLength = tracks[0].cues.length;
 
-        // set cue text to the text typed in the modal
-        let theText = document.getElementById('this-sub-text').value;
-        tracks[0].cues[cuesLength - 1].text = theText;
+        // ! Old way to get subtitle to save
+        //  set cue text to the text typed in the modal
+        // let theText = document.getElementById('this-sub-text').value;
+        // tracks[0].cues[cuesLength - 1].text = theText;
+
+        // ! Get Subtitle to save from state
+        let textToSave = subTitleState.subtitleToSave;
+        tracks[0].cues[cuesLength - 1].text = textToSave;
+
+
 
         // clear modal text
         document.getElementById('this-sub-text').value = '';
@@ -233,7 +264,9 @@ const SubtitleCreation = ({ projectId }) => {
             setShouldRefetch(true)
 
             video.play();
-            modal.style.display = 'none';
+            // modal.style.display = 'none';
+
+            setModalVisible(false)
 
         } catch (error) {
             console.log(error)
@@ -253,8 +286,11 @@ const SubtitleCreation = ({ projectId }) => {
         tracks[0].removeCue(tracks[0].cues[cuesLength - 1]);
         // clear modal text
         document.getElementById('this-sub-text').value = '';
+
         video.play();
-        modal.style.display = 'none';
+        // modal.style.display = 'none';
+        setModalVisible(true)
+
     };
 
     const downloadSub = () => {
@@ -283,16 +319,30 @@ const SubtitleCreation = ({ projectId }) => {
 
 
     return (
-        <div>
+
+        <SubtitleCreationContainer>
+
+            {/* <Button> In Time</Button> */}
 
             <div>
-                <button id='creation-button' className="btn btn-secondary" onClick={createSub}>In Time</button>
+                <button
+                    id='creation-button'
+                    className="btn btn-primary"
+                    onClick={createSub}
+                >
+                    In Time
+                 </button>
             </div>
 
             <div className="creationSub">
 
 
-                <Modal Visible={modalVisible} />
+                <Modal
+                    Visible={modalVisible}
+                    toggle={setModalVisible}
+                    onChange={genericSync}
+                    saveSubtitle={saveSubtitle}
+                />
 
                 {/* <div className="modal" id="myModal">
 
@@ -328,8 +378,26 @@ const SubtitleCreation = ({ projectId }) => {
 
                 {/* Subtitle list div */}
                 <div>
+
                     <div id='show-subtitles'>
-                        <table id="subtitle-list">
+
+                        <Table dark>
+
+                            <thead>
+                                <tr>
+                                    <th>Text</th>
+                                    <th>In time</th>
+                                    <th>Out time</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="sub-tbody">
+
+                            </tbody>
+
+                        </Table>
+
+                        {/* <table id="subtitle-list">
                             <thead>
                                 <tr>
                                     <th>Text</th>
@@ -340,18 +408,21 @@ const SubtitleCreation = ({ projectId }) => {
                             <tbody id="sub-tbody">
 
                             </tbody>
-                        </table>
+                        </table> */}
 
                     </div>
-                    <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button>
 
-
-                </div>
-                <div>
+                    {/* <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button> */}
 
                 </div>
+
             </div>
-        </div>
+
+            <div>
+                <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button>
+            </div>
+
+        </SubtitleCreationContainer>
     );
 
 };
