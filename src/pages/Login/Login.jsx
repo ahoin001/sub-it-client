@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from 'react-router-dom'
 
-import { login } from '../../util/UtilityUserFunctions'
+import AuthContext from '../../shared/context/auth-context'
+
+// import { login } from '../../util/UtilityUserFunctions'
 
 // import { css } from "styled-components/macro"; //eslint-disable-line
 
@@ -35,6 +37,10 @@ const Login = (props) => {
 
   const [values, setValues] = useState({ username: '', email: '', password: '' })
 
+  const { login, secret } = useContext(AuthContext)
+
+  console.log('THE SECRET IS !!!!!!!!!!!!!!!! ', secret)
+
   // dynamically keep track of form field in state
   const handleInputChange = e => {
     // console.log('EVENT TARGET',e.target.type)
@@ -55,24 +61,16 @@ const Login = (props) => {
       password
     }
 
-    login(newUserInfo)
-      .then((res) => {
+    try {
 
+      let res = await login(newUserInfo)
+      console.log('********************************* res From Login: ', res)
 
-        console.log(`******************************************** LOGIN`)
-        console.log(res)
-        localStorage.setItem('currentUserId', res.id);
-        localStorage.setItem('currentUserName', res.email);
+      history.push("/dashboard");
 
-        // Change State to Know User is Signed In
-        props.login('POPOPOPOPOPO')
-
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-    history.push("/dashboard");
+    } catch (error) {
+      console.log(error)
+    }
 
   }
 

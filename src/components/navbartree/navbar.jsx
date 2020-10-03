@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 
+import AuthContext from '../../shared/context/auth-context'
 
 import { StyledHeader } from './navbar.styled'
 import { NavLinks, NavLink, PrimaryLink } from "../../treeponents/headers/light";
 
-// const logOut = (e) => {
-//   e.preventDefault()
-//   localStorage.removeItem('usertoken');
-//   localStorage.removeItem('currentUserId');
-//   localStorage.removeItem('currentUserName');
-//   // this.props.history.push(`/login`)
-// }
+const Navbar = (props) => {
 
-const navbar = (props) => {
+    const { userSignedIn, logOut } = useContext(AuthContext)
 
     const navLinks = [
         <NavLinks key={1}>
@@ -43,22 +38,33 @@ const navbar = (props) => {
         <NavLinks key={2}>
 
             {console.log(localStorage)}
-            {localStorage.currentUserId
+            {userSignedIn
                 ?
 
                 <Link to="/">
-                    <PrimaryLink onClick={(e) => props.logOut(e)} href="#">
+                    <PrimaryLink onClick={() => logOut()} href="#">
                         Logout
                     </PrimaryLink>
                 </Link>
-               
+
                 :
 
-                <Link to="/login">
-                    <PrimaryLink href="#">
-                        Login
-              </PrimaryLink>
-                </Link>
+                <React.Fragment>
+
+                    <Link to="/login">
+                        <PrimaryLink href="#">
+                            Login
+                    </PrimaryLink>
+                    </Link>
+
+                    <Link to="/form">
+                        <PrimaryLink href="#">
+                            + Add Project
+                    </PrimaryLink>
+                    </Link>
+
+                </React.Fragment>
+
             }
 
 
@@ -70,4 +76,4 @@ const navbar = (props) => {
     );
 };
 
-export default navbar;
+export default Navbar;

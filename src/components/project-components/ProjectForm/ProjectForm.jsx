@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom'
 import axios from "axios";
+
+import AuthContext from '../../../shared/context/auth-context'
 
 // ! Add loading screen since uploads can take awhile
 // ! Add modal after upload asking if they want to upload another maybe?
@@ -15,6 +18,18 @@ const ProjectForm = () => {
         language: "English",
         videoFile: ''
     })
+
+    const { userSignedIn } = useContext(AuthContext)
+
+    let history = useHistory();
+
+    useEffect(() => {
+
+        if (!userSignedIn) {
+            history.push('/login');
+        }
+
+    }, [])
 
     const genericSync = e => {
 
@@ -34,7 +49,7 @@ const ProjectForm = () => {
 
     const handleSubmit = (event) => {
 
-        // if (!this.props.theUser) {
+        // if (!userSignedIn) {
         //     this.props.history.push('/login');
         // }
 
@@ -81,7 +96,7 @@ const ProjectForm = () => {
                     onChange={event => genericSync(event)}
                     type="text"
                     name="title"
-                    placeholder="The Great Journey"
+                    placeholder="Name of Project"
                 />
 
                 <label> Video Genre: </label>
@@ -90,7 +105,7 @@ const ProjectForm = () => {
                     onChange={event => genericSync(event)}
                     type="text"
                     name="genre"
-                    placeholder="The Great Journey"
+                    placeholder="Drama"
                 />
 
                 <label> Video Description: </label>
@@ -99,7 +114,7 @@ const ProjectForm = () => {
                     onChange={event => genericSync(event)}
                     type="text"
                     name="description"
-                    placeholder="The Great Journey"
+                    placeholder="Desc."
                 />
 
                 <label className="file-preview"> Video Language: </label>
@@ -108,7 +123,7 @@ const ProjectForm = () => {
                     onChange={event => genericSync(event)}
                     type="text"
                     name="language"
-                    placeholder="The Great Journey"
+                    placeholder="Upload File"
                 />
 
                 <div className="custom-file">

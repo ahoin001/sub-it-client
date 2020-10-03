@@ -300,11 +300,6 @@ const SubtitleCreation = ({ projectId }) => {
         axios.get(`http://localhost:8000/projects/api/subtitles/${projectId}`)
             .then((response) => {
 
-                // setSubTitleState({
-                //     ...subTitleState,
-                //     download: response.data.subArray
-                // })
-
                 let finishedSubs = subTitleState.subtitles;
                 finishedSubs.map((sub) => {
                     downloadVTT += `\n\n${sub.inTimeVTT} --> ${sub.outTimeVTT}\n${sub.text}`;

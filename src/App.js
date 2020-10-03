@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 // import './App.css';
+// import { Container } from './App-Styles.jsx'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-import {Container} from './App-Styles.jsx'
+import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom'
 
 // import Home from './components/Home'
 import NavbarTree from './components/navbartree/navbar'
@@ -14,7 +14,7 @@ import ProjectFormTree from './components/project-components/ProjectForm/Project
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/ProjectStation/ProjectStation'
 
-
+import AuthContext from './shared/context/auth-context'
 
 // Old
 // import Navbar from './components/Navbar'
@@ -25,22 +25,55 @@ import ProjectStation from './pages/ProjectStation/ProjectStation'
 
 const App = () => {
 
-  const [user, setUser] = useState(true)
+  const [userSignedIn, setUserSignedIn] = useState(false)
 
-  const logOut = (e) => {
-    e.preventDefault()
-    localStorage.removeItem('usertoken');
-    localStorage.removeItem('currentUserId');
+  let history = useHistory();
+
+  const logOut = () => {
+
+    console.log('About to logout user (Check LocaleStorage)')
+
     localStorage.removeItem('currentUserName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('currentUserId');
 
-    setUser(false)
+    history.push(`/login`)
 
-    // this.props.history.push(`/login`)
+    setUserSignedIn(false)
+
   }
 
-  const login = (thing) => {
-    console.log(thing)
-    setUser(true)
+  const login = (userInfo) => {
+    return axios
+      // .post(`${process.env.REACT_APP_API_URL}/login`, {
+      .post(`http://localhost:8000/users/login`, {
+        userName: userInfo.userName,
+        email: userInfo.email,
+        password: userInfo.password
+      })
+      .then(response => {
+
+        // The Logged In User Data
+        console.log(`RESPONSE ON LOGIN BACKEND: `, response)
+        console.log(`RESPONSE ON LOGIN BACKEND: `, response.data.LoggedInUser)
+
+        // Set User data to localstorage to keep track of user
+        localStorage.setItem('userId', response.data.LoggedInUser.id);
+        // Might Use context instead but for now it's okay
+        localStorage.setItem('currentUserId', response.data.LoggedInUser.id);
+        localStorage.setItem('currentUserName', response.data.LoggedInUser.email);
+
+        console.log('SETTING USER TO TRUE AT APP LEVEL COMPONENT')
+        setUserSignedIn(true)
+
+        return response.data.LoggedInUser
+
+      })
+      .catch(err => {
+        console.log('ERROR FROM Login')
+        console.log(err)
+      })
+
   }
 
 
@@ -48,15 +81,40 @@ const App = () => {
 
     <Router>
 
-      {/* <Container><Route exact path="/" component={HomeTree} /> */}
-      <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+      {/* <Container>*/}
+
+      {/* <Route exact path="/" component={HomeTree} /> */}
+      {/* <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} /> */}
 
       {/* <StyledHeader links={navLinks} /> */}
 
-      <div className="container">
+      <AuthContext.Provider value={{
+        secret: 'Context working!',
+        userSignedIn: userSignedIn,
+        login: login,
+        logOut: logOut
+      }}>
 
-    
-        {/* ***************************** */}
+        <div className="container">
+
+          <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+
+          <NavbarTree logOut={logOut} />
+
+          <Route exact path="/signup" component={SignUpTree} />
+          <Route exact path="/login" component={LoginTree} />
+
+          {/* <Route exact path="/login" component={() => <LoginTree login={login} />} /> */}
+
+          <Route exact path="/form" component={ProjectFormTree} />
+          <Route path="/dashboard" component={ProjectsList} />
+          <Route path="/project/:projectId" component={ProjectStation} />
+
+        </div>
+
+      </AuthContext.Provider>
+
+      {/* <div className="container">
 
         <NavbarTree logOut={logOut} />
 
@@ -66,22 +124,11 @@ const App = () => {
         <Route path="/dashboard" component={ProjectsList} />
         <Route path="/project/:projectId" component={ProjectStation} />
 
-        {/* <Route exact path="/login" component={Login} /> */}
+      </div> */}
 
-        {/* ***************************** */}
-
-
-        {/* <Route path="/dashboard" component={ProjectsList} /> */}
-        {/* <Route path="/project/:projectId" component={ProjectDetails} /> */}
-
-        {/* <Route path="/update" component={Update} /> */}
-        {/* <Route exact path="/form" component={Projectform} /> */}
-
-      </div>
-      
       {/* </Container> */}
 
-      
+
 
     </Router>
 

@@ -5,6 +5,7 @@ import { createContext } from 'react'
 const AuthContext = createContext({
     isLoggedIn: false,
     userId:null,
+    projectId:null,
     token:null,
     login: () => { },
     logout: () => { }
