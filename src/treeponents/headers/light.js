@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -25,6 +27,12 @@ export const NavLink = tw.span`
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
 `;
+export const NavLink2 = styled(Link)`
+ ${tw` text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
+  font-semibold tracking-wide transition duration-300
+  pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500`};
+ 
+`;
 
 export const PrimaryLink = tw(NavLink)`
   lg:mx-0
@@ -46,9 +54,10 @@ export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
 `;
 export const MobileNavLinks = motion.custom(styled.div`
-  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  ${tw` lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  
   ${NavLinks} {
-    ${tw`flex flex-col items-center`}
+    ${tw` my-8 flex flex-col items-center`}
   }
 `);
 
@@ -79,7 +88,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/#" tw="lg:ml-12!">
         Login
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">Sign Up</PrimaryLink>
     </NavLinks>
   ];
 

@@ -4,41 +4,74 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../../shared/context/auth-context'
 
 import { StyledHeader } from './navbar.styled'
-import { NavLinks, NavLink, PrimaryLink } from "../../treeponents/headers/light";
+import { NavLinks, NavLink, NavLink2, PrimaryLink } from "../../treeponents/headers/light";
 
 const Navbar = (props) => {
 
     const { userSignedIn, logOut } = useContext(AuthContext)
 
     const navLinks = [
+
         <NavLinks key={1}>
 
-            {/* <Link to="/"> */}
+            {localStorage.getItem('userId')
+                ?
 
-            <NavLink href="#">
-                About
-           </NavLink>
+                <React.Fragment>
 
-            {/* </Link> */}
+                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
 
-            <NavLink href="#">
-                Blog
-          </NavLink>
+                        <NavLink>
+                            Dashboard
+                    </NavLink>
 
-            <NavLink href="#">
-                Locations
-          </NavLink>
+                    </Link>
 
-            <NavLink href="#">
-                Pricing
-          </NavLink>
+                    <Link to="/form" style={{ textDecoration: 'none' }}>
 
-        </NavLinks>,
+                        <NavLink>
+                            Add Project
+                        </NavLink>
+
+                    </Link>
+
+                </React.Fragment>
+
+
+                :
+
+                <React.Fragment>
+
+
+                    <NavLink href="#">
+                        About
+                    </NavLink>
+
+                    <NavLink href="#">
+                        Blog
+                    </NavLink>
+
+                    <NavLink href="#">
+                        Locations
+                    </NavLink>
+
+                    <NavLink href="#">
+                        Pricing
+                    </NavLink>
+
+                </React.Fragment>
+
+            }
+
+
+
+        </NavLinks>
+        ,
 
         <NavLinks key={2}>
 
             {console.log(localStorage)}
-            {userSignedIn
+            {localStorage.getItem('userId')
                 ?
 
                 <Link to="/">
@@ -54,13 +87,7 @@ const Navbar = (props) => {
                     <Link to="/login">
                         <PrimaryLink href="#">
                             Login
-                    </PrimaryLink>
-                    </Link>
-
-                    <Link to="/form">
-                        <PrimaryLink href="#">
-                            + Add Project
-                    </PrimaryLink>
+                        </PrimaryLink>
                     </Link>
 
                 </React.Fragment>

@@ -114,21 +114,7 @@ const App = () => {
 
       </AuthContext.Provider>
 
-      {/* <div className="container">
-
-        <NavbarTree logOut={logOut} />
-
-        <Route exact path="/signup" component={SignUpTree} />
-        <Route exact path="/login" component={() => <LoginTree login={login} />} />
-        <Route exact path="/form" component={ProjectFormTree} />
-        <Route path="/dashboard" component={ProjectsList} />
-        <Route path="/project/:projectId" component={ProjectStation} />
-
-      </div> */}
-
       {/* </Container> */}
-
-
 
     </Router>
 
