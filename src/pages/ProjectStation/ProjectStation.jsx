@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import SubtitleCreation from '../../components/SubtitleCreation/SubtitleCreation'
-
+import SUBCREATE from '../../components/SubtitleCreation/SUBCREATE'
 // import SubtitleCreation from '../../components/SubtitleCreation';
 
 
@@ -13,7 +13,12 @@ const ProjectStation = (props) => {
 
     const projectInfo = props.location.state.projectInfo;
 
-    console.log('I AM STATE OF STATIONl: ', projectInfo)
+    // console.log('I AM STATE OF STATIONl: ', projectInfo)
+
+
+    useEffect(() => {
+        console.log('STATION EFFECT HAS BEE RENDERED')
+    }, [])
 
     const [videoControl,
         setvideoControl
@@ -61,9 +66,15 @@ const ProjectStation = (props) => {
 
         <StationContainer>
 
-            <div className="video">{video}</div>
+            <div className="video">
+                {video}
+            </div>
 
-            <div><SubtitleCreation projectId={projectInfo.id} /></div>
+            <div>
+
+                <SubtitleCreation projectId={projectInfo.id} videoURL={projectInfo.videoURL}/>
+                {/* <SUBCREATE projectId={projectInfo.id} /> */}
+            </div>
 
         </StationContainer>
 

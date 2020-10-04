@@ -70,7 +70,7 @@ const Navbar = (props) => {
 
         <NavLinks key={2}>
 
-            {console.log(localStorage)}
+            {/* {console.log(localStorage)} */}
             {localStorage.getItem('userId')
                 ?
 

@@ -27,8 +27,9 @@ const App = () => {
 
   const [userSignedIn, setUserSignedIn] = useState(false)
 
+  // ! Make this use token or localstorage info to auto login
   useEffect(() => {
-    console.log('USEEFFECRT')
+    console.log('USER RELOGGED IN')
     if (localStorage.getItem('currentUserId')) {
         setUserSignedIn(true)
     }
