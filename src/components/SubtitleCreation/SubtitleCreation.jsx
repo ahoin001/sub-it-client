@@ -4,6 +4,7 @@ import FileSaver from 'file-saver';
 
 import { Table } from 'reactstrap';
 
+import Subtitle from './Subtitle'
 import { Button } from './SubtitleCreation-Styles'
 
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
@@ -75,7 +76,7 @@ const SubtitleCreation = ({ projectId }) => {
 
             }
 
-            listSubtitles();
+            // listSubtitles();
 
         }
 
@@ -228,8 +229,6 @@ const SubtitleCreation = ({ projectId }) => {
         let textToSave = subTitleState.subtitleToSave;
         tracks[0].cues[cuesLength - 1].text = textToSave;
 
-
-
         // clear modal text
         document.getElementById('this-sub-text').value = '';
         // let thisProjectId = this.props.projectId;
@@ -312,8 +311,25 @@ const SubtitleCreation = ({ projectId }) => {
 
     }
 
+    // const subtitles = subTitleState.subtitles.map((sub) => {
 
-    return (
+    //     // Add existing subtitles to HTML track tag
+    //     let inTime = sub.inTime;
+    //     let outTime = sub.outTime;
+    //     let text = sub.text;
+    //     let cue = new VTTCue(inTime, outTime, text);
+    //     tracks[0].addCue(cue);
+
+    //     // console.log(tracks[0]);
+    //     // Display existing subtitles in DOM
+    //     <Subtitle text={sub.text} inTimeVTT={sub.inTimeVTT} outTimeVTT={sub.outTimeVTT} />
+    // };
+
+    let subtitles = subTitleState.subtitles.map(sub => {
+        return <Subtitle text={sub.text} inTimeVTT={sub.inTimeVTT} outTimeVTT={sub.outTimeVTT}/>
+    })
+
+        return (
 
         <SubtitleCreationContainer>
 
@@ -387,7 +403,7 @@ const SubtitleCreation = ({ projectId }) => {
                             </thead>
 
                             <tbody id="sub-tbody">
-
+                                {subtitles}
                             </tbody>
 
                         </Table>

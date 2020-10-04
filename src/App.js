@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 // import './App.css';
 // import { Container } from './App-Styles.jsx'
@@ -26,6 +26,14 @@ import AuthContext from './shared/context/auth-context'
 const App = () => {
 
   const [userSignedIn, setUserSignedIn] = useState(false)
+
+  useEffect(() => {
+    console.log('USEEFFECRT')
+    if (localStorage.getItem('currentUserId')) {
+        setUserSignedIn(true)
+    }
+
+  }, [])
 
   let history = useHistory();
 
