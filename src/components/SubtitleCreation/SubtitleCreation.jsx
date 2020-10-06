@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
 
@@ -7,8 +7,9 @@ import { Table } from 'reactstrap';
 import VideoPlayer from '../../components/VideoPlayer'
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
 import Modal from '../../shared/modal/Modal'
+import Subtitle from './Subtitle'
 
-
+// ! HTML LIMITATION ADDING A SUBTITLE BEFORE AN ESTABLISHED TIME BEFORE REFRESHING
 // ! Currently makes request for all subs each time sub is added, works, but come back and 
 // ! make this more efficient
 
@@ -18,9 +19,9 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const [shouldAddSub, setShouldAddSub] = useState()
 
-    const isInitialMount = useRef(true);
-
     const [modalVisible, setModalVisible] = useState(false)
+
+    const [subtitleRows, setSubtitleRows] = useState('')
 
     const [subTitleState, setSubTitleState] = useState({
         subInit: false,
@@ -38,7 +39,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         console.log('GOING TO ADD SUB')
         if (shouldAddSub) {
             console.log('INVTTTT: ', subTitleState.subtitleToSave)
-            console.log('INVTTTT: ', subTitleState.inTime)
+            console.log('INVTTTT: ', subTitleState.inTimeVTT)
             console.log('OutTTTT: ', subTitleState.outTimeVTT)
             // listOneSubtitle(subTitleState.subtitleToSave, subTitleState.inTimeVTT, subTitleState.outTimeVTT)
             listOneSubtitle();
@@ -87,10 +88,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const genericSync = (event) => {
 
-        // console.log("==============================================================Target is: ", event.target)
-        // console.log("==============================================================Value is: ", event.target.value)
-
-        // Destructure to get naame and value for target 
         const { name, value } = event.target;
         setSubTitleState({ ...subTitleState, [name]: value })
 
@@ -101,18 +98,20 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         // Display subtitle in DOM
         let subtitleList = document.getElementById('sub-tbody');
 
-        console.log('IN LIST ONE FUNCTION INTIME : ',subTitleState.inTimeVTT)
-        console.log('IN LIST ONE FUNCTION OUTTOME: ',subTitleState.outTimeVTT)
+        console.log('IN LIST ONE FUNCTION INTIME : ', subTitleState.inTimeVTT)
+        console.log('IN LIST ONE FUNCTION OUTTOME: ', subTitleState.outTimeVTT)
+        let newSub = <Subtitle text={subTitleState.text} inTimeVTT={subTitleState.inTimeVTT} outTimeVTT={subTitleState.outTime} />
 
         // subtitleList.innerHTML += `<li>${sub} || ${inTimeVTT} --> ${outTimeVTT}</li><br>`;
+        setSubtitleRows(subtitleRows.push(newSub))
 
-        subtitleList.innerHTML +=
-            `<tr class="each-sub">
-          <td>${subTitleState.subtitleToSave}</td>
-          <td>${subTitleState.inTimeVTT}</td>
-          <td>${subTitleState.outTimeVTT}</td>
-          </tr>
-        `;
+        // subtitleList.innerHTML +=
+        //     `<tr class="each-sub">
+        //   <td>${subTitleState.subtitleToSave}</td>
+        //   <td>${subTitleState.inTimeVTT}</td>
+        //   <td>${subTitleState.outTimeVTT}</td>
+        //   </tr>
+        // `;
 
         setShouldAddSub(false)
     }
@@ -125,33 +124,45 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         console.log('LIST SUBTITLES CALLED: ', projectSubtitles)
 
-        // Clear List
-        subtitleList.innerHTML = ""
 
-        // Loop through subs and place them apropiately in video
-        projectSubtitles.map((sub) => {
-
-            // Add existing subtitles to HTML track tag
+        let rows = projectSubtitles.map((sub) => {
             let inTime = sub.inTime;
             let outTime = sub.outTime;
             let text = sub.text;
             let cue = new VTTCue(inTime, outTime, text);
             tracks[0].addCue(cue);
+            return <Subtitle text={sub.text} inTimeVTT={sub.inTime} outTimeVTT={sub.outTime} />
+        }
+        )
 
-            // console.log(tracks[0]);
+        setSubtitleRows(rows)
 
-            // Display existing subtitles in DOM
-            subtitleList.innerHTML +=
-                `<tr class="each-sub">
-          <td>${sub.text}</td>
-          <td>${sub.inTimeVTT}</td>
-          <td>${sub.outTimeVTT}</td>
-        </tr>
-        `;
-            // return ''
-        })
+        // Clear List
+        // subtitleList.innerHTML = ""
 
-        // setShouldRefetch(false)
+        // Loop through subs and place them apropiately in video
+        // projectSubtitles.map((sub) => {
+
+        //     // Add existing subtitles to HTML track tag
+        //     let inTime = sub.inTime;
+        //     let outTime = sub.outTime;
+        //     let text = sub.text;
+        //     let cue = new VTTCue(inTime, outTime, text);
+        //     tracks[0].addCue(cue);
+
+        //     // Display existing subtitles in DOM
+        //     subtitleList.innerHTML +=
+        //         `<tr class="each-sub">
+        //   <td>${sub.text}</td>
+        //   <td>${sub.inTimeVTT}</td>
+        //   <td>${sub.outTimeVTT}</td>
+        // </tr>
+        // `;
+
+        // })
+
+        // Loop through subs and place them apropiately in video
+
 
     }
 
@@ -255,8 +266,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             outTimeVTT: outVTT
         }
 
-        // listOneSubtitle(thisSubtitle.text, thisSubtitle.inTimeVTT, thisSubtitle.outTimeVTT);
-
         console.log('************* IM IN SAVE');
 
         // * Post request to push current subtitle to the database
@@ -278,7 +287,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 outTimeVTT: outVTT
             })
             setShouldAddSub(true)
-            // setShouldRefetch(true)
             setModalVisible(false)
             video.play();
             // modal.style.display = 'none';
@@ -340,10 +348,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         <React.Fragment>
 
-            {/* <div className="video">
-                {video}
-            </div> */}
-
             <SubtitleCreationContainer>
 
                 {/* <Button> In Time</Button> */}
@@ -368,27 +372,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                         saveSubtitle={saveSubtitle}
                     />
 
-                    {/* <div className="modal" id="myModal">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h4 className="modal-title">The text must be shorter than 80 characters</h4>
-                                <button type="button" className="close" onClick={cancelSubtitle} data-dismiss="modal">X</button>
-                            </div>
-                            <div className="modal-body">
-                                <textarea id="this-sub-text" rows="2" cols="50" maxLength="80"></textarea>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-danger" data-dismiss="modal" id="cancel-btn"
-                                    onClick={cancelSubtitle}>Close</button>
-                                <button type="button" className="btn btn-primary" data-dismiss="modal" id="save-text-btn"
-                                    onClick={saveSubtitle}>Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-
                     {/* Subtitle list div */}
                     <div>
 
@@ -405,26 +388,12 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                                 </thead>
 
                                 <tbody id="sub-tbody">
-
+                                    {subtitleRows}
                                 </tbody>
 
                             </Table>
 
-                            {/* <table id="subtitle-list">
-                            <thead>
-                                <tr>
-                                    <th>Text</th>
-                                    <th>In time</th>
-                                    <th>Out time</th>
-                                </tr>
-                            </thead>
-                            <tbody id="sub-tbody">
-                            </tbody>
-                        </table> */}
-
                         </div>
-
-                        {/* <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button> */}
 
                     </div>
 
