@@ -8,7 +8,6 @@ const VideoPlayer = ({videoURL}) => {
         <video id="video" crossOrigin="anonymous" autoPlay controls preload="metadata">
           <source src={videoURL} />
           <track id="my-subs" label="English" kind="subtitles" srcLang="en" src="" default />
-          <track id="my-subs" label="English" kind="subtitles" srcLang="en" src="" default />
         </video>
       </div>
     </div>

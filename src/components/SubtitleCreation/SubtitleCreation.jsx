@@ -93,45 +93,46 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let tracks = document.querySelector('video').textTracks;
         let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} />
-
-        let theSubtitleRows = subTitleState.subtitles.map((sub) => {
-
-            let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
-            tracks[0].addCue(cue);
-
-            return <Subtitle key={sub.id} Subtitle={sub} />
-        })
-
-        // Keep Subs in order for user
-        theSubtitleRows.sort((a, b) => (a.inTime) - (b.inTime));
-
-        setSubtitleRows(theSubtitleRows)
-
 
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
 
-    }
+        listSubtitles()
 
-    // ! LIST ONE MIGHT NOT BE WORKING BECAUSE NOT ADDING CUE MAYBE?
+    }
 
     const listSubtitles = () => {
 
         // debugger;
+
         let tracks = document.querySelector('video').textTracks;
 
-        console.log('LISTING SUBTITLES')
+        // * Remove video cues before adding all from exsisiting subtitles 
+        if (tracks[0].cues.length) {
+
+            // Must declare here because pluggin directly won't work since length is decreasing each loop
+            const lengthOfCueList = tracks[0].cues.length - 1;
+
+            for (let i = 0; i <= lengthOfCueList; i++) {
+
+                // Keep removing first cue until there is no more
+                if (tracks[0].cues[0]) {
+
+                    // console.log('IN FOR LOOP, CUE BEING REMOVED : ', tracks[0].cues[0])
+                    tracks[0].removeCue(tracks[0].cues[0]);
+
+                }
+
+            }
+        }
+
         console.log('LISTING TRACK', tracks)
 
-        // Keep Subs in order for user
+        // * Keep Subs in order for user
         subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime));
 
-        // console.log('SORTED SUBTITLES BRO: ',sortedSubtitles)
-        console.log('SORTED SUBTITLES BRO: ', subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime)))
-
-
+        // * Add cues on track from sorted subtitles array
         let theSubtitleRows = subTitleState.subtitles.map((sub) => {
 
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
@@ -223,8 +224,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     };
 
-    // ! ADDING A SUBTITLE MAKES THE ONE BEFORE IT DISAPEAR FOR SOME REASON
-
     const saveSubtitle = async () => {
 
         // ? Activates chrome debug for react
@@ -236,7 +235,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         console.log('THE TRACK CUE THING: ', tracks)
 
-        // ! Get Subtitle info to save 
+        // * Set Subtitle info to save 
         let textToSave = subTitleState.subtitleToSave;
         let inVTT = timeToVTT(subTitleState.inTime);
         let outVTT = timeToVTT(subTitleState.outTime);
@@ -251,7 +250,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         }
 
         // ? ENDTIME MUST BE FIRST OR SELECTING LAST CUE WON"T WORK
-        // ? CUES ARE AUTOMATICALLY SORTED BY START TIME, CHANGING START TIME WILL POTENTIALLY MOVE LAST CUE
+        // ? CUES ARE AUTOMATICALLY SORTED BY START TIME, CHANGING START TIME WILL POTENTIALLY MOVE LAST CUE MAKING GETTER LOGIC ERROR
         tracks[0].cues[cuesLength - 1].text = textToSave;
         tracks[0].cues[cuesLength - 1].endTime = thisSubtitle.outTime;
         tracks[0].cues[cuesLength - 1].startTime = thisSubtitle.inTime;
@@ -260,7 +259,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         // clear modal text
         document.getElementById('this-sub-text').value = '';
-
 
 
         // * Post request to push current subtitle to the database
@@ -275,7 +273,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             setSubTitleState({
                 ...subTitleState,
                 subtitles: [...subTitleState.subtitles, savedSubtitle.data],
-                // subtitleToSave: tracks[0].cues[cuesLength - 1].text,
                 inTimeVTT: inVTT,
                 outTimeVTT: outVTT
             })
