@@ -21,13 +21,13 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const [modalVisible, setModalVisible] = useState(false)
 
-    const [subtitleRows, setSubtitleRows] = useState('')
+    const [subtitleRows, setSubtitleRows] = useState(null)
 
     const [subTitleState, setSubTitleState] = useState({
         subInit: false,
-        inTime: 0,
-        outTime: 0,
         subtitleToSave: '',
+        inTime: null,
+        outTime: null,
         inTimeVTT: '',
         outTimeVTT: '',
         subtitles: [],
@@ -36,14 +36,13 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     useEffect(() => {
 
-        console.log('GOING TO ADD SUB')
+        // ? Get the most recent added subtitle after user submits subtitle and lists it
+
         if (shouldAddSub) {
-            console.log('INVTTTT: ', subTitleState.subtitleToSave)
-            console.log('INVTTTT: ', subTitleState.inTimeVTT)
-            console.log('OutTTTT: ', subTitleState.outTimeVTT)
-            // listOneSubtitle(subTitleState.subtitleToSave, subTitleState.inTimeVTT, subTitleState.outTimeVTT)
-            listOneSubtitle();
+            console.log('BEFORE LISTING: ', subTitleState)
+            listOneSubtitle(subTitleState.subtitles[subTitleState.subtitles.length - 1]);
         }
+
     }, [shouldAddSub])
 
     useEffect(() => {
@@ -60,7 +59,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 axios.get(`http://localhost:8000/projects/api/subtitles/${projectId}`)
                     .then(response => {
 
-                        console.log("* Get Subtitles that belong to signed in user", response.data);
+                        // console.log("* Get Subtitles that belong to signed in user", response.data);
 
                         setSubTitleState({
                             ...subTitleState,
@@ -81,7 +80,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         }
 
-
         fetchData();
 
     }, [shouldRefetch])
@@ -93,76 +91,56 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }
 
-    const listOneSubtitle = () => {
+    const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        // Display subtitle in DOM
-        let subtitleList = document.getElementById('sub-tbody');
+        let tracks = document.querySelector('video').textTracks;
+        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} />
 
-        console.log('IN LIST ONE FUNCTION INTIME : ', subTitleState.inTimeVTT)
-        console.log('IN LIST ONE FUNCTION OUTTOME: ', subTitleState.outTimeVTT)
-        let newSub = <Subtitle text={subTitleState.text} inTimeVTT={subTitleState.inTimeVTT} outTimeVTT={subTitleState.outTime} />
+        let theSubtitleRows = subTitleState.subtitles.map((sub) => {
 
-        // subtitleList.innerHTML += `<li>${sub} || ${inTimeVTT} --> ${outTimeVTT}</li><br>`;
-        setSubtitleRows(subtitleRows.push(newSub))
+            let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
+            tracks[0].addCue(cue);
 
-        // subtitleList.innerHTML +=
-        //     `<tr class="each-sub">
-        //   <td>${subTitleState.subtitleToSave}</td>
-        //   <td>${subTitleState.inTimeVTT}</td>
-        //   <td>${subTitleState.outTimeVTT}</td>
-        //   </tr>
-        // `;
+            return <Subtitle key={sub.id} Subtitle={sub} />
+        })
 
+        // Keep Subs in order for user
+        theSubtitleRows.sort((a, b) => (a.inTime) - (b.inTime));
+
+        setSubtitleRows(theSubtitleRows)
+
+
+        setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
+
     }
+
+    // ! LIST ONE MIGHT NOT BE WORKING BECAUSE NOT ADDING CUE MAYBE?
 
     const listSubtitles = () => {
 
+        // debugger;
         let tracks = document.querySelector('video').textTracks;
-        let subtitleList = document.getElementById('sub-tbody');
-        let projectSubtitles = subTitleState.subtitles;
 
-        console.log('LIST SUBTITLES CALLED: ', projectSubtitles)
+        console.log('LISTING SUBTITLES')
+        console.log('LISTING TRACK', tracks)
+
+        // Keep Subs in order for user
+        subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime));
+
+        // console.log('SORTED SUBTITLES BRO: ',sortedSubtitles)
+        console.log('SORTED SUBTITLES BRO: ', subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime)))
 
 
-        let rows = projectSubtitles.map((sub) => {
-            let inTime = sub.inTime;
-            let outTime = sub.outTime;
-            let text = sub.text;
-            let cue = new VTTCue(inTime, outTime, text);
+        let theSubtitleRows = subTitleState.subtitles.map((sub) => {
+
+            let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
-            return <Subtitle text={sub.text} inTimeVTT={sub.inTime} outTimeVTT={sub.outTime} />
-        }
-        )
 
-        setSubtitleRows(rows)
+            return <Subtitle key={sub.id} Subtitle={sub} />
+        })
 
-        // Clear List
-        // subtitleList.innerHTML = ""
-
-        // Loop through subs and place them apropiately in video
-        // projectSubtitles.map((sub) => {
-
-        //     // Add existing subtitles to HTML track tag
-        //     let inTime = sub.inTime;
-        //     let outTime = sub.outTime;
-        //     let text = sub.text;
-        //     let cue = new VTTCue(inTime, outTime, text);
-        //     tracks[0].addCue(cue);
-
-        //     // Display existing subtitles in DOM
-        //     subtitleList.innerHTML +=
-        //         `<tr class="each-sub">
-        //   <td>${sub.text}</td>
-        //   <td>${sub.inTimeVTT}</td>
-        //   <td>${sub.outTimeVTT}</td>
-        // </tr>
-        // `;
-
-        // })
-
-        // Loop through subs and place them apropiately in video
-
+        setSubtitleRows(theSubtitleRows)
 
     }
 
@@ -187,6 +165,12 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         return timeVTT;
     };
 
+    // USED IN LIST FUNCTIONS TO MAKE SURE SUBS ARE CHRONOLOGICAL
+    const sortSubtitlesForTable = (subtitles) => {
+
+    }
+
+
     const createSub = () => {
         let tracks = document.querySelector('video').textTracks;
         let video = document.getElementById('video');
@@ -195,12 +179,19 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         // if inTime has not been defined, create a new cue with startTime set to current video time
         if (subTitleState.subInit === false) {
             let inTime = video.currentTime;
-            let cue = new VTTCue(inTime, null, '');
+
+            console.log('****************************************************** CURRENT IN TIME: ', inTime)
+
+            let cue = new VTTCue(9999999999, 99999999999, '');
+
+            console.log(cue)
+
             tracks[0].addCue(cue);
 
             setSubTitleState({
                 ...subTitleState,
-                subInit: true
+                subInit: true,
+                inTime: inTime
             })
 
             button.innerHTML = 'Out Time';
@@ -208,96 +199,95 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             // if inTime has already been defined, set cue endTime to current video time and pause video
         } else {
             let outTime = video.currentTime;
-            let cuesLength = tracks[0].cues.length;
+
+            console.log('****************************************************** CURRENT OUT TIME: ', outTime)
+
+            // let cuesLength = tracks[0].cues.length;
+
             video.pause();
-            tracks[0].cues[cuesLength - 1].endTime = outTime;
+
+            // console.log('BEFORE ADDING OUT TIME', tracks[0].cues[cuesLength - 1])
+
+            // tracks[0].cues[cuesLength - 1].endTime = outTime;
 
             setSubTitleState({
                 ...subTitleState,
-                subInit: false
+                subInit: false,
+                outTime: outTime
             })
 
-            completeSub()
+            setModalVisible(true)
 
             button.innerHTML = 'In Time';
         }
 
-        // if (button.innerHTML = 'Out Time') {
-        //     setModalVisible(!modalVisible)
-        // }
-
     };
 
-
-    // function to display subtitle text modal after endTime has been set
-    const completeSub = () => {
-        let modal = document.getElementById('myModal');
-
-        // modal.style.display = 'block';
-
-        setModalVisible(true)
-
-    };
+    // ! ADDING A SUBTITLE MAKES THE ONE BEFORE IT DISAPEAR FOR SOME REASON
 
     const saveSubtitle = async () => {
+
+        // ? Activates chrome debug for react
+        // debugger;
 
         let tracks = document.querySelector('video').textTracks;
         let video = document.getElementById('video');
         let cuesLength = tracks[0].cues.length;
 
-        // ! Get Subtitle to save from state
+        console.log('THE TRACK CUE THING: ', tracks)
+
+        // ! Get Subtitle info to save 
         let textToSave = subTitleState.subtitleToSave;
-        tracks[0].cues[cuesLength - 1].text = textToSave;
+        let inVTT = timeToVTT(subTitleState.inTime);
+        let outVTT = timeToVTT(subTitleState.outTime);
 
-
-        // clear modal text
-        document.getElementById('this-sub-text').value = '';
-
-        // Create VTT inTime and outTime with timeToVTT function
-        let inVTT = timeToVTT(tracks[0].cues[cuesLength - 1].startTime);
-        let outVTT = timeToVTT(tracks[0].cues[cuesLength - 1].endTime);
-
-        // Define body for axios post request
-        let thisSubtitle = {
-            inTime: tracks[0].cues[cuesLength - 1].startTime,
-            outTime: tracks[0].cues[cuesLength - 1].endTime,
-            text: tracks[0].cues[cuesLength - 1].text,
+        // ? Define body to fill the VTTCue and also send to Database
+        const thisSubtitle = {
+            inTime: subTitleState.inTime,
+            outTime: subTitleState.outTime,
+            text: textToSave,
             inTimeVTT: inVTT,
             outTimeVTT: outVTT
         }
 
-        console.log('************* IM IN SAVE');
+        // ? ENDTIME MUST BE FIRST OR SELECTING LAST CUE WON"T WORK
+        // ? CUES ARE AUTOMATICALLY SORTED BY START TIME, CHANGING START TIME WILL POTENTIALLY MOVE LAST CUE
+        tracks[0].cues[cuesLength - 1].text = textToSave;
+        tracks[0].cues[cuesLength - 1].endTime = thisSubtitle.outTime;
+        tracks[0].cues[cuesLength - 1].startTime = thisSubtitle.inTime;
+
+        // console.log('THE CUE TRACK AFTER CHANGING WHERE I MAKE IT: ', tracks[0].cues[cuesLength - 1])
+
+        // clear modal text
+        document.getElementById('this-sub-text').value = '';
+
+
 
         // * Post request to push current subtitle to the database
         // * If successful then display to client
 
         try {
 
-            console.log('IN THE TRY')
-
             let savedSubtitle = await axios.post(`http://localhost:8000/subtitles/api/${projectId}/add-sub`, thisSubtitle)
 
-            console.log('SAVED SUBTITLE: ', savedSubtitle)
+            console.log('SAVED SUBTITLE: ', savedSubtitle.data)
 
-            // listOneSubtitle(thisSubtitle.text, thisSubtitle.inTimeVTT, thisSubtitle.outTimeVTT);
             setSubTitleState({
                 ...subTitleState,
-                subtitleToSave: tracks[0].cues[cuesLength - 1].text,
+                subtitles: [...subTitleState.subtitles, savedSubtitle.data],
+                // subtitleToSave: tracks[0].cues[cuesLength - 1].text,
                 inTimeVTT: inVTT,
                 outTimeVTT: outVTT
             })
             setShouldAddSub(true)
             setModalVisible(false)
             video.play();
-            // modal.style.display = 'none';
-
 
         } catch (error) {
             console.log(error)
         }
 
     };
-
 
     // function to cancel and clear current subtitle sith Cancel button in modal
     const cancelSubtitle = () => {
@@ -334,14 +324,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             })
             .catch((err) => { });
 
-    }
-
-    let video;
-
-    if (videoURL) {
-        video = <VideoPlayer videoURL={videoURL} />;
-    } else {
-        video = 'Loading...';
     }
 
     return (
