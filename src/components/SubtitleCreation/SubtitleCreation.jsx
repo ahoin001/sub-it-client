@@ -9,10 +9,6 @@ import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
 import Modal from '../../shared/modal/Modal'
 import Subtitle from './Subtitle'
 
-// ! HTML LIMITATION ADDING A SUBTITLE BEFORE AN ESTABLISHED TIME BEFORE REFRESHING
-// ! Currently makes request for all subs each time sub is added, works, but come back and 
-// ! make this more efficient
-
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const [shouldRefetch, setShouldRefetch] = useState(true)
@@ -93,7 +89,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} />
+        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onClick={deleteSubtitle} />
 
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
@@ -138,7 +134,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            return <Subtitle key={sub.id} Subtitle={sub} />
+            return <Subtitle key={sub.id} Subtitle={sub} onClick={deleteSubtitle}/>
         })
 
         setSubtitleRows(theSubtitleRows)
@@ -165,12 +161,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         return timeVTT;
     };
-
-    // USED IN LIST FUNCTIONS TO MAKE SURE SUBS ARE CHRONOLOGICAL
-    const sortSubtitlesForTable = (subtitles) => {
-
-    }
-
 
     const createSub = () => {
         let tracks = document.querySelector('video').textTracks;
@@ -203,13 +193,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             console.log('****************************************************** CURRENT OUT TIME: ', outTime)
 
-            // let cuesLength = tracks[0].cues.length;
-
             video.pause();
-
-            // console.log('BEFORE ADDING OUT TIME', tracks[0].cues[cuesLength - 1])
-
-            // tracks[0].cues[cuesLength - 1].endTime = outTime;
 
             setSubTitleState({
                 ...subTitleState,
@@ -285,6 +269,34 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         }
 
     };
+
+    const deleteSubtitle = (subId) => {
+
+        console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
+        // * Get subtitles that belong to project
+        axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
+            .then(response => {
+
+                console.log("* RESPONSE AFTER DELETING SUBTITLE");
+                console.log("* RESPONSE AFTER DELETING SUBTITLE", response.data);
+
+                setShouldRefetch(true);
+
+            })
+            .catch(function (error) {
+                console.log('FAILURE GETTING SUBTITLES OF PROJECT')
+                console.log(error);
+            })
+
+            // try {
+                
+            // } catch (error) {
+                
+            // }
+
+    }
+
 
     // function to cancel and clear current subtitle sith Cancel button in modal
     const cancelSubtitle = () => {
