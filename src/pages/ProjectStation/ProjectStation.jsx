@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
 
 import SubtitleCreation from '../../components/SubtitleCreation/SubtitleCreation'
-import SUBCREATE from '../../components/SubtitleCreation/SUBCREATE'
 // import SubtitleCreation from '../../components/SubtitleCreation';
 
 
@@ -73,7 +72,7 @@ const ProjectStation = (props) => {
             <div>
 
                 <SubtitleCreation projectId={projectInfo.id} videoURL={projectInfo.videoURL}/>
-                {/* <SUBCREATE projectId={projectInfo.id} /> */}
+            
             </div>
 
         </StationContainer>

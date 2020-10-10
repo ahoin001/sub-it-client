@@ -7,7 +7,7 @@ import { Table } from 'reactstrap';
 import VideoPlayer from '../../components/VideoPlayer'
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
 import Modal from '../../shared/modal/Modal'
-import Subtitle from './Subtitle'
+import Subtitle from '../Subtitle/Subtitle'
 
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
@@ -87,9 +87,43 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }
 
+    const submitChanges = (Subtitle,formInputs) => {
+
+        //  debugger;
+
+        console.log("* GOING TO EDIT THIS SUBTITLE: ",Subtitle);
+        console.log("* FORM DATA: ",formInputs);
+
+        // let inTimeToUpdateWithAsVTT = timeToVTT(formInputs.inTimeVTT);
+        // let outTimeToUpdateWithAsVTT = timeToVTT(formInputs.outTimeVTT);
+
+        const dataToEditInSubtitle = {
+            ...Subtitle,
+            text:formInputs.text,
+            inTime:formInputs.inTimeVTT,
+            outTime:formInputs.outTimeVTT,
+            inTimeVTT: formInputs.inTimeVTT,
+            outTimeVTT: formInputs.outTimeVTT
+        }
+
+        axios.put(`http://localhost:8000/subtitles/api/${Subtitle.id}/edit-sub`, dataToEditInSubtitle)
+        .then(response => {
+
+            console.log("* RESPONSE AFTER EDITING SUBS", response.data);
+            
+            setShouldRefetch(true)
+
+        })
+        .catch(function (error) {
+            console.log('FAILURE GETTING SUBTITLES OF PROJECT')
+            console.log(error);
+        })
+
+    }
+
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onClick={deleteSubtitle} />
+        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch}/>
 
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
@@ -105,7 +139,10 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         let tracks = document.querySelector('video').textTracks;
 
         // * Remove video cues before adding all from exsisiting subtitles 
-        if (tracks[0].cues.length) {
+        if (tracks[0].cues === null) {
+            return
+        }
+        else if (tracks[0].cues.length) {
 
             // Must declare here because pluggin directly won't work since length is decreasing each loop
             const lengthOfCueList = tracks[0].cues.length - 1;
@@ -134,7 +171,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            return <Subtitle key={sub.id} Subtitle={sub} onClick={deleteSubtitle}/>
+            return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch}/>
         })
 
         setSubtitleRows(theSubtitleRows)
@@ -142,8 +179,12 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
     }
 
     const timeToVTT = (num) => {
+
+    if (num.split(':').length > 1) {
+        
         let stringNum = num.toFixed(3);
         let splitNum = stringNum.split('.');
+        
         let totalSeconds = splitNum[0];
         let totalMilliseconds = splitNum[1];
 
@@ -160,6 +201,10 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         let timeVTT = hours + ":" + minutes + ":" + seconds + "." + totalMilliseconds;
 
         return timeVTT;
+
+    }        
+
+        
     };
 
     const createSub = () => {
@@ -272,7 +317,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const deleteSubtitle = (subId) => {
 
-        console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+        console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,',subId)
 
         // * Get subtitles that belong to project
         axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
