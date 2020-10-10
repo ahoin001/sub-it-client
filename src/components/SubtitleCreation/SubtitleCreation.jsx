@@ -87,43 +87,61 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }
 
-    const submitChanges = (Subtitle,formInputs) => {
+    const vttToSeconds = (timeAsVTT) => {
+
+        const [hh = '0', mm = '0', ss = '0'] = (timeAsVTT || '0:0:0').split(':');
+        const hour = parseInt(hh, 10) || 0;
+        const minute = parseInt(mm, 10) || 0;
+        const second = parseFloat(ss, 10) || 0;
+
+        const timeInSeconds = (hour * 3600) + (minute * 60) + (second);
+        console.log('Time in Seconds: ',timeInSeconds)
+
+        return timeInSeconds;
+
+    }
+
+
+    const submitChanges = (Subtitle, formInputs) => {
 
         //  debugger;
 
-        console.log("* GOING TO EDIT THIS SUBTITLE: ",Subtitle);
-        console.log("* FORM DATA: ",formInputs);
+        console.log("* GOING TO EDIT THIS SUBTITLE: ", Subtitle);
+        console.log("* FORM DATA: ", formInputs);
 
-        // let inTimeToUpdateWithAsVTT = timeToVTT(formInputs.inTimeVTT);
-        // let outTimeToUpdateWithAsVTT = timeToVTT(formInputs.outTimeVTT);
+        let inTimeAsSeconds = vttToSeconds(formInputs.inTimeVTT);
+        let outTimeAsSeconds = vttToSeconds(formInputs.outTimeVTT);
+
+        console.log('IN VTT: ', formInputs.inTimeVTT)
+        console.log('IN SECONDS: ', inTimeAsSeconds)
 
         const dataToEditInSubtitle = {
             ...Subtitle,
-            text:formInputs.text,
-            inTime:formInputs.inTimeVTT,
-            outTime:formInputs.outTimeVTT,
+            text: formInputs.text,
+            inTime: inTimeAsSeconds,
+            outTime: outTimeAsSeconds,
             inTimeVTT: formInputs.inTimeVTT,
             outTimeVTT: formInputs.outTimeVTT
         }
 
         axios.put(`http://localhost:8000/subtitles/api/${Subtitle.id}/edit-sub`, dataToEditInSubtitle)
-        .then(response => {
+            .then(response => {
 
-            console.log("* RESPONSE AFTER EDITING SUBS", response.data);
-            
-            setShouldRefetch(true)
+                console.log("* RESPONSE AFTER EDITING SUBS", response.data);
 
-        })
-        .catch(function (error) {
-            console.log('FAILURE GETTING SUBTITLES OF PROJECT')
-            console.log(error);
-        })
+                setShouldRefetch(true)
+
+            })
+            .catch(function (error) {
+                console.log('FAILURE GETTING SUBTITLES OF PROJECT')
+                console.log(error);
+            })
 
     }
 
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch}/>
+        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
 
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
@@ -171,7 +189,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch}/>
+            return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
         })
 
         setSubtitleRows(theSubtitleRows)
@@ -180,11 +198,13 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const timeToVTT = (num) => {
 
-    if (num.split(':').length > 1) {
-        
+        console.log("IN TIMETOVTT NUMBER IS: ", num)
+        console.log("NUMBER IS TYPE: ", typeof num)
+
+        // Also Converts to String
         let stringNum = num.toFixed(3);
+
         let splitNum = stringNum.split('.');
-        
         let totalSeconds = splitNum[0];
         let totalMilliseconds = splitNum[1];
 
@@ -202,9 +222,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         return timeVTT;
 
-    }        
-
-        
     };
 
     const createSub = () => {
@@ -317,7 +334,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const deleteSubtitle = (subId) => {
 
-        console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,',subId)
+        console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,', subId)
 
         // * Get subtitles that belong to project
         axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
@@ -334,11 +351,11 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 console.log(error);
             })
 
-            // try {
-                
-            // } catch (error) {
-                
-            // }
+        // try {
+
+        // } catch (error) {
+
+        // }
 
     }
 
