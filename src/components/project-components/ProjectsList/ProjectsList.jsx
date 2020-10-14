@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom'
+
+import { Container } from './ProjectList-Styles'
 
 // import Project from '../Project'
 import Project from '../Project/Project'
@@ -21,8 +24,8 @@ const ProjectsList = () => {
         const fetchData = async () => {
 
             const userId = localStorage.getItem('currentUserId');
-            
-            console.log('BEFORE FETCHING VIDS FOR DASHBOARD: ',userId)
+
+            console.log('BEFORE FETCHING VIDS FOR DASHBOARD: ', userId)
 
             // * Get Projects that belong to signed in user
             await axios.get(`http://localhost:8000/projects/api/dashboard/${userId}`)
@@ -41,29 +44,28 @@ const ProjectsList = () => {
 
     }, [])
 
-    let  projectListItems;
+    let projectListItems;
 
     if (projectsOfUser) {
-         projectListItems = projectsOfUser.map((projectFromList, i) =>
-            <li key={projectFromList.id}>
+        projectListItems = projectsOfUser.map((projectFromList, i) =>
 
-                {/* <Project videoURL={projectFromList.videoURLS} title={projectFromList.title} projectId={projectFromList.id} /> */}
-                <Project projectInfo={projectFromList} /> 
+            <div className="videoContainer">
 
-            </li>
+                <Project projectInfo={projectFromList} />
+
+            </div>
+
         );
     }
 
 
     return (
 
-        <div className="project-container" >
+        <Container>
 
-            <ul>
-                {projectsOfUser && projectListItems}
-            </ul>
+            {projectsOfUser && projectListItems}
 
-        </div>
+        </Container>
 
     );
 

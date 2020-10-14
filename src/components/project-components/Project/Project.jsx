@@ -1,8 +1,15 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom'
 
+
+import {
+    Container,
+    Article,
+    Header
+} from './Project-Styles.jsx'
+
 // Import Personal Card Styling
-import '../../../ProjectStyles.css'
+// import '../../../ProjectStyles.css'
 
 // ! Videos appear as blank white 
 
@@ -12,7 +19,7 @@ const Project = ({ projectInfo }) => {
 
     const hoverplayVideo = (e) => {
 
-        console.log(projectInfo.id)
+        console.log(projectInfo)
         // References video with "vidRef" ref attribute, then plays the video
         videoRef.current.play();
         videoRef.current.currentTime = 0
@@ -28,7 +35,8 @@ const Project = ({ projectInfo }) => {
 
     return (
 
-        <div>
+        <React.Fragment>
+
             <Link to={{
                 pathname: `/project/${projectInfo.id}`,
                 state: {
@@ -36,35 +44,72 @@ const Project = ({ projectInfo }) => {
                 }
             }} >
 
-                <div className="card ">
+                <Article>
 
-                    <div className="card_video">
+                    <video
+                        src={projectInfo.videoURL}
+                        type="video/mp4"
+                        ref={videoRef}
+                        onMouseOver={hoverplayVideo}
+                        onMouseLeave={hoverpauseVideo}
+                    ></video>
 
-                        <video
-                            // loop autoPlay='' muted
-                            ref={videoRef}
-                            src={projectInfo.videoURL}
-                            type="video/mp4"
+                    <Header>
 
-                            onMouseOver={hoverplayVideo}
-                            onMouseLeave={hoverpauseVideo}
-                        >
-                        </video>
+                        <h1 class="text-lg">
+                            <a class="no-underline hover:underline text-black" href="#">
+                                {projectInfo.title}
+                            </a>
+                        </h1>
 
+                        <p class="text-grey-darker text-sm">
+                            {projectInfo.description}
+                        </p>
 
-                    </div>
+                    </Header>
 
-                    <div className="card_title title-white">
-
-                        <p>{projectInfo.title}</p>
-
-                    </div>
-
-                </div>
-
+                </Article>
             </Link>
 
-        </div>
+        </React.Fragment>
+
+        // <div>
+        //     <Link to={{
+        //         pathname: `/project/${projectInfo.id}`,
+        //         state: {
+        //             projectInfo
+        //         }
+        //     }} >
+
+        //         <div className="card ">
+
+        //             <div className="card_video">
+
+        //                 <video
+        //                     // loop autoPlay='' muted
+        //                     ref={videoRef}
+        //                     src={projectInfo.videoURL}
+        //                     type="video/mp4"
+
+        //                     onMouseOver={hoverplayVideo}
+        //                     onMouseLeave={hoverpauseVideo}
+        //                 >
+        //                 </video>
+
+
+        //             </div>
+
+        //             <div className="card_title title-white">
+
+        //                 <p>{projectInfo.title}</p>
+
+        //             </div>
+
+        //         </div>
+
+        //     </Link>
+
+        // </div>
     );
 };
 
