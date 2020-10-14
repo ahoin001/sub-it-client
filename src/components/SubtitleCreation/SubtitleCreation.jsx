@@ -4,7 +4,6 @@ import FileSaver from 'file-saver';
 
 import { Table } from 'reactstrap';
 
-import VideoPlayer from '../../components/VideoPlayer'
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
 import Modal from '../../shared/modal/Modal'
 import Subtitle from '../Subtitle/Subtitle'
@@ -102,7 +101,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
     }
 
 
-    const submitChanges = (Subtitle, formInputs) => {
+    const submitChanges = (Subtitle, formInputs, setEdit) => {
 
         //  debugger;
 
@@ -130,6 +129,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 console.log("* RESPONSE AFTER EDITING SUBS", response.data);
 
                 setShouldRefetch(true)
+                setEdit(false)
 
             })
             .catch(function (error) {

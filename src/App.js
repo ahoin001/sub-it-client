@@ -10,9 +10,13 @@ import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/Home/Home.jsx'
 import SignUpTree from './pages/SignUp/SignUp.jsx'
 import LoginTree from './pages/Login/Login.jsx'
+import AddProjectForm from './pages/AddProject/Add-Project'
 import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
+
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/ProjectStation/ProjectStation'
+
+import ProjectListTry from './pages/UserProjects/UserProjects'
 
 import AuthContext from './shared/context/auth-context'
 
@@ -116,7 +120,13 @@ const App = () => {
           {/* <Route exact path="/login" component={() => <LoginTree login={login} />} /> */}
 
           <Route exact path="/form" component={ProjectFormTree} />
+          <Route exact path="/treeform" component={AddProjectForm} />
+
+
+
           <Route path="/dashboard" component={ProjectsList} />
+          <Route path="/dashboard2" component={ProjectListTry} />
+
           <Route path="/project/:projectId" component={ProjectStation} />
 
         </div>
