@@ -127,23 +127,12 @@ const ProjectForm = () => {
                 />
 
                 <div className="custom-file">
-                    <input type="file" name="videoFile" className="custom-file-input" id="inputGroupFile01"
+                    <input type="file" name="videoFile"  className="custom-file-input" id="inputGroupFile01"
                         aria-describedby="inputGroupFileAddon01" onChange={(e) => handleFileUpload(e)} />
                     <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                 </div>
 
                 <br /> <label> Video File: </label>
-
-                {/* <Dropzone updateParent={this.updateStateFileIfFileAdded.bind(this)} /> */}
-
-                {/* <button> Update </button> */}
-
-                {/* Styling is in app.css */}
-                {/* <FileViewer
-                    fileType={'mp4'}
-                    filePath={projectInfo.tempFileURL}
-
-                /> */}
 
                 <button onClick={() => handleSubmit}>Submit</button>
 
