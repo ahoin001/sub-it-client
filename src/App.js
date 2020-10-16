@@ -108,7 +108,9 @@ const App = () => {
         logOut: logOut
       }}>
 
-        <div className="container">
+        {/* <div className="container"> */}
+
+        <div>
 
           <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 

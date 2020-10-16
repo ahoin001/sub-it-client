@@ -42,9 +42,13 @@ const Project = ({ projectInfo }) => {
                 state: {
                     projectInfo
                 }
-            }} >
+            }}
+            style={{ textDecoration: 'none' }}
+             >
 
-                <Article>
+                <Article 
+                style={{ backgroundColor: 'none' }}
+                >
 
                     <video
                         src={projectInfo.videoURL}
@@ -56,10 +60,10 @@ const Project = ({ projectInfo }) => {
 
                     <Header>
 
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
+                        <h1>
+                            {/* <a class="text-primary-900 no-underline" href="#"> */}
                                 {projectInfo.title}
-                            </a>
+                            {/* </a> */}
                         </h1>
 
                         <p class="text-grey-darker text-sm">
@@ -73,43 +77,6 @@ const Project = ({ projectInfo }) => {
 
         </React.Fragment>
 
-        // <div>
-        //     <Link to={{
-        //         pathname: `/project/${projectInfo.id}`,
-        //         state: {
-        //             projectInfo
-        //         }
-        //     }} >
-
-        //         <div className="card ">
-
-        //             <div className="card_video">
-
-        //                 <video
-        //                     // loop autoPlay='' muted
-        //                     ref={videoRef}
-        //                     src={projectInfo.videoURL}
-        //                     type="video/mp4"
-
-        //                     onMouseOver={hoverplayVideo}
-        //                     onMouseLeave={hoverpauseVideo}
-        //                 >
-        //                 </video>
-
-
-        //             </div>
-
-        //             <div className="card_title title-white">
-
-        //                 <p>{projectInfo.title}</p>
-
-        //             </div>
-
-        //         </div>
-
-        //     </Link>
-
-        // </div>
     );
 };
 
