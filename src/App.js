@@ -11,6 +11,8 @@ import HomeTree from './pages/Home/Home.jsx'
 import SignUpTree from './pages/SignUp/SignUp.jsx'
 import LoginTree from './pages/Login/Login.jsx'
 import AddProjectForm from './pages/AddProject/Add-Project'
+import Table from './shared/Table/Table'
+
 import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
@@ -118,11 +120,12 @@ const App = () => {
 
           <Route exact path="/signup" component={SignUpTree} />
           <Route exact path="/login" component={LoginTree} />
-
+          {/* <Route exact path="/table" component={Table} /> */}
+     
           {/* <Route exact path="/login" component={() => <LoginTree login={login} />} /> */}
 
-          <Route exact path="/form" component={ProjectFormTree} />
-          <Route exact path="/treeform" component={AddProjectForm} />
+          {/* <Route exact path="/form" component={ProjectFormTree} /> */}
+          <Route exact path="/form" component={AddProjectForm} />
 
 
 

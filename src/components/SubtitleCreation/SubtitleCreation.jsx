@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
 
+import Table2 from '../../shared/Table/Table'
+
 import { Table } from 'reactstrap';
 
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
@@ -455,6 +457,8 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 <div>
                     <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button>
                 </div>
+
+             <Table2/>
 
             </SubtitleCreationContainer>
 

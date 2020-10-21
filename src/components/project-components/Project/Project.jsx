@@ -66,7 +66,7 @@ const Project = ({ projectInfo }) => {
                             {/* </a> */}
                         </h1>
 
-                        <p class="text-grey-darker text-sm">
+                        <p className="text-grey-darker text-sm">
                             {projectInfo.description}
                         </p>
 
