@@ -4,11 +4,14 @@ import FileSaver from 'file-saver';
 
 import Table from '../../shared/Table/Table'
 
-import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
-import { OutlineButton } from './SubtitleCreation-Styles'
+import {
+    SubtitleCreationContainer,
+    OutlineButton,
+    ButtonContainer
+} from './SubtitleCreation-Styles'
 
 import Modal from '../../shared/modal/Modal'
-import Subtitle2 from '../Subtitle2/Subtitle2'
+import Subtitle2 from '../Subtitle/Subtitle'
 
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
@@ -144,8 +147,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
         let newSub = <Subtitle2 key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
-        // let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
-
+        
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
 
@@ -192,7 +194,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            // return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
             return <Subtitle2 key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
         })
 
@@ -401,7 +402,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             <SubtitleCreationContainer>
 
-                <div>
+                <ButtonContainer>
 
                     <OutlineButton
                         id='creation-button'
@@ -416,7 +417,19 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                         }
                     </OutlineButton>
 
-                </div>
+                    <div>
+
+                        <OutlineButton
+                            id='download-button'
+                            onClick={downloadSub}
+                            primaryColor='isGray'
+                        >
+                            Download Subtitles
+                        </OutlineButton>
+
+                    </div>
+
+                </ButtonContainer>
 
                 {/* <div className="creationSub"> */}
                 <div>
@@ -441,18 +454,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                         </div>
 
                     </div>
-
-                </div>
-
-                <div>
-
-                    <OutlineButton
-                        id='download-button'
-                        onClick={downloadSub}
-                        primaryColor='isGray'
-                    >
-                        Download Subtitles
-                    </OutlineButton>
 
                 </div>
 
