@@ -3,6 +3,7 @@
 import React from 'react';
 
 import {
+    BackDrop,
     ModalContainer,
     Modal,
     ModalHeader,
@@ -12,7 +13,10 @@ import {
 
 // import moduleName from '../../shared/'
 
-import { Button } from 'reactstrap';
+import {
+    ButtonsContainer,
+    ActionButton
+} from '../Buttons/Buttons';
 
 const ModalExample = (props) => {
 
@@ -20,40 +24,51 @@ const ModalExample = (props) => {
 
         <React.Fragment>
 
-            <ModalContainer>
+            <BackDrop >
 
-                <Modal>
+                <ModalContainer>
 
-                    {/* <!-- Header --> */}
+                    <Modal>
 
-                    <ModalHeader>
+                        <ModalHeader>
 
-                        <ModalHeaderTitle>
-                            Enter Subtitle
-                        </ModalHeaderTitle>
+                            <ModalHeaderTitle>
+                                Enter Subtitle
+                            </ModalHeaderTitle>
 
 
-                    </ModalHeader>
+                        </ModalHeader>
 
-                    {/* <!--Header End--> */}
+                        <ModalContent
+                            onChange={(e) => props.onChange(e)}
+                            name="subtitleToSave"
+                            id="this-sub-text"
+                        >
 
-                    {/* <!-- Modal Content--> */}
+                        </ModalContent>
 
-                    <ModalContent>
-                        This is a text inside the modal. You can add your content here.
-                    </ModalContent>
+                        <footer>
 
-                    {/* <!-- End of Modal Content--> */}
+                            <ButtonsContainer>
 
-                    <footer>
-                        <Button color="primary" onClick={() => props.saveSubtitle()}>Do Something</Button>{' '}
-                        <Button color="secondary" onClick={() => props.toggle()}>Cancel</Button>
-                    </footer>
+                                <ActionButton isDelete onClick={() => props.toggle(false)}>
+                                    Cancel
+                                </ActionButton>
 
-                </Modal>
+                                <ActionButton isSave onClick={() => props.saveSubtitle()}>
+                                    Save
+                                </ActionButton>
 
-            </ModalContainer>
-                    
+                            </ButtonsContainer>
+
+                        </footer>
+
+                    </Modal>
+
+                </ModalContainer>
+
+            </BackDrop>
+
 
         </React.Fragment>
 

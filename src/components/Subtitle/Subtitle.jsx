@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-    TableData,
-} from '../../shared/Table/Table-Styles'
+import { TableData } from '../../shared/Table/Table-Styles'
 
 import {
     ButtonsContainer,
@@ -110,7 +108,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
                     {
                         Subtitle.text ?
                             Subtitle.text :
-                            'Subtitle Text Should be Here'
+                            'Error Adding this subtitle'
                     }
 
                 </div>

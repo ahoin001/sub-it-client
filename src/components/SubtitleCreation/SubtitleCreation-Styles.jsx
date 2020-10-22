@@ -6,9 +6,10 @@ import styled from "styled-components";
 
 export const SubtitleCreationContainer = styled.div`
   
-  ${tw`flex flex-col items-center justify-between 
-       p-12
-      
+  ${tw`flex flex-col items-center justify-center 
+       w-3/6 
+       p-6 
+       bg-gray-900
        `}
   
    /* bg-gradient-to-t from-pink-100  */

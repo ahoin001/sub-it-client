@@ -5,12 +5,13 @@ import FileSaver from 'file-saver';
 import Table from '../../shared/Table/Table'
 
 import {
-    SubtitleCreationContainer,
-    // OutlineButton,
-    ButtonContainer
+    SubtitleCreationContainer
 } from './SubtitleCreation-Styles'
 
-import { OutlineButton } from '../../shared/Buttons/Buttons'
+import {
+    OutlineButton,
+    ButtonsColumnContainer
+} from '../../shared/Buttons/Buttons'
 
 import Modal from '../../shared/modal/Modal'
 
@@ -362,25 +363,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }
 
-
-    // function to cancel and clear current subtitle sith Cancel button in modal
-    const cancelSubtitle = () => {
-        // let modal = document.getElementById('sub-text');
-        let modal = document.getElementById('myModal')
-        let tracks = document.querySelector('video').textTracks;
-        let video = document.getElementById('video');
-        let cuesLength = tracks[0].cues.length;
-        // delete current cue
-        tracks[0].removeCue(tracks[0].cues[cuesLength - 1]);
-        // clear modal text
-        document.getElementById('this-sub-text').value = '';
-
-        video.play();
-        // modal.style.display = 'none';
-        setModalVisible(true)
-
-    };
-
     const downloadSub = () => {
 
         let downloadVTT = `WEBVTT`
@@ -406,78 +388,54 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             <SubtitleCreationContainer>
 
-                <ButtonContainer>
+                <ButtonsColumnContainer>
 
                     <OutlineButton
                         id='creation-button'
                         onClick={createSub}
                         primaryColor={!subTitleState.subInit ? 'isIntime' : 'isOutTime'}
                     >
+                    
                         {
                             !subTitleState.subInit ?
                                 'In Time' :
                                 'Out Time'
 
                         }
+                    
                     </OutlineButton>
 
-                    <div>
+                    <OutlineButton
+                        id='download-button'
+                        onClick={downloadSub}
+                        primaryColor='isGray'
+                    >
+                    
+                        Download Subtitles
+                    
+                    </OutlineButton>
 
-                        <OutlineButton
-                            id='download-button'
-                            onClick={downloadSub}
-                            primaryColor='isGray'
-                        >
-                            Download Subtitles
-                        </OutlineButton>
-
-                    </div>
-
-                </ButtonContainer>
-
-                {/* <div className="creationSub"> */}
-
-                {console.log('MODAL VISIBLE? ', modalVisible)}
-
-                <div>
-
-                    <CustomModal />
-
-                    <Modal
-                        Visible={modalVisible}
-                        toggle={setModalVisible}
-                        onChange={genericSync}
-                        saveSubtitle={saveSubtitle}
-                    />
+                </ButtonsColumnContainer>
 
                     {
                         modalVisible &&
                         <CustomModal
-                            Visible={modalVisible}
+                            visible={modalVisible}
+                            toggle={setModalVisible}
+                            onChange={genericSync}
+                            saveSubtitle={saveSubtitle}
                         />
                     }
 
+                    
+                <Table>
+                    {subtitleRows}
+                </Table>
 
-
-                    {/* Subtitle list div */}
-                    <div>
-
-                        <div >
-
-                            <Table>
-                                {subtitleRows}
-                            </Table>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+                    
             </SubtitleCreationContainer>
 
         </React.Fragment>
-
 
     );
 

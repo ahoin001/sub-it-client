@@ -10,60 +10,41 @@ import {
 const Table = (props) => {
     return (
 
-        <div className="antialiased font-sans 
-                      bg-gray-200
-                      ">
+                    <SubtitleTable>
 
-            {/* <div className="lg:container mx-auto px-2 overflow-auto sm:px-8"> */}
+                        <thead>
 
-                    <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4">
+                            <tr>
 
-                        <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-
-                            <SubtitleTable>
-
-                                <thead>
-
-                                    <tr>
-
-                                        <TableHeader>
-                                            Subtitle
+                                <TableHeader>
+                                    Subtitle
                                         </TableHeader>
 
-                                        <TableHeader>
-                                            In Time
+                                <TableHeader>
+                                    In Time
                                         </TableHeader>
 
-                                        <TableHeader>
-                                            Out Time
+                                <TableHeader>
+                                    Out Time
                                         </TableHeader>
 
-                                        <TableHeader>
-                                            Actions
+                                <TableHeader>
+                                    Actions
                                         </TableHeader>
 
-                                    </tr>
+                            </tr>
 
-                                </thead>
+                        </thead>
 
-                                <TableBody>
+                        <TableBody>
 
-                                    {/* // **** Add new Rows from Props */}
-                                    {props.children}
+                            {/* // **** Add new Rows from Props */}
+                            {props.children}
 
-                                </TableBody>
+                        </TableBody>
 
-                            </SubtitleTable>
+                    </SubtitleTable>
 
-                        </div>
-            
-                    </div>
-            
- 
-            
-            {/* </div> */}
-
-        </div>
     );
 };
 
