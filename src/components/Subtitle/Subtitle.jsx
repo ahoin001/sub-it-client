@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 
 import {
     TableData,
-    ActionsContainer,
-    ActionButton
-
 } from '../../shared/Table/Table-Styles'
 
+import {
+    ButtonsContainer,
+    ActionButton
+} from '../../shared/Buttons/Buttons'
+
 import { FormInput } from './Subtitle-Styles'
-
-// !!!!!! CHECK GITHUB TO GET FORMINPUT STYLE
-
 
 const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
@@ -38,7 +37,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
                 <div>
 
-                    <textarea
+                    <textarea rows="6"
                         onChange={(e) => genericSync(e)}
                         value={formInputs.text}
                         name="text"
@@ -78,7 +77,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
             <TableData>
 
-                <ActionsContainer>
+                <ButtonsContainer>
 
                     <ActionButton
                         isSave
@@ -94,7 +93,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
                         Delete
                     </ActionButton>
 
-                </ActionsContainer>
+                </ButtonsContainer>
 
             </TableData>
 
@@ -131,7 +130,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
             </TableData>
 
             <TableData>
-               
+
                 <div className="outTime">
                     {
                         Subtitle.outTime ?
@@ -144,7 +143,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
             <TableData>
 
-                <ActionsContainer>
+                <ButtonsContainer>
 
                     <ActionButton isEdit
                         onClick={() => setShowEditInputs(true)}
@@ -159,7 +158,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
                         Delete
                     </ActionButton>
 
-                </ActionsContainer>
+                </ButtonsContainer>
 
             </TableData>
 

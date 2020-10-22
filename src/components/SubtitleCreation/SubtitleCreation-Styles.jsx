@@ -1,4 +1,3 @@
-import React from "react";
 // import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -7,8 +6,13 @@ import styled from "styled-components";
 
 export const SubtitleCreationContainer = styled.div`
   
-  ${tw`flex flex-col items-center justify-between p-12`}
+  ${tw`flex flex-col items-center justify-between 
+       p-12
+      
+       `}
   
+   /* bg-gradient-to-t from-pink-100  */
+
   .video{
     ${tw` bg-gray-500 `}
   }

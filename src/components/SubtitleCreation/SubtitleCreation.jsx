@@ -6,12 +6,16 @@ import Table from '../../shared/Table/Table'
 
 import {
     SubtitleCreationContainer,
-    OutlineButton,
+    // OutlineButton,
     ButtonContainer
 } from './SubtitleCreation-Styles'
 
+import { OutlineButton } from '../../shared/Buttons/Buttons'
+
 import Modal from '../../shared/modal/Modal'
-import Subtitle2 from '../Subtitle/Subtitle'
+
+import CustomModal from '../../shared/ModalCustom/Modal'
+import Subtitle from '../Subtitle/Subtitle'
 
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
@@ -146,8 +150,8 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let newSub = <Subtitle2 key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
-        
+        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
 
@@ -194,7 +198,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            return <Subtitle2 key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+            return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
         })
 
         setSubtitleRows(theSubtitleRows)
@@ -432,8 +436,12 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 </ButtonContainer>
 
                 {/* <div className="creationSub"> */}
+
+                {console.log('MODAL VISIBLE? ', modalVisible)}
+
                 <div>
 
+                    <CustomModal />
 
                     <Modal
                         Visible={modalVisible}
@@ -441,6 +449,15 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                         onChange={genericSync}
                         saveSubtitle={saveSubtitle}
                     />
+
+                    {
+                        modalVisible &&
+                        <CustomModal
+                            Visible={modalVisible}
+                        />
+                    }
+
+
 
                     {/* Subtitle list div */}
                     <div>

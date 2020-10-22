@@ -41,26 +41,3 @@ textarea {
 }
 
 `;
-
-export const ActionsContainer = tw.div`flex items-center justify-between 
-                                       p-5
-                                       
-                                       `;
-
-export const ActionButton = styled.span(({ isDelete, isEdit, isSave }) => [
-
-    tw`flex items-center justify-center
-       p-3 text-base
-       rounded-lg shadow-xs cursor-pointer 
-       hover:text-white
-       `,
-
-    // Ternary
-    isDelete && tw`font-bold text-red-500 bg-red-200 hover:bg-red-500 `,
-
-    // Conditional Style
-    isEdit && tw`font-bold text-indigo-500 bg-indigo-200 mr-4 hover:bg-indigo-500`,
-
-    isSave && tw`font-bold text-green-500 bg-green-200 mr-4 hover:bg-green-500`,
-
-]);
