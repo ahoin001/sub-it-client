@@ -7,7 +7,7 @@ import {
 
 } from '../../shared/Table/Table-Styles'
 
-import { FormInput } from './Subtitle-styles'
+import { FormInput } from './Subtitle-Styles'
 
 // !!!!!! CHECK GITHUB TO GET FORMINPUT STYLE
 

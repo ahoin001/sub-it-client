@@ -56,7 +56,7 @@ export const OutlineButton = styled.button(({ primaryColor }) => [
 
 ]);
 
-export const ButtonContainer = styled.button(({ primaryColor }) => [
+export const ButtonContainer = styled.div(({ primaryColor }) => [
   
   tw`py-2 px-4
      flex flex-col items-center content-center `,
