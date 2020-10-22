@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
 
-import Table2 from '../../shared/Table/Table'
-
-import { Table } from 'reactstrap';
+import Table from '../../shared/Table/Table'
 
 import { SubtitleCreationContainer } from './SubtitleCreation-Styles'
+import { OutlineButton } from './SubtitleCreation-Styles'
+
 import Modal from '../../shared/modal/Modal'
-import Subtitle from '../Subtitle/Subtitle'
+import Subtitle2 from '../Subtitle2/Subtitle2'
 
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
@@ -96,7 +96,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         const second = parseFloat(ss, 10) || 0;
 
         const timeInSeconds = (hour * 3600) + (minute * 60) + (second);
-        console.log('Time in Seconds: ',timeInSeconds)
+        console.log('Time in Seconds: ', timeInSeconds)
 
         return timeInSeconds;
 
@@ -143,7 +143,8 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const listOneSubtitle = (mostRecentSavedSubtitle) => {
 
-        let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+        let newSub = <Subtitle2 key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+        // let newSub = <Subtitle key={mostRecentSavedSubtitle.id} Subtitle={mostRecentSavedSubtitle} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
 
         setSubtitleRows([...subtitleRows, newSub])
         setShouldAddSub(false)
@@ -164,7 +165,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         }
         else if (tracks[0].cues.length) {
 
-            // Must declare here because pluggin directly won't work since length is decreasing each loop
+            // Must declare here since length is decreasing each loop since array is directly manipulated, so we use the static number of length
             const lengthOfCueList = tracks[0].cues.length - 1;
 
             for (let i = 0; i <= lengthOfCueList; i++) {
@@ -185,13 +186,14 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
         // * Keep Subs in order for user
         subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime));
 
-        // * Add cues on track from sorted subtitles array
+        // * Add cues on track from sorted subtitles array, otherwise VTTCue will sort it in its own messy way that conflicts with logic
         let theSubtitleRows = subTitleState.subtitles.map((sub) => {
 
             let cue = new VTTCue(sub.inTime, sub.outTime, sub.text);
             tracks[0].addCue(cue);
 
-            return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+            // return <Subtitle key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
+            return <Subtitle2 key={sub.id} Subtitle={sub} onDeleteClick={deleteSubtitle} onSaveEdit={submitChanges} refreshTable={setShouldRefetch} />
         })
 
         setSubtitleRows(theSubtitleRows)
@@ -200,7 +202,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const timeToVTT = (num) => {
 
-        console.log("IN TIMETOVTT NUMBER IS: ", num)
+        console.log("INTIME TOVTT NUMBER IS: ", num)
         console.log("NUMBER IS TYPE: ", typeof num)
 
         // Also Converts to String
@@ -249,7 +251,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 inTime: inTime
             })
 
-            button.innerHTML = 'Out Time';
+            // button.innerHTML = 'Out Time';
 
             // if inTime has already been defined, set cue endTime to current video time and pause video
         } else {
@@ -283,7 +285,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         console.log('THE TRACK CUE THING: ', tracks)
 
-        // * Set Subtitle info to save 
+        // * Set Subtitle info 
         let textToSave = subTitleState.subtitleToSave;
         let inVTT = timeToVTT(subTitleState.inTime);
         let outVTT = timeToVTT(subTitleState.outTime);
@@ -353,12 +355,6 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 console.log(error);
             })
 
-        // try {
-
-        // } catch (error) {
-
-        // }
-
     }
 
 
@@ -405,19 +401,25 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             <SubtitleCreationContainer>
 
-                {/* <Button> In Time</Button> */}
-
                 <div>
-                    <button
+
+                    <OutlineButton
                         id='creation-button'
-                        className="btn btn-primary"
                         onClick={createSub}
+                        primaryColor={!subTitleState.subInit ? 'isIntime' : 'isOutTime'}
                     >
-                        In Time
-                 </button>
+                        {
+                            !subTitleState.subInit ?
+                                'In Time' :
+                                'Out Time'
+
+                        }
+                    </OutlineButton>
+
                 </div>
 
-                <div className="creationSub">
+                {/* <div className="creationSub"> */}
+                <div>
 
 
                     <Modal
@@ -430,22 +432,10 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                     {/* Subtitle list div */}
                     <div>
 
-                        <div id='show-subtitles'>
+                        <div >
 
-                            <Table dark>
-
-                                <thead>
-                                    <tr>
-                                        <th>Text</th>
-                                        <th>In Time</th>
-                                        <th>Out Time</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="sub-tbody">
-                                    {subtitleRows}
-                                </tbody>
-
+                            <Table>
+                                {subtitleRows}
                             </Table>
 
                         </div>
@@ -455,10 +445,16 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 </div>
 
                 <div>
-                    <button id='download-button' onClick={downloadSub} className="btn btn-secondary">Download subtitles</button>
-                </div>
 
-             <Table2/>
+                    <OutlineButton
+                        id='download-button'
+                        onClick={downloadSub}
+                        primaryColor='isGray'
+                    >
+                        Download Subtitles
+                    </OutlineButton>
+
+                </div>
 
             </SubtitleCreationContainer>
 
