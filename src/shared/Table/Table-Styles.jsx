@@ -1,11 +1,11 @@
 import tw from "twin.macro";
 import styled from "styled-components";
 
-export const SubtitleTable = tw.table`table-fixed leading-normal overflow-auto
+export const SubtitleTable = tw.table`block overflow-auto table-fixed leading-normal 
                                       bg-gray-200
+                                      mt-6
+                                      min-w-full max-w-lg 
                                       antialiased font-sans font-bold
-                                      inline-block
-                                      min-w-full 
                                       shadow-lg rounded-lg`;
 
 export const TableBody = tw.tbody`min-w-full leading-normal`;

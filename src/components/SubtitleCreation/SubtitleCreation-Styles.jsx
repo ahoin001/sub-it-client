@@ -2,17 +2,14 @@
 import tw from "twin.macro";
 import styled from "styled-components";
 
-// export const StationContainer = tw.div`flex`;
-
 export const SubtitleCreationContainer = styled.div`
   
+  min-width:1200px;
+
   ${tw`flex flex-col items-center justify-center 
-       w-3/6 
-       p-6 
-       bg-gray-900
+       max-w-xl mx-auto p-3
+       bg-gradient-to-tl from-gray-100 
        `}
-  
-   /* bg-gradient-to-t from-pink-100  */
 
   .video{
     ${tw` bg-gray-500 `}

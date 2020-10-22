@@ -8,8 +8,6 @@ import {
     Header
 } from './Project-Styles.jsx'
 
-// Import Personal Card Styling
-// import '../../../ProjectStyles.css'
 
 // ! Videos appear as blank white 
 
