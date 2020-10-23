@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-// import { Container } from './App-Styles.jsx'
+import { Container } from './App-Styles.jsx'
 
 import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom'
 
@@ -11,9 +11,8 @@ import HomeTree from './pages/Home/Home.jsx'
 import SignUpTree from './pages/SignUp/SignUp.jsx'
 import LoginTree from './pages/Login/Login.jsx'
 import AddProjectForm from './pages/AddProject/Add-Project'
-import Table from './shared/Table/Table'
 
-import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
+// import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/ProjectStation/ProjectStation'
@@ -22,12 +21,6 @@ import ProjectListTry from './pages/UserProjects/UserProjects'
 
 import AuthContext from './shared/context/auth-context'
 
-// Old
-// import Navbar from './components/Navbar'
-// import ProjectsList from './components/ProjectsList'
-// import Projectform from './components/Project_form';
-// import ProjectDetails from './components/ProjectDetailPage';
-// import Update from './components/Update';
 
 const App = () => {
 
@@ -37,7 +30,7 @@ const App = () => {
   useEffect(() => {
     console.log('USER RELOGGED IN')
     if (localStorage.getItem('currentUserId')) {
-        setUserSignedIn(true)
+      setUserSignedIn(true)
     }
 
   }, [])
@@ -96,10 +89,7 @@ const App = () => {
 
     <Router>
 
-      {/* <Container>*/}
-
-      {/* <Route exact path="/" component={HomeTree} /> */}
-      {/* <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} /> */}
+      <Container>
 
       {/* <StyledHeader links={navLinks} /> */}
 
@@ -116,29 +106,22 @@ const App = () => {
 
           <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 
+          {/* Persist Navbar */}
           <NavbarTree logOut={logOut} />
 
           <Route exact path="/signup" component={SignUpTree} />
           <Route exact path="/login" component={LoginTree} />
-          {/* <Route exact path="/table" component={Table} /> */}
-     
-          {/* <Route exact path="/login" component={() => <LoginTree login={login} />} /> */}
-
-          {/* <Route exact path="/form" component={ProjectFormTree} /> */}
-          <Route exact path="/form" component={AddProjectForm} />
-
-
-
           <Route path="/dashboard" component={ProjectsList} />
-          <Route path="/dashboard2" component={ProjectListTry} />
-
+          <Route exact path="/form" component={AddProjectForm} />
           <Route path="/project/:projectId" component={ProjectStation} />
+
+          <Route path="/dashboard2" component={ProjectListTry} />
 
         </div>
 
       </AuthContext.Provider>
 
-      {/* </Container> */}
+      </Container>
 
     </Router>
 

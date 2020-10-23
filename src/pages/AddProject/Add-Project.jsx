@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useForm } from 'react-hook-form'
 import { Link, useHistory } from 'react-router-dom'
-
 import axios from "axios";
 import FileViewer from 'react-file-viewer';
+
+import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
 
 import AuthContext from '../../shared/context/auth-context'
 
@@ -47,6 +49,9 @@ const ProjectPage = (props) => {
         language: "English",
         videoFile: null
     })
+
+    // ** React Hook Form 
+    //   const { register, handleSubmit, errors } = useForm()
 
     const [selectedFile, setSelectedFile] = useState()
 

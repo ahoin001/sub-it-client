@@ -11,11 +11,16 @@ import Header, {
 } from "../../treeponents/headers/light";
 
 export const StyledHeader = styled(Header)`
-  ${tw`pt-8 max-w-none bg-gray-400`}
+  
+  ${tw`p-5 bg-gradient-to-bl from-primary-200 `}
+  
   ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
-    ${tw`text-gray-100 hover:border-gray-300 hover:text-gray-300`}
+    ${tw`text-lg text-gray-100 hover:border-gray-300 hover:text-gray-300
+    `}
   }
+
   ${NavToggle}.closed {
     ${tw`text-gray-100 hover:text-primary-500`}
   }
+
 `;

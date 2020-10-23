@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-
-import { register } from '../../util/UtilityUserFunctions'
+import { useForm } from 'react-hook-form'
+import { signUpUser } from '../../util/UtilityUserFunctions'
 import { Link } from 'react-router-dom'
+
+import Alert from '../../shared/Alerts/Alert'
+import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
 
 // Needed for Treact
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
@@ -32,6 +35,9 @@ const SignUpTree = () => {
 
   const [values, setValues] = useState({ username: '', email: '', password: '' })
 
+  // ** React Hook Form 
+  const { register, handleSubmit, errors } = useForm()
+
   // dynamically keep track of form field in state
   const handleInputChange = e => {
     // console.log('EVENT TARGET',e.target.type)
@@ -39,17 +45,30 @@ const SignUpTree = () => {
     setValues({ ...values, [type]: value })
   }
 
-  const submitUser = (e) => {
-    e.preventDefault()
-    const { username, email, password } = values
+  // const submitUser = (e) => {
+  //   e.preventDefault()
+  //   const { username, email, password } = values
+
+  //   const newUserInfo = {
+  //     username,
+  //     email,
+  //     password
+  //   }
+
+  //   register(newUserInfo);
+
+  // }
+
+  const submitUser = (data) => {
+
+    const { email, password } = values
 
     const newUserInfo = {
-      username,
       email,
       password
     }
 
-    register(newUserInfo);
+    signUpUser(newUserInfo);
 
   }
 
@@ -69,8 +88,6 @@ const SignUpTree = () => {
   ]
   let submitButtonText = "Sign Up"
   let SubmitButtonIcon = SignUpIcon
-  let tosUrl = "#"
-  let privacyPolicyUrl = "#"
 
   return (
 
@@ -108,25 +125,48 @@ const SignUpTree = () => {
                   <DividerText>Or Sign up with your e-mail</DividerText>
                 </DividerTextContainer>
 
-                <Form>
+                <Form onSubmit={handleSubmit(submitUser)} >
 
                   {/* <Input type="text" placeholder="username" /> */}
                   <Input
+                    name="email"
                     type="email"
                     placeholder="Email"
-                    onChange={e => handleInputChange(e)}
+                    ref={register({ required: true })}
+                    // onChange={e => handleInputChange(e)}
                   />
 
+                  {
+
+                    errors.email &&
+                    <>
+                      <Alert logo={Warning}>Email is required</Alert>
+                    </>
+
+                  }
+
                   <Input
+                    name="password"
                     type="password"
                     placeholder="Password"
-                    onChange={handleInputChange}
+                    ref={register({ required: true })}
+                    // onChange={handleInputChange}
                   />
+
+
+                  {
+
+                    errors.email &&
+                    <>
+                      <Alert logo={Warning}>Password is required</Alert>
+                    </>
+
+                  }
 
                   <SubmitButton
                     type="submit"
-                    onClick={submitUser}
-                    >
+                  // onClick={submitUser}
+                  >
 
                     <SubmitButtonIcon
                       className="icon"
@@ -136,26 +176,6 @@ const SignUpTree = () => {
 
                   </SubmitButton>
 
-                  <p tw="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by treact's{" "}
-                    <a href={tosUrl} tw="border-b border-gray-500 border-dotted">
-                      Terms of Service
-                  </a>{" "}
-                  and its{" "}
-                    <a href={privacyPolicyUrl} tw="border-b border-gray-500 border-dotted">
-                      Privacy Policy
-                  </a>
-                  </p>
-
-                  <p tw="mt-8 text-sm text-gray-600 text-center">
-                    Already have an account?{" "}
-
-                    <Link to="login">
-                    {/* TODO Check previous commits for styling of this */}
-                      Sign In
-                    </Link>
-
-                  </p>
                 </Form>
 
               </FormContainer>

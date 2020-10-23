@@ -13,10 +13,10 @@ import {
     ButtonsColumnContainer
 } from '../../shared/Buttons/Buttons'
 
-import Modal from '../../shared/modal/Modal'
-
 import CustomModal from '../../shared/ModalCustom/Modal'
 import Subtitle from '../Subtitle/Subtitle'
+
+// TODO I would like to make table more responsive and scroll without body
 
 const SubtitleCreation = ({ projectId, videoURL }) => {
 
@@ -386,53 +386,51 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         <React.Fragment>
 
-            <SubtitleCreationContainer>
+            <ButtonsColumnContainer>
 
-                <ButtonsColumnContainer>
-
-                    <OutlineButton
-                        id='creation-button'
-                        onClick={createSub}
-                        primaryColor={!subTitleState.subInit ? 'isIntime' : 'isOutTime'}
-                    >
-                    
-                        {
-                            !subTitleState.subInit ?
-                                'In Time' :
-                                'Out Time'
-
-                        }
-                    
-                    </OutlineButton>
-
-                    <OutlineButton
-                        id='download-button'
-                        onClick={downloadSub}
-                        primaryColor='isGray'
-                    >
-                    
-                        Download Subtitles
-                    
-                    </OutlineButton>
-
-                </ButtonsColumnContainer>
+                <OutlineButton
+                    id='creation-button'
+                    onClick={createSub}
+                    primaryColor={!subTitleState.subInit ? 'isIntime' : 'isOutTime'}
+                >
 
                     {
-                        modalVisible &&
-                        <CustomModal
-                            visible={modalVisible}
-                            toggle={setModalVisible}
-                            onChange={genericSync}
-                            saveSubtitle={saveSubtitle}
-                        />
+                        !subTitleState.subInit ?
+                            'In Time' :
+                            'Out Time'
+
                     }
 
-                    
+                </OutlineButton>
+
+                <OutlineButton
+                    id='download-button'
+                    onClick={downloadSub}
+                    primaryColor='isGray'
+                >
+
+                    Download Subtitles
+
+                </OutlineButton>
+
+            </ButtonsColumnContainer>
+
+            {
+                modalVisible &&
+                <CustomModal
+                    visible={modalVisible}
+                    toggle={setModalVisible}
+                    onChange={genericSync}
+                    saveSubtitle={saveSubtitle}
+                />
+            }
+
+            <SubtitleCreationContainer>
+            
                 <Table>
                     {subtitleRows}
                 </Table>
 
-                    
             </SubtitleCreationContainer>
 
         </React.Fragment>

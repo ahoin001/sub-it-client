@@ -82,25 +82,29 @@ export default (props) => {
 
       {/* <Link to="/"> */}
 
-      <NavLink href="#">
+      {/* <NavLink href="#">
         About
-       </NavLink>
+       </NavLink> */}
 
       {/* </Link> */}
 
-      <NavLink href="#">
+      {/* <NavLink href="#">
         Blog
-      </NavLink>
+      </NavLink> */}
 
-      <NavLink href="#">
+      {/* <NavLink href="#">
         Locations
-      </NavLink>
+      </NavLink> */}
 
-      <NavLink href="#">
+      {/* <NavLink href="#">
         Pricing
-      </NavLink>
+      </NavLink> */}
 
-    </NavLinks>,
+      <div></div>
+
+    </NavLinks>
+
+    ,
 
     <NavLinks key={2}>
 
@@ -127,12 +131,19 @@ export default (props) => {
 
   return (
     <Container>
+
       <OpacityOverlay />
+
       <HeroContainer>
+
         <StyledHeader links={navLinks} />
+
         <TwoColumn>
+
           <LeftColumn>
+
             <Notification>We have now launched operations in Europe.</Notification>
+
             <Heading>
               <span>Easier Playback</span>
               <br />
@@ -146,14 +157,21 @@ export default (props) => {
             </Link>
 
           </LeftColumn>
+
           <RightColumn>
+
             <StyledResponsiveVideoEmbed
               url="//player.vimeo.com/video/374265101?title=0&portrait=0&byline=0&autoplay=0&responsive=1"
               background="transparent"
             />
+
           </RightColumn>
+
         </TwoColumn>
+
       </HeroContainer>
+
     </Container>
+
   );
 };

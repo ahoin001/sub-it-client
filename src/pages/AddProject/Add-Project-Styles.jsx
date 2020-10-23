@@ -7,9 +7,9 @@ export const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white tex
 export const MainContainer = tw.div`lg:w-8/12 xl:w-7/12 p-6 sm:p-12`;
 export const MainContent = tw.div`mt-12 flex flex-col items-center`;
 export const FormContainer = tw.div`w-full flex-1 mt-8`;
+export const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
 export const LogoLink = tw.a``;
 export const LogoImage = tw.img`h-12 mx-auto`;
-export const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`;
 
 export const SocialButtonsContainer = tw.div`flex flex-col items-center`;
 export const SocialButton = styled.a`

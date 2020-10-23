@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+
+import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
 
 import AuthContext from '../../shared/context/auth-context'
 
-// import { login } from '../../util/UtilityUserFunctions'
-
-// import { css } from "styled-components/macro"; //eslint-disable-line
-
 import logo from "../../images/logo.svg";
 import googleIconImageSrc from "../../images/google-icon.png";
-// import twitterIconImageSrc from "../../images/twitter-icon.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
+
+import Alert from '../../shared/Alerts/Alert'
 
 import {
   Container,
@@ -35,28 +35,24 @@ import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 
 const Login = (props) => {
 
-  const [values, setValues] = useState({ username: '', email: '', password: '' })
+  // ** React Hook Form 
+  const { register, handleSubmit, errors } = useForm()
 
   const { login, secret } = useContext(AuthContext)
 
   console.log('THE SECRET IS !!!!!!!!!!!!!!!! ', secret)
 
-  // dynamically keep track of form field in state
-  const handleInputChange = e => {
-    // console.log('EVENT TARGET',e.target.type)
-    const { type, value } = e.target
-    setValues({ ...values, [type]: value })
-  }
-
   let history = useHistory();
 
-  const submitUser = async (e) => {
+  const submitUser = async (data) => {
 
-    e.preventDefault()
-    const { username, email, password } = values
+    console.log("FORM DATA &&&&&&&&&&: ", data)
+
+    // ? Formatted for backend to accept
+    let email = data.email;
+    let password = data.password
 
     const newUserInfo = {
-      username,
       email,
       password
     }
@@ -69,6 +65,7 @@ const Login = (props) => {
       history.push("/dashboard");
 
     } catch (error) {
+      console.log('Error in Login')
       console.log(error)
     }
 
@@ -84,8 +81,6 @@ const Login = (props) => {
   ]
   let submitButtonText = "Sign n"
   let SubmitButtonIcon = LoginIcon
-  let forgotPasswordUrl = "#"
-  let signupUrl = "#"
 
   return (
     <AnimationRevealPage disabled>
@@ -124,32 +119,53 @@ const Login = (props) => {
                   <DividerText>Or Sign in with your e-mail</DividerText>
                 </DividerTextContainer>
 
-                <Form>
+                {/* handleSubmit will validate inputs before excecuting submission function */}
+                <Form onSubmit={handleSubmit(submitUser)}>
 
                   <Input
+                    name="email"
                     type="email"
                     placeholder="Email"
-                    onChange={e => handleInputChange(e)}
+                    ref={register({ required: true })}
                   />
+                  {
+
+                    errors.email &&
+                    <>
+                      <Alert logo={Warning}>Email is required</Alert>
+                    </>
+
+                  }
 
                   <Input
+                    name="password"
                     type="password"
                     placeholder="Password"
-                    onChange={e => handleInputChange(e)}
+                    ref={register({ required: true })}
                   />
+                  {
+
+                    errors.password &&
+                    <>
+                      <Alert logo={Warning}>Password is required</Alert>
+                    </>
+
+
+                  }
+
 
                   <SubmitButton
                     type="submit"
-                    onClick={submitUser}
+                  // onClick={submitUser}
                   >
 
                     <SubmitButtonIcon className="icon" />
+
                     <span className="text">{submitButtonText}</span>
+
                   </SubmitButton>
 
                 </Form>
-
-               
 
               </FormContainer>
 

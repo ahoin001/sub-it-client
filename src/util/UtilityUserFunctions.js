@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const register = newUserInfo => {
+export const signUpUser = newUserInfo => {
 
   return axios
     // .post(`${process.env.REACT_APP_API_URL}/signup`, {

@@ -3,6 +3,7 @@ import "twin.macro";
 
 import {
     SubtitleTable,
+    // TableHeadRow,
     TableBody,
     TableHeader
 } from './Table-Styles'

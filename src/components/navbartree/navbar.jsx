@@ -63,8 +63,6 @@ const Navbar = (props) => {
 
             }
 
-
-
         </NavLinks>
         ,
 
