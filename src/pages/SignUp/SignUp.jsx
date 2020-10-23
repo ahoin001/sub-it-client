@@ -39,11 +39,11 @@ const SignUpTree = () => {
   const { register, handleSubmit, errors } = useForm()
 
   // dynamically keep track of form field in state
-  const handleInputChange = e => {
-    // console.log('EVENT TARGET',e.target.type)
-    const { type, value } = e.target
-    setValues({ ...values, [type]: value })
-  }
+  // const handleInputChange = e => {
+  //   // console.log('EVENT TARGET',e.target.type)
+  //   const { type, value } = e.target
+  //   setValues({ ...values, [type]: value })
+  // }
 
   // const submitUser = (e) => {
   //   e.preventDefault()
@@ -61,7 +61,7 @@ const SignUpTree = () => {
 
   const submitUser = (data) => {
 
-    const { email, password } = values
+    const { email, password } = data
 
     const newUserInfo = {
       email,
@@ -153,10 +153,9 @@ const SignUpTree = () => {
                     // onChange={handleInputChange}
                   />
 
-
                   {
 
-                    errors.email &&
+                    errors.password &&
                     <>
                       <Alert logo={Warning}>Password is required</Alert>
                     </>
