@@ -13,6 +13,9 @@ import googleIconImageSrc from "../../images/google-icon.png";
 
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
+import AnimationRevealPage from "../../helpers/AnimationRevealPage";
+import { AddButton } from "./Add-Project-Styles";
+
 import {
     Container,
     Content,
@@ -21,18 +24,19 @@ import {
     MainContent,
     Heading,
     FormContainer,
-    SocialButtonsContainer,
-    SocialButton,
     DividerTextContainer,
     DividerText,
-    Form,
-    Input,
-    SubmitButton,
+    Input
+} from '../../shared/FormPageLayout/Form-Styles'
 
+import { SolidButton } from '../../shared/Buttons/Buttons'
+
+import {
+    Form
 } from './Add-Project-Styles.jsx'
 
-import AnimationRevealPage from "../../helpers/AnimationRevealPage";
-import { AddButton } from "./Add-Project-Styles";
+
+
 
 // TODO Need user errors for inputs amd to only allow video formats on input
 
@@ -228,7 +232,7 @@ const ProjectPage = (props) => {
                                         />
                                     }
 
-                                    <SubmitButton
+                                    <SolidButton
                                         type="submit"
                                         onClick={handleSubmit}
                                     >
@@ -236,7 +240,7 @@ const ProjectPage = (props) => {
                                         <SubmitButtonIcon className="icon" />
                                         <span className="text">{submitButtonText}</span>
 
-                                    </SubmitButton>
+                                    </SolidButton>
 
 
                                 </Form>

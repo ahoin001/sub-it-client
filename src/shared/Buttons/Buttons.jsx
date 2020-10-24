@@ -41,3 +41,31 @@ export const OutlineButton = styled.button(({ primaryColor }) => [
   primaryColor === 'isGray' && tw`text-gray-700 border-gray-700 bg-transparent hover:text-white hover:bg-gray-700  `,
 
 ]);
+
+export const SolidButton = styled.button(({ primaryColor }) => [
+
+  tw`flex items-center justify-center
+     py-4 px-4 mt-24 
+     w-full
+     font-semibold 
+     text-gray-100 tracking-wide 
+     bg-primary-500
+     rounded-lg
+     transition-all duration-300 ease-in-out
+     hover:bg-primary-900 
+     focus:shadow-outline focus:outline-none
+     `,
+  primaryColor === 'isIntime' && tw`text-2xl 
+                                    bg-green-400
+                                    hover:text-white hover:bg-green-600  `,
+
+  primaryColor === 'isOutTime' && tw`text-2xl 
+                                     bg-red-400
+                                     hover:text-white hover:bg-red-600  `,
+
+  primaryColor === 'isGray' && tw` text-2xl 
+                                   bg-gray-500
+                                   hover:text-white hover:bg-gray-700  `,
+
+
+]);

@@ -29,7 +29,7 @@ import {
   Input,
   SubmitButton,
 
-} from './Login-styles.jsx'
+} from '../../shared/FormPageLayout/Form-Styles'
 
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 

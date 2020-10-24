@@ -10,6 +10,7 @@ import {
 
 import {
     OutlineButton,
+    SolidButton,
     ButtonsColumnContainer
 } from '../../shared/Buttons/Buttons'
 
@@ -388,7 +389,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             <ButtonsColumnContainer>
 
-                <OutlineButton
+                <SolidButton
                     id='creation-button'
                     onClick={createSub}
                     primaryColor={!subTitleState.subInit ? 'isIntime' : 'isOutTime'}
@@ -401,9 +402,9 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
                     }
 
-                </OutlineButton>
+                </SolidButton>
 
-                <OutlineButton
+                <SolidButton
                     id='download-button'
                     onClick={downloadSub}
                     primaryColor='isGray'
@@ -411,7 +412,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
                     Download Subtitles
 
-                </OutlineButton>
+                </SolidButton>
 
             </ButtonsColumnContainer>
 

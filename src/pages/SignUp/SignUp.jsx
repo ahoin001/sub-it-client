@@ -29,7 +29,7 @@ import {
   Form,
   Input,
   SubmitButton
-} from './Signup-styles.jsx'
+} from '../../shared/FormPageLayout/Form-Styles'
 
 const SignUpTree = () => {
 
