@@ -49,8 +49,10 @@ const Login = (props) => {
     console.log("FORM DATA &&&&&&&&&&: ", data)
 
     // ? Formatted for backend to accept
-    let email = data.email;
-    let password = data.password
+    // let email = data.email;
+    // let password = data.password
+
+    const { email, password } = data
 
     const newUserInfo = {
       email,
@@ -152,7 +154,6 @@ const Login = (props) => {
 
 
                   }
-
 
                   <SubmitButton
                     type="submit"

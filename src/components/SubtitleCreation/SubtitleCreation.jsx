@@ -9,7 +9,6 @@ import {
 } from './SubtitleCreation-Styles'
 
 import {
-    OutlineButton,
     SolidButton,
     ButtonsColumnContainer
 } from '../../shared/Buttons/Buttons'

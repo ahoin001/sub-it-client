@@ -14,8 +14,12 @@ import googleIconImageSrc from "../../images/google-icon.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
-import { AddButton } from "./Add-Project-Styles";
 
+import Alert from '../../shared/Alerts/Alert'
+
+import { AddButton } from "./Add-Project-Styles";
+import { SolidButton } from '../../shared/Buttons/Buttons'
+import { Form } from './Add-Project-Styles.jsx'
 import {
     Container,
     Content,
@@ -29,11 +33,7 @@ import {
     Input
 } from '../../shared/FormPageLayout/Form-Styles'
 
-import { SolidButton } from '../../shared/Buttons/Buttons'
 
-import {
-    Form
-} from './Add-Project-Styles.jsx'
 
 
 
@@ -55,7 +55,7 @@ const ProjectPage = (props) => {
     })
 
     // ** React Hook Form 
-    //   const { register, handleSubmit, errors } = useForm()
+    const { register, handleSubmit, errors } = useForm()
 
     const [selectedFile, setSelectedFile] = useState()
 
@@ -98,25 +98,71 @@ const ProjectPage = (props) => {
 
     }
 
-    const handleSubmit = (event) => {
+    // const handleAddProject = (event) => {
+
+    //     // if (!userSignedIn) {
+    //     //     this.props.history.push('/login');
+    //     // }
+
+    //     // prevent behavior of form submission (refreshing or clearing) page
+    //     event.preventDefault()
+
+    //     // ? console.log('ENTERING SUBMIT, FILE IN STATE IS ', projectInfo.videoFile);
+
+    //     let data = new FormData();
+
+    //     // data.append('userId', projectInfo.userId);
+    //     data.append('title', projectInfo.title);
+    //     data.append('genre', projectInfo.genre);
+    //     data.append('description', projectInfo.description);
+    //     data.append('language', projectInfo.language);
+    //     data.append('videoFile', projectInfo.videoFile);
+
+    //     axios({
+    //         method: 'post',
+    //         url: `http://localhost:8000/projects/api/create-project/${projectInfo.userId}`,
+    //         headers: { 'Content-Type': `multipart/form-data` },
+    //         data
+    //     })
+    //         .then((responseFromCreatingProject) => {
+    //             console.log(responseFromCreatingProject.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log('FORM FAILED');
+    //             console.log(err);
+    //         });
+
+    // }
+
+    const handleAddProject = (formInputs) => {
+
+        console.log('*******************************************')
+        console.log(formInputs)
 
         // if (!userSignedIn) {
         //     this.props.history.push('/login');
         // }
 
         // prevent behavior of form submission (refreshing or clearing) page
-        event.preventDefault()
+        // event.preventDefault()
+
+        const { title, genre, description, videoFile } = formInputs
+
+        console.log(title)
+        console.log(genre)
+        console.log(description)
+        console.log(videoFile[0])
 
         // ? console.log('ENTERING SUBMIT, FILE IN STATE IS ', projectInfo.videoFile);
 
         let data = new FormData();
 
         // data.append('userId', projectInfo.userId);
-        data.append('title', projectInfo.title);
-        data.append('genre', projectInfo.genre);
-        data.append('description', projectInfo.description);
-        data.append('language', projectInfo.language);
-        data.append('videoFile', projectInfo.videoFile);
+        data.append('title', title);
+        data.append('genre', genre);
+        data.append('description', description);
+        // data.append('language', language);
+        data.append('videoFile', videoFile[0]);
 
         axios({
             method: 'post',
@@ -186,30 +232,51 @@ const ProjectPage = (props) => {
                                     <DividerText></DividerText>
                                 </DividerTextContainer>
 
-                                <Form>
+                                <Form onSubmit={handleSubmit(handleAddProject)}>
 
                                     <Input
                                         type="text"
                                         name="title"
                                         placeholder="Name of Video"
-                                        onChange={e => handleInputChange(e)}
+                                        ref={register({ required: true })}
+                                    // onChange={e => handleInputChange(e)}
                                     />
+
+                                    {
+
+                                        errors.title &&
+                                        <>
+                                            <Alert logo={Warning}>Email is required</Alert>
+                                        </>
+
+                                    }
 
                                     <Input
                                         type="text"
                                         name="description"
                                         placeholder="Description"
-                                        onChange={e => handleInputChange(e)}
+                                        ref={register({ required: true })}
+                                    // onChange={e => handleInputChange(e)}
                                     />
+
+                                    {
+
+                                        errors.description &&
+                                        <>
+                                            <Alert logo={Warning}>Description is required</Alert>
+                                        </>
+
+                                    }
 
                                     <Input
                                         type="text"
                                         name="genre"
                                         placeholder="Genre"
-                                        onChange={e => handleInputChange(e)}
+                                        ref={register({ required: true })}
+                                    // onChange={e => handleInputChange(e)}
                                     />
 
-                                    <AddButton for="videoFile" class="custom-file-upload">
+                                    <AddButton for="videoFile" className="custom-file-upload">
                                         + Click to Add Video
                                     </AddButton>
 
@@ -219,9 +286,20 @@ const ProjectPage = (props) => {
                                         id="videoFile"
                                         className="file-input"
                                         placeholder="Upload File"
+                                        ref={register({ required: true })}
                                         // onChange={e => handleFileUpload(e)}
                                         onChange={onSelectFile}
                                     />
+
+                                    {
+
+                                        errors.videoFile &&
+                                        <>
+                                            <Alert logo={Warning}>Video is required</Alert>
+                                        </>
+
+                                    }
+
 
                                     {
                                         selectedFile
@@ -234,7 +312,7 @@ const ProjectPage = (props) => {
 
                                     <SolidButton
                                         type="submit"
-                                        onClick={handleSubmit}
+                                    // onClick={handleAddProject}
                                     >
 
                                         <SubmitButtonIcon className="icon" />
