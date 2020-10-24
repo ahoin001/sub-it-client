@@ -3,6 +3,7 @@ import axios from 'axios'
 import FileSaver from 'file-saver';
 
 import Table from '../../shared/Table/Table'
+import Alert  from '../../shared/Alerts/Alert'
 
 import {
     SubtitleCreationContainer
@@ -26,7 +27,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const [modalVisible, setModalVisible] = useState(false)
 
-    const [subtitleRows, setSubtitleRows] = useState(null)
+    const [subtitleRows, setSubtitleRows] = useState([])
 
     const [subTitleState, setSubTitleState] = useState({
         subInit: false,
@@ -52,7 +53,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     useEffect(() => {
 
-        const fetchData = async () => {
+        const fetchData = () => {
 
             console.log('Running Sub Creation Effect')
 
@@ -426,10 +427,19 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
             }
 
             <SubtitleCreationContainer>
-            
-                <Table>
-                    {subtitleRows}
-                </Table>
+
+                {
+                    subtitleRows.length
+                        ?
+                        <Table>
+                            {subtitleRows}
+                        </Table>
+                        :
+                        <Alert type={"isInfo"} centered={true} >
+                            {"Don't be shy, add your first subtitle! Click in time and then out time!"}
+                        </Alert>
+                       
+                }
 
             </SubtitleCreationContainer>
 

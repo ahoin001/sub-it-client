@@ -4,22 +4,23 @@ import { Link, useHistory } from 'react-router-dom'
 import axios from "axios";
 import FileViewer from 'react-file-viewer';
 
-import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
-
 import AuthContext from '../../shared/context/auth-context'
 
-import logo from "../../images/logo.svg";
-import googleIconImageSrc from "../../images/google-icon.png";
+import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
 
-import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
+import logo from "../../images/logo.svg";
+
+import { ReactComponent as SubmitIcon } from "feather-icons/dist/icons/log-in.svg";
 
 import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 
 import Alert from '../../shared/Alerts/Alert'
+import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
 import { AddButton } from "./Add-Project-Styles";
-import { SolidButton } from '../../shared/Buttons/Buttons'
 import { Form } from './Add-Project-Styles.jsx'
+
+import { SolidButton } from '../../shared/Buttons/Buttons'
 import {
     Container,
     Content,
@@ -34,35 +35,24 @@ import {
 } from '../../shared/FormPageLayout/Form-Styles'
 
 
-
-
-
-
 // TODO Need user errors for inputs amd to only allow video formats on input
 
 const ProjectPage = (props) => {
 
-    // ***************************************************************
-
-    const [projectInfo, setProjectInfo] = useState({
-        userId: localStorage.getItem('currentUserId'),
-        videoURL: "",
-        title: "",
-        genre: "",
-        description: "",
-        language: "English",
-        videoFile: null
-    })
-
-    // ** React Hook Form 
     const { register, handleSubmit, errors } = useForm()
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const [selectedFile, setSelectedFile] = useState()
 
     const [preview, setPreview] = useState()
 
+    // let history = useHistory();
+
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
+
+
         if (!selectedFile) {
             setPreview(undefined)
             return
@@ -73,6 +63,7 @@ const ProjectPage = (props) => {
 
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
+
     }, [selectedFile])
 
     const onSelectFile = e => {
@@ -85,93 +76,34 @@ const ProjectPage = (props) => {
         setSelectedFile(e.target.files[0])
     }
 
-    // ***************
-
-    // const { userSignedIn } = useContext(AuthContext)
-
-    // this method handles just the file upload
-    const handleFileUpload = e => {
-
-        console.log("The file to be uploaded is: ", e.target.files[0]);
-
-        setProjectInfo({ ...projectInfo, videoFile: e.target.files[0] })
-
-    }
-
-    // const handleAddProject = (event) => {
-
-    //     // if (!userSignedIn) {
-    //     //     this.props.history.push('/login');
-    //     // }
-
-    //     // prevent behavior of form submission (refreshing or clearing) page
-    //     event.preventDefault()
-
-    //     // ? console.log('ENTERING SUBMIT, FILE IN STATE IS ', projectInfo.videoFile);
-
-    //     let data = new FormData();
-
-    //     // data.append('userId', projectInfo.userId);
-    //     data.append('title', projectInfo.title);
-    //     data.append('genre', projectInfo.genre);
-    //     data.append('description', projectInfo.description);
-    //     data.append('language', projectInfo.language);
-    //     data.append('videoFile', projectInfo.videoFile);
-
-    //     axios({
-    //         method: 'post',
-    //         url: `http://localhost:8000/projects/api/create-project/${projectInfo.userId}`,
-    //         headers: { 'Content-Type': `multipart/form-data` },
-    //         data
-    //     })
-    //         .then((responseFromCreatingProject) => {
-    //             console.log(responseFromCreatingProject.data);
-    //         })
-    //         .catch((err) => {
-    //             console.log('FORM FAILED');
-    //             console.log(err);
-    //         });
-
-    // }
-
     const handleAddProject = (formInputs) => {
 
-        console.log('*******************************************')
-        console.log(formInputs)
-
-        // if (!userSignedIn) {
-        //     this.props.history.push('/login');
-        // }
-
-        // prevent behavior of form submission (refreshing or clearing) page
-        // event.preventDefault()
+        if (!isLoading) {
+            setIsLoading(true)
+        }
 
         const { title, genre, description, videoFile } = formInputs
 
-        console.log(title)
-        console.log(genre)
-        console.log(description)
-        console.log(videoFile[0])
-
-        // ? console.log('ENTERING SUBMIT, FILE IN STATE IS ', projectInfo.videoFile);
-
         let data = new FormData();
 
-        // data.append('userId', projectInfo.userId);
+        const userId = localStorage.getItem('currentUserId');
+
         data.append('title', title);
         data.append('genre', genre);
         data.append('description', description);
-        // data.append('language', language);
         data.append('videoFile', videoFile[0]);
 
         axios({
             method: 'post',
-            url: `http://localhost:8000/projects/api/create-project/${projectInfo.userId}`,
+            url: `http://localhost:8000/projects/api/create-project/${userId}`,
             headers: { 'Content-Type': `multipart/form-data` },
             data
         })
             .then((responseFromCreatingProject) => {
+
                 console.log(responseFromCreatingProject.data);
+                setIsLoading(false)
+
             })
             .catch((err) => {
                 console.log('FORM FAILED');
@@ -180,154 +112,130 @@ const ProjectPage = (props) => {
 
     }
 
-    // ***************************************************************
-
-
-    // dynamically keep track of form field in state
-    const handleInputChange = e => {
-        console.log('EVENT TARGET', e.target.name)
-        const { name, value } = e.target
-        setProjectInfo({ ...projectInfo, [name]: value });
-    }
-
-
-
-    let history = useHistory();
-
-    let headingText = "Add A Project"
-    let socialButtons = [
-        {
-            iconImageSrc: googleIconImageSrc,
-            text: "Sign In With Google",
-            url: "https://google.com"
-        }
-    ]
-
-    let submitButtonText = "Submit Project"
-    let SubmitButtonIcon = LoginIcon
-
     return (
+
+
         <AnimationRevealPage disabled>
 
             <Container>
 
                 <Content>
+                    {!isLoading ?
 
-                    <MainContainer>
+                        <MainContainer>
 
-                        <Link to="/">
-                            {/* <LogoLink href={logoLinkUrl}> */}
-                            <LogoImage src={logo} />
-                            {/* </LogoLink> */}
-                        </Link>
-
-
-                        <MainContent>
-
-                            <Heading>{headingText}</Heading>
-
-                            <FormContainer>
-
-                                <DividerTextContainer>
-                                    <DividerText></DividerText>
-                                </DividerTextContainer>
-
-                                <Form onSubmit={handleSubmit(handleAddProject)}>
-
-                                    <Input
-                                        type="text"
-                                        name="title"
-                                        placeholder="Name of Video"
-                                        ref={register({ required: true })}
-                                    // onChange={e => handleInputChange(e)}
-                                    />
-
-                                    {
-
-                                        errors.title &&
-                                        <>
-                                            <Alert logo={Warning}>Email is required</Alert>
-                                        </>
-
-                                    }
-
-                                    <Input
-                                        type="text"
-                                        name="description"
-                                        placeholder="Description"
-                                        ref={register({ required: true })}
-                                    // onChange={e => handleInputChange(e)}
-                                    />
-
-                                    {
-
-                                        errors.description &&
-                                        <>
-                                            <Alert logo={Warning}>Description is required</Alert>
-                                        </>
-
-                                    }
-
-                                    <Input
-                                        type="text"
-                                        name="genre"
-                                        placeholder="Genre"
-                                        ref={register({ required: true })}
-                                    // onChange={e => handleInputChange(e)}
-                                    />
-
-                                    <AddButton for="videoFile" className="custom-file-upload">
-                                        + Click to Add Video
-                                    </AddButton>
-
-                                    <Input
-                                        type="file"
-                                        name="videoFile"
-                                        id="videoFile"
-                                        className="file-input"
-                                        placeholder="Upload File"
-                                        ref={register({ required: true })}
-                                        // onChange={e => handleFileUpload(e)}
-                                        onChange={onSelectFile}
-                                    />
-
-                                    {
-
-                                        errors.videoFile &&
-                                        <>
-                                            <Alert logo={Warning}>Video is required</Alert>
-                                        </>
-
-                                    }
+                            <Link to="/">
+                                {/* <LogoLink href={logoLinkUrl}> */}
+                                <LogoImage src={logo} />
+                                {/* </LogoLink> */}
+                            </Link>
 
 
-                                    {
-                                        selectedFile
-                                        &&
-                                        <FileViewer
-                                            fileType={'mp4'}
-                                            filePath={preview}
+                            <MainContent>
+
+                                <Heading>{"Add A Project"}</Heading>
+
+                                <FormContainer>
+
+                                    <DividerTextContainer>
+                                        <DividerText></DividerText>
+                                    </DividerTextContainer>
+
+                                    <Form onSubmit={handleSubmit(handleAddProject)}>
+
+                                        <Input
+                                            type="text"
+                                            name="title"
+                                            placeholder="Name of Video"
+                                            ref={register({ required: true })}
                                         />
-                                    }
 
-                                    <SolidButton
-                                        type="submit"
-                                    // onClick={handleAddProject}
-                                    >
+                                        {
 
-                                        <SubmitButtonIcon className="icon" />
-                                        <span className="text">{submitButtonText}</span>
+                                            errors.title &&
+                                            <>
+                                                <Alert logo={Warning}>Email is required</Alert>
+                                            </>
 
-                                    </SolidButton>
+                                        }
+
+                                        <Input
+                                            type="text"
+                                            name="description"
+                                            placeholder="Description"
+                                            ref={register({ required: true })}
+                                        />
+
+                                        {
+
+                                            errors.description &&
+                                            <>
+                                                <Alert logo={Warning}>Description is required</Alert>
+                                            </>
+
+                                        }
+
+                                        <Input
+                                            type="text"
+                                            name="genre"
+                                            placeholder="Genre"
+                                            ref={register({ required: true })}
+                                        />
+
+                                        <AddButton for="videoFile" className="custom-file-upload">
+                                            + Click to Add Video
+                                        </AddButton>
+
+                                        <Input
+                                            type="file"
+                                            name="videoFile"
+                                            id="videoFile"
+                                            className="file-input"
+                                            placeholder="Upload File"
+                                            ref={register({ required: true })}
+                                            onChange={onSelectFile}
+                                        />
+
+                                        {
+
+                                            errors.videoFile &&
+                                            <>
+                                                <Alert logo={Warning}>Video is required</Alert>
+                                            </>
+
+                                        }
 
 
-                                </Form>
+                                        {
+                                            selectedFile
+                                            &&
+                                            <FileViewer
+                                                fileType={'mp4'}
+                                                filePath={preview}
+                                            />
+                                        }
 
-                            </FormContainer>
+                                        <SolidButton
+                                            type="submit"
+                                        >
 
-                        </MainContent>
+                                            <SubmitIcon className="icon" />
+                                            <span className="text">{"Submit Project"}</span>
 
-                    </MainContainer>
+                                        </SolidButton>
+
+                                    </Form>
+
+                                </FormContainer>
+
+                            </MainContent>
+
+                        </MainContainer>
+
+                        :
+
+                        <LoopCircleLoading />
+                    }
 
                 </Content>
 
