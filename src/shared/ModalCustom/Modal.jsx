@@ -33,31 +33,58 @@ const ModalExample = (props) => {
                         <ModalHeader>
 
                             <ModalHeaderTitle>
-                                Enter Subtitle
+                                {
+
+                                    !props.isConfirmation ? 'Enter Subtitle' : 'Delete this project?'
+
+                                }
                             </ModalHeaderTitle>
 
 
                         </ModalHeader>
 
-                        <ModalContent
-                            onChange={(e) => props.onChange(e)}
-                            name="subtitleToSave"
-                            id="this-sub-text"
-                        >
+                        {
+                            !props.isConfirmation &&
+                            <ModalContent
+                                onChange={(e) => props.onChange(e)}
+                                name="subtitleToSave"
+                                id="this-sub-text"
+                            >
 
-                        </ModalContent>
+                            </ModalContent>
+                        }
+
 
                         <footer>
 
                             <ButtonsContainer>
 
-                                <ActionButton isDelete onClick={() => props.toggle(false)}>
-                                    Cancel
-                                </ActionButton>
+                                {!props.isConfirmation
+                                    ?
+                                    <React.Fragment>
+                                        <ActionButton isRed onClick={() => props.toggle(false)}>
+                                            Cancel
+                                        </ActionButton>
 
-                                <ActionButton isSave onClick={() => props.saveSubtitle()}>
-                                    Save
-                                </ActionButton>
+                                        <ActionButton isGreen onClick={() => props.saveSubtitle()}>
+                                            Save
+                                        </ActionButton>
+                                    </React.Fragment>
+                                    :
+                                    <React.Fragment>
+                                        <ActionButton isRed onClick={() => props.deleteProject()}>
+                                            Delete
+                                        </ActionButton>
+
+                                        <ActionButton isGreen onClick={() => props.toggle(false)}>
+                                            Cancel
+                                        </ActionButton>
+                                    </React.Fragment>
+
+                                }
+
+
+
 
                             </ButtonsContainer>
 

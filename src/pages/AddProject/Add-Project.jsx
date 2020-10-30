@@ -4,6 +4,8 @@ import { Link, useHistory } from 'react-router-dom'
 import axios from "axios";
 import FileViewer from 'react-file-viewer';
 
+import WithLoader from '../../shared/CircleLoading/WithLoading'
+
 import AuthContext from '../../shared/context/auth-context'
 
 import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
@@ -113,7 +115,6 @@ const ProjectPage = (props) => {
     }
 
     return (
-
 
         <AnimationRevealPage disabled>
 

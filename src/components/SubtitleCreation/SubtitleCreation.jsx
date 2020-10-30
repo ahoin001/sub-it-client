@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
+import { useHistory } from 'react-router-dom'
 
 import Table from '../../shared/Table/Table'
-import Alert  from '../../shared/Alerts/Alert'
+import Alert from '../../shared/Alerts/Alert'
 
 import {
     SubtitleCreationContainer
@@ -25,7 +26,9 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     const [shouldAddSub, setShouldAddSub] = useState()
 
-    const [modalVisible, setModalVisible] = useState(false)
+    const [theCreateSubModalVisible, setTheCreateSubModalVisible] = useState(false)
+
+    const [theDeleteSubModalVisible, setTheDeleteSubModalVisible] = useState(false)
 
     const [subtitleRows, setSubtitleRows] = useState([])
 
@@ -90,12 +93,34 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }, [shouldRefetch])
 
+    let history = useHistory();
+
     const genericSync = (event) => {
 
         const { name, value } = event.target;
         setSubTitleState({ ...subTitleState, [name]: value })
 
     }
+
+    const deleteVideo = () => {
+
+        axios.delete(`http://localhost:8000/projects/api/deleteProject/${projectId}`)
+            .then(response => {
+
+                console.log("* Deleted Successfully!", response);
+
+                // setShouldRefetch(false);
+                history('/dashboard')
+                
+
+            })
+            .catch(function (error) {
+                console.log('FAILURE DELETING PROJECT')
+                console.log(error);
+            })
+
+    }
+
 
     const vttToSeconds = (timeAsVTT) => {
 
@@ -274,7 +299,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 outTime: outTime
             })
 
-            setModalVisible(true)
+            setTheCreateSubModalVisible(true)
 
             button.innerHTML = 'In Time';
         }
@@ -334,7 +359,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 outTimeVTT: outVTT
             })
             setShouldAddSub(true)
-            setModalVisible(false)
+            setTheCreateSubModalVisible(false)
             video.play();
 
         } catch (error) {
@@ -414,15 +439,37 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
                 </SolidButton>
 
+                <SolidButton
+                    // onClick={deleteVideo}
+                    onClick={() => setTheDeleteSubModalVisible(true)}
+                    primaryColor='isRed'
+                >
+
+                    Delete Video
+
+                </SolidButton>
+
             </ButtonsColumnContainer>
 
+            {/* When creating sub */}
             {
-                modalVisible &&
+                theCreateSubModalVisible &&
                 <CustomModal
-                    visible={modalVisible}
-                    toggle={setModalVisible}
+                    visible={theCreateSubModalVisible}
+                    toggle={setTheCreateSubModalVisible}
                     onChange={genericSync}
                     saveSubtitle={saveSubtitle}
+                />
+            }
+
+            {/* When deleting Sub  */}
+            {
+                theDeleteSubModalVisible &&
+                <CustomModal
+                    isConfirmation
+                    visible={theDeleteSubModalVisible}
+                    toggle={setTheDeleteSubModalVisible}
+                    deleteProject={deleteVideo}
                 />
             }
 
@@ -438,7 +485,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                         <Alert type={"isInfo"} centered={true} >
                             {"Don't be shy, add your first subtitle! Click in time and then out time!"}
                         </Alert>
-                       
+
                 }
 
             </SubtitleCreationContainer>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import LoopCircleLoading from '../../../shared/CircleLoading/CircleLoading'
 
+import WithLoading from '../../../shared/CircleLoading/WithLoading'
+
 import { Link } from 'react-router-dom'
 
 import { Container } from './ProjectList-Styles'
@@ -79,6 +81,12 @@ const ProjectsList = () => {
                     <LoopCircleLoading /> :
                     projectListItems 
             }
+            
+            {/* {
+                isloading ?
+                    <LoopCircleLoading /> :
+                    projectListItems 
+            } */}
 
         </Container>
 

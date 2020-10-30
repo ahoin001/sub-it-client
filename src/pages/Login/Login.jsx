@@ -6,12 +6,14 @@ import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg
 
 import AuthContext from '../../shared/context/auth-context'
 
+// imgs
 import logo from "../../images/logo.svg";
 import googleIconImageSrc from "../../images/google-icon.png";
 import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
 
 import Alert from '../../shared/Alerts/Alert'
 
+// styled components
 import {
   Container,
   Content,

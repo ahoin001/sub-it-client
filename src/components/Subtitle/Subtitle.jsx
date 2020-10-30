@@ -78,14 +78,14 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
                 <ButtonsContainer>
 
                     <ActionButton
-                        isSave
+                        isGreen
                         onClick={() => onSaveEdit(Subtitle, formInputs, setShowEditInputs)}
                     >
                         Save
                     </ActionButton>
 
                     <ActionButton
-                        isDelete
+                        isRed
                         onClick={() => onDeleteClick(Subtitle.id)}
                     >
                         Delete
@@ -150,7 +150,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
                     </ActionButton>
 
                     <ActionButton
-                        isDelete
+                        isRed
                         onClick={() => onDeleteClick(Subtitle.id)}
                     >
                         Delete
