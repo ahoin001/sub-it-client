@@ -11,16 +11,20 @@ import {
 
 // ! Videos appear as blank white 
 
-const Project = ({ projectInfo }) => {
+// const Project = ({ projectInfo,...props }) => {
+const Project = (props) => {
 
     const videoRef = useRef(null);
 
     const hoverplayVideo = (e) => {
 
-        console.log(projectInfo)
+        // console.log(props.projectInfo)
+        
         // References video with "vidRef" ref attribute, then plays the video
         videoRef.current.play();
         videoRef.current.currentTime = 0
+
+        // console.log('================================ Props: ', props)
 
     };
 
@@ -36,22 +40,23 @@ const Project = ({ projectInfo }) => {
         <React.Fragment>
 
             <Link to={{
-                pathname: `/project/${projectInfo.id}`,
+                pathname: `/project/${props.projectInfo.id}`,
                 state: {
-                    projectInfo
+                    projectInfo: props.projectInfo
                 }
             }}
-            style={{ textDecoration: 'none' }}
-             >
+                style={{ textDecoration: 'none' }}
+            >
 
-                <Article 
-                style={{ backgroundColor: 'none' }}
+                <Article
+                // style={{ backgroundColor: 'none' }}
                 >
 
                     <video
-                        src={projectInfo.videoURL}
+                        src={props.projectInfo.videoURL}
                         type="video/mp4"
                         ref={videoRef}
+                        onLoadedData={props.onVideoLoaded}
                         onMouseOver={hoverplayVideo}
                         onMouseLeave={hoverpauseVideo}
                     ></video>
@@ -60,12 +65,12 @@ const Project = ({ projectInfo }) => {
 
                         <h1>
                             {/* <a class="text-primary-900 no-underline" href="#"> */}
-                                {projectInfo.title}
+                            {props.projectInfo.title}
                             {/* </a> */}
                         </h1>
 
-                        <p className="text-grey-darker text-sm">
-                            {projectInfo.description}
+                        <p>
+                            {props.projectInfo.description}
                         </p>
 
                     </Header>

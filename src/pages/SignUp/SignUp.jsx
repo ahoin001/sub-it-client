@@ -140,7 +140,7 @@ const SignUpTree = () => {
 
                     errors.email &&
                     <>
-                      <Alert logo={Warning}>Email is required</Alert>
+                      <Alert type="isWarning" logo={Warning}>Email is required</Alert>
                     </>
 
                   }
@@ -157,7 +157,7 @@ const SignUpTree = () => {
 
                     errors.password &&
                     <>
-                      <Alert logo={Warning}>Password is required</Alert>
+                      <Alert type="isWarning" logo={Warning}>Password is required</Alert>
                     </>
 
                   }

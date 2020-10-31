@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import FileSaver from 'file-saver';
-import { useHistory } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
+
+import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
 import Table from '../../shared/Table/Table'
 import Alert from '../../shared/Alerts/Alert'
@@ -20,7 +22,7 @@ import Subtitle from '../Subtitle/Subtitle'
 
 // TODO I would like to make table more responsive and scroll without body
 
-const SubtitleCreation = ({ projectId, videoURL }) => {
+const SubtitleCreation = (props) => {
 
     const [shouldRefetch, setShouldRefetch] = useState(true)
 
@@ -65,7 +67,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 console.log('INSIDE Effect IF')
 
                 // * Get subtitles that belong to project
-                axios.get(`http://localhost:8000/projects/api/subtitles/${projectId}`)
+                axios.get(`http://localhost:8000/projects/api/subtitles/${props.projectId}`)
                     .then(response => {
 
                         // console.log("* Get Subtitles that belong to signed in user", response.data);
@@ -102,22 +104,21 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
     }
 
-    const deleteVideo = () => {
+    const deleteVideo = async () => {
 
-        axios.delete(`http://localhost:8000/projects/api/deleteProject/${projectId}`)
-            .then(response => {
+        try {
 
-                console.log("* Deleted Successfully!", response);
+            props.setLoading(true);
 
-                // setShouldRefetch(false);
-                history('/dashboard')
-                
+            const response = await axios.delete(`http://localhost:8000/projects/api/deleteProject/${props.projectId}`);
+            console.log("* Deleted Successfully!", response);
 
-            })
-            .catch(function (error) {
-                console.log('FAILURE DELETING PROJECT')
-                console.log(error);
-            })
+        } catch (error) {
+            console.log('FAILURE DELETING PROJECT')
+            console.log(error)
+        }
+
+        props.setLoading(false)
 
     }
 
@@ -348,7 +349,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         try {
 
-            let savedSubtitle = await axios.post(`http://localhost:8000/subtitles/api/${projectId}/add-sub`, thisSubtitle)
+            let savedSubtitle = await axios.post(`http://localhost:8000/subtitles/api/${props.projectId}/add-sub`, thisSubtitle)
 
             console.log('SAVED SUBTITLE: ', savedSubtitle.data)
 
@@ -372,6 +373,8 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,', subId)
 
+        props.setLoading(true)
+
         // * Get subtitles that belong to project
         axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
             .then(response => {
@@ -380,6 +383,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 console.log("* RESPONSE AFTER DELETING SUBTITLE", response.data);
 
                 setShouldRefetch(true);
+                props.setLoading(false)
 
             })
             .catch(function (error) {
@@ -393,7 +397,7 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
         let downloadVTT = `WEBVTT`
 
-        axios.get(`http://localhost:8000/projects/api/subtitles/${projectId}`)
+        axios.get(`http://localhost:8000/projects/api/subtitles/${props.projectId}`)
             .then((response) => {
 
                 let finishedSubs = subTitleState.subtitles;
@@ -451,6 +455,23 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
 
             </ButtonsColumnContainer>
 
+            <SubtitleCreationContainer>
+
+                {
+                    subtitleRows.length
+                        ?
+                        <Table>
+                            {subtitleRows}
+                        </Table>
+                        :
+                        <Alert type={"isInfo"} centered={true} >
+                            {"Don't be shy, add your first subtitle! Click in time and then out time!"}
+                        </Alert>
+
+                }
+
+            </SubtitleCreationContainer>
+
             {/* When creating sub */}
             {
                 theCreateSubModalVisible &&
@@ -473,27 +494,10 @@ const SubtitleCreation = ({ projectId, videoURL }) => {
                 />
             }
 
-            <SubtitleCreationContainer>
-
-                {
-                    subtitleRows.length
-                        ?
-                        <Table>
-                            {subtitleRows}
-                        </Table>
-                        :
-                        <Alert type={"isInfo"} centered={true} >
-                            {"Don't be shy, add your first subtitle! Click in time and then out time!"}
-                        </Alert>
-
-                }
-
-            </SubtitleCreationContainer>
-
         </React.Fragment>
 
     );
 
 };
 
-export default SubtitleCreation;
+export default withRouter(SubtitleCreation);

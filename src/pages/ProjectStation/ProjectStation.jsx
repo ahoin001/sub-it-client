@@ -14,31 +14,38 @@ const ProjectStation = (props) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    let video;
+    let content;
 
     if (projectInfo) {
-        video = <VideoPlayer videoURL={projectInfo.videoURL} />;
+        content = <VideoPlayer onVideoLoaded={setIsLoading} videoURL={projectInfo.videoURL} />;
     } else {
-        video = 'Loading...';
+        content = <LoopCircleLoading />;
     }
 
     return (
 
         <StationContainer>
 
-            {isLoading ?
+            {
+                isLoading ?
 
-                <LoopCircleLoading /> :
+                    <LoopCircleLoading /> :
 
-                <React.Fragment>
+                    <React.Fragment>
 
-                    <div className="video">
-                        {video ? video : <LoopCircleLoading />}
-                    </div>
+                        <div className="video">
+                            {content ? content : <LoopCircleLoading />}
+                        </div>
 
-                    <SubtitleCreation projectInfo={projectInfo} projectId={projectInfo.id} videoURL={projectInfo.videoURL} />
+                        <SubtitleCreation
+                            isLoading={isLoading}
+                            setLoading={setIsLoading}
+                            projectInfo={projectInfo}
+                            projectId={projectInfo.id}
+                            videoURL={projectInfo.videoURL}
+                        />
 
-                </React.Fragment>
+                    </React.Fragment>
 
             }
 

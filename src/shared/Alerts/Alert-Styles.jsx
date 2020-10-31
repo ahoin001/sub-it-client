@@ -25,13 +25,13 @@ export const CustomAlertText = styled.div(({ type }) => [
     font-bold
       `,
 
-  type === 'isSuccess' && tw`text-2xl text-green-800`,
+  type === 'isSuccess' && tw`text-xl text-green-800`,
 
-  type === 'isInfo' && tw`text-2xl text-blue-800 `,
+  type === 'isInfo' && tw`text-xl text-blue-800 `,
 
-  type === 'isWarning' && tw`text-2xl text-yellow-800 `,
+  type === 'isWarning' && tw`text-xl text-yellow-800 `,
 
-  type === 'isDanger' && tw` text-2xl text-red-800`,
+  type === 'isDanger' && tw` text-xl text-red-800`,
 
 
 ]);
@@ -55,7 +55,7 @@ export const CustomAlertContainer = styled.div(({ type,center }) => [
                           bg-blue-200
                                            `,
 
-  type === 'isWarning' && tw`text-2xl 
+  type === 'isWarning' && tw`text-sm
                              bg-yellow-200
                                       `,
 

@@ -46,13 +46,10 @@ const Login = (props) => {
 
   let history = useHistory();
 
+  // * Data provided by react form hook
   const submitUser = async (data) => {
 
-    console.log("FORM DATA &&&&&&&&&&: ", data)
-
-    // ? Formatted for backend to accept
-    // let email = data.email;
-    // let password = data.password
+    // console.log("FORM DATA &&&&&&&&&&: ", data)
 
     const { email, password } = data
 
@@ -136,7 +133,7 @@ const Login = (props) => {
 
                     errors.email &&
                     <>
-                      <Alert logo={Warning}>Email is required</Alert>
+                      <Alert type="isWarning" logo={Warning}>Email is required</Alert>
                     </>
 
                   }
@@ -151,7 +148,7 @@ const Login = (props) => {
 
                     errors.password &&
                     <>
-                      <Alert logo={Warning}>Password is required</Alert>
+                      <Alert type="isWarning" logo={Warning}>Password is required</Alert>
                     </>
 
 

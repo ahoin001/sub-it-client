@@ -3,27 +3,30 @@ import styled from "styled-components";
 
 // Container to Space Around Buttons
 export const ButtonsContainer = tw.div`flex flex-col items-center justify-around p-2
-                                       sm:flex-row  `;
+                                       sm:flex-row  
+                                       `;
 
 export const ButtonsColumnContainer = tw.div`py-2 px-4 flex flex-col items-center content-center`;
 
 
-export const ActionButton = styled.span(({ isRed, isEdit, isCancel,isGreen }) => [
+export const ActionButton = styled.span(({ isRed, isEdit, isCancel, isGreen }) => [
 
   tw`flex items-center justify-center
-     my-2 sm:my-0 py-2 px-6 
-       text-base
-       rounded-lg shadow-xs cursor-pointer 
-       hover:text-white
+     my-2 sm:my-0 py-2 px-6
+     w-6/12 sm:w-4/12
+     text-base font-bold
+     
+     rounded-lg shadow-xs cursor-pointer 
+     hover:text-white
        `,
 
   // Ternary
-  isRed && tw`font-bold text-red-500 bg-red-200 hover:bg-red-500 `,
+  isRed && tw`text-red-500 bg-red-200 hover:bg-red-500 `,
 
   // Conditional Style
-  isEdit && tw`font-bold text-indigo-500 bg-indigo-200 mr-4 hover:bg-indigo-500`,
+  isEdit && tw`text-indigo-500 bg-indigo-200  hover:bg-indigo-500`,
 
-  isGreen && tw`font-bold px-6 text-green-500 bg-green-200 mr-4 hover:bg-green-500`,
+  isGreen && tw`text-green-500 bg-green-200  hover:bg-green-500`,
 
 ]);
 
@@ -47,7 +50,7 @@ export const OutlineButton = styled.button(({ primaryColor }) => [
 export const SolidButton = styled.button(({ primaryColor }) => [
 
   tw`flex items-center justify-center
-     py-4 px-4 mt-24 
+     py-4 px-4 mt-12 
      w-full
      font-semibold 
      text-gray-100 tracking-wide 

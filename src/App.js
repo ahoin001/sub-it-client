@@ -91,18 +91,16 @@ const App = () => {
 
       <Container>
 
-      {/* <StyledHeader links={navLinks} /> */}
+        {/* <StyledHeader links={navLinks} /> */}
 
-      <AuthContext.Provider value={{
-        secret: 'Context working!',
-        userSignedIn: userSignedIn,
-        login: login,
-        logOut: logOut
-      }}>
+        <AuthContext.Provider value={{
+          secret: 'Context working!',
+          userSignedIn: userSignedIn,
+          login: login,
+          logOut: logOut
+        }}>
 
-        {/* <div className="container"> */}
-
-        <div>
+          {/* <div className="container"> */}
 
           <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 
@@ -117,9 +115,7 @@ const App = () => {
 
           <Route path="/dashboard2" component={ProjectListTry} />
 
-        </div>
-
-      </AuthContext.Provider>
+        </AuthContext.Provider>
 
       </Container>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import LoopCircleLoading from '../../../shared/CircleLoading/CircleLoading'
 
@@ -16,7 +16,21 @@ const ProjectsList = () => {
 
     const [projectsOfUser, setProjectsOfUser] = useState([])
 
-    const [isloading, setIsloading] = useState(false)
+    const [isloading, setIsloading] = useState(true)
+
+    const counter = useRef(0);
+
+    const videoLoaded = () => {
+        
+        counter.current += 1;
+        console.log('VIDEO LOADING LENGTH: ', projectsOfUser.length)
+        console.log('VIDEO LOADING COUNTER: ', counter.current)
+
+        if (counter.current >= projectsOfUser.length) {
+            setIsloading(false);
+        }
+
+    }
 
     useEffect(() => {
 
@@ -28,19 +42,16 @@ const ProjectsList = () => {
 
         const fetchData = async () => {
 
-            const userId = localStorage.getItem('currentUserId');
-
-            console.log('BEFORE FETCHING VIDS FOR DASHBOARD: ', userId)
-
             setIsloading(true);
 
             // * Get Projects that belong to signed in user
-            await axios.get(`http://localhost:8000/projects/api/dashboard/${userId}`)
+            await axios.get(`http://localhost:8000/projects/api/dashboard/${localStorage.getItem('currentUserId')}`)
                 .then(response => {
-                    
+
                     console.log("REQUEST COMPLETE, CAN STOP LOADING", response.data);
                     setProjectsOfUser(response.data);
-                    setIsloading(false)
+                    
+                    setIsloading(false);
 
                 })
                 .catch(function (error) {
@@ -57,14 +68,15 @@ const ProjectsList = () => {
     let projectListItems;
 
     if (projectsOfUser) {
+
         projectListItems = projectsOfUser.map((projectFromList, i) =>
 
-            <div 
-            className="videoContainer"
-            key={projectFromList.id}
+            <div
+                className="videoContainer"
+                key={projectFromList.id}
             >
 
-                <Project projectInfo={projectFromList} />
+                <Project onVideoLoaded={videoLoaded} projectInfo={projectFromList} />
 
             </div>
 
@@ -79,9 +91,9 @@ const ProjectsList = () => {
             {
                 isloading ?
                     <LoopCircleLoading /> :
-                    projectListItems 
+                    projectListItems
             }
-            
+
             {/* {
                 isloading ?
                     <LoopCircleLoading /> :

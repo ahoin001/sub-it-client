@@ -155,7 +155,7 @@ const ProjectPage = (props) => {
 
                                             errors.title &&
                                             <>
-                                                <Alert logo={Warning}>Email is required</Alert>
+                                                <Alert type="isWarning" logo={Warning}>Email is required</Alert>
                                             </>
 
                                         }
@@ -171,7 +171,7 @@ const ProjectPage = (props) => {
 
                                             errors.description &&
                                             <>
-                                                <Alert logo={Warning}>Description is required</Alert>
+                                                <Alert type="isWarning" logo={Warning}>Description is required</Alert>
                                             </>
 
                                         }
@@ -183,7 +183,16 @@ const ProjectPage = (props) => {
                                             ref={register({ required: true })}
                                         />
 
-                                        <AddButton for="videoFile" className="custom-file-upload">
+                                        {/* {
+
+                                            errors.genre &&
+                                            <>
+                                                <Alert type="isWarning" logo={Warning}>Description is required</Alert>
+                                            </>
+
+                                        } */}
+
+                                        <AddButton htmlFor="videoFile" className="custom-file-upload">
                                             + Click to Add Video
                                         </AddButton>
 
@@ -201,7 +210,7 @@ const ProjectPage = (props) => {
 
                                             errors.videoFile &&
                                             <>
-                                                <Alert logo={Warning}>Video is required</Alert>
+                                                <Alert type="isWarning" logo={Warning}>Video is required</Alert>
                                             </>
 
                                         }
