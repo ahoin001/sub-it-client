@@ -1,4 +1,4 @@
-// import { motion } from "framer-motion";
 import tw from "twin.macro";
+import { ContentFull as ContainerBase } from './treeponents/misc/Layouts'
 
-export const Container = tw.div`max-w-screen-2xl box-border mx-auto `;
+export const Container = tw(ContainerBase)`box-border `;

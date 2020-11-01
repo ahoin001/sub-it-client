@@ -9,7 +9,7 @@ import Header, { NavLink, NavLinks, PrimaryLink, LogoLink, NavToggle, DesktopNav
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
 
 const Container = styled.div`
-  ${tw`relative max-w-screen-xl mx-auto -mt-8 bg-center bg-cover`}
+  ${tw`relative max-w-screen-xl mx-auto  bg-center bg-cover`}
   background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
 `;
 
@@ -53,7 +53,7 @@ const SlantedBackground = styled.span`
   }
 `;
 
-const Notification = tw.span`inline-block my-4 pl-3 py-1 text-gray-100 border-l-4 border-blue-500 font-medium text-sm`;
+const Notification = tw.span`inline-block my-4 pl-3 py-1 text-gray-100 border-l-4 border-blue-500 font-extrabold text-lg`;
 
 const PrimaryAction = tw.button`px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 bg-gray-100 text-primary-500 font-bold rounded shadow transition duration-300 hocus:bg-primary-500 hocus:text-gray-100 focus:shadow-outline`;
 
@@ -142,7 +142,7 @@ export default (props) => {
 
           <LeftColumn>
 
-            <Notification>We have now launched operations in Europe.</Notification>
+            <Notification>Demo Only Sorry for Slow CRUD Operations </Notification>
 
             <Heading>
               <span>Easier Playback</span>

@@ -6,7 +6,7 @@ import { SectionHeading, Subheading as SubheadingBase } from "../misc/Headings";
 import TeamIllustrationSrc from "../../images/team-illustration-2.svg";
 import { ReactComponent as SvgDotPattern } from "../../images/dot-pattern.svg";
 
-const Container = tw.div`relative`;
+const Container = tw.div`relative md:px-6`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center`;
 const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
 const ImageColumn = tw(Column)`md:w-6/12 flex-shrink-0 relative`;
@@ -36,8 +36,8 @@ const Steps = tw.ul`mt-12`;
 const Step = tw.li`mt-8 flex flex-col md:flex-row items-center md:items-start`;
 const StepNumber = tw.div`font-semibold text-4xl leading-none text-gray-400`;
 const StepText = tw.div`mt-3 md:mt-0 md:ml-6`;
-const StepHeading = tw.h6`leading-none text-xl font-semibold`;
-const StepDescription = tw.p`mt-3 max-w-xs leading-loose text-sm text-gray-600 font-medium`;
+const StepHeading = tw.h6`leading-none text-2xl font-semibold`;
+const StepDescription = tw.p`mt-3 max-w-xs leading-loose text-base text-gray-600 font-medium`;
 
 export default ({
   subheading = "Our Expertise",
@@ -85,17 +85,20 @@ export default ({
           <TextContent>
             <Subheading>{subheading}</Subheading>
             <Heading>{heading}</Heading>
-            
+
+            {/*  */}
             <Steps>
+
               {steps.map((step, index) => (
                 <Step key={index}>
-                  <StepNumber>{(index+1).toString().padStart(2,'0')}</StepNumber>
+                  <StepNumber>{(index + 1).toString().padStart(2, '0')}</StepNumber>
                   <StepText>
                     <StepHeading>{step.heading}</StepHeading>
                     <StepDescription>{step.description}</StepDescription>
                   </StepText>
                 </Step>
               ))}
+
             </Steps>
 
           </TextContent>

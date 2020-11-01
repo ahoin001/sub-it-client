@@ -31,17 +31,25 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
         ? tableData =
         <React.Fragment>
 
-            <TableData>
+            <TableData isEdit>
 
                 <div>
 
-                    <textarea rows="6"
+                    {/* <textarea rows="6"
                         onChange={(e) => genericSync(e)}
                         value={formInputs.text}
                         name="text"
                         className="editSub" >
 
-                    </textarea>
+                    </textarea> */}
+
+                    <FormInput type="text"
+                    type="text"
+                    onChange={(e) => genericSync(e)}
+                    value={formInputs.text}
+                    name="inTimeVTT"
+                    className="editSub"
+                />
 
                 </div>
 

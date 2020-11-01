@@ -180,7 +180,7 @@ const ProjectPage = (props) => {
                                             type="text"
                                             name="genre"
                                             placeholder="Genre"
-                                            ref={register({ required: true })}
+                                            ref={register({ required: false })}
                                         />
 
                                         {/* {

@@ -11,40 +11,40 @@ import {
 const Table = (props) => {
     return (
 
-                    <SubtitleTable>
+        <SubtitleTable>
 
-                        <thead>
+            <thead>
 
-                            <tr>
+                <tr>
 
-                                <TableHeader>
-                                    Subtitle
-                                        </TableHeader>
+                    <TableHeader>
+                        Subtitle
+                    </TableHeader>
 
-                                <TableHeader>
-                                    In Time
-                                        </TableHeader>
+                    <TableHeader>
+                        In Time
+                    </TableHeader>
 
-                                <TableHeader>
-                                    Out Time
-                                        </TableHeader>
+                    <TableHeader>
+                        Out Time
+                     </TableHeader>
 
-                                <TableHeader>
-                                    Actions
-                                        </TableHeader>
+                    <TableHeader>
+                        Actions
+                    </TableHeader>
 
-                            </tr>
+                </tr>
 
-                        </thead>
+            </thead>
 
-                        <TableBody>
+            <TableBody>
 
-                            {/* // **** Add new Rows from Props */}
-                            {props.children}
+                {/* // **** Add new Rows from Props */}
+                {props.children}
 
-                        </TableBody>
+            </TableBody>
 
-                    </SubtitleTable>
+        </SubtitleTable>
 
     );
 };

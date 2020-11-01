@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Container = tw(ContainerBase)`flex justify-center
                                            bg-primary-900 text-white font-medium
-                                           min-h-screen -m-8`;
+                                           min-h-screen `;
 
 export const Content = tw.div`flex justify-center flex-1
                               pt-24
