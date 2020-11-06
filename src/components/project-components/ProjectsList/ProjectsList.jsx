@@ -10,6 +10,7 @@ import { Container } from './ProjectList-Styles'
 
 // import Project from '../Project'
 import Project from '../Project/Project'
+import { ContentContainer } from './ProjectList-Styles';
 
 
 const ProjectsList = () => {
@@ -21,7 +22,7 @@ const ProjectsList = () => {
     const counter = useRef(0);
 
     const videoLoaded = () => {
-        
+
         counter.current += 1;
         console.log('VIDEO LOADING LENGTH: ', projectsOfUser.length)
         console.log('VIDEO LOADING COUNTER: ', counter.current)
@@ -50,7 +51,7 @@ const ProjectsList = () => {
 
                     console.log("REQUEST COMPLETE, CAN STOP LOADING", response.data);
                     setProjectsOfUser(response.data);
-                    
+
                     setIsloading(false);
 
                 })
@@ -71,14 +72,7 @@ const ProjectsList = () => {
 
         projectListItems = projectsOfUser.map((projectFromList, i) =>
 
-            <div
-                className="videoContainer"
-                key={projectFromList.id}
-            >
-
-                <Project onVideoLoaded={videoLoaded} projectInfo={projectFromList} />
-
-            </div>
+                <Project onVideoLoaded={videoLoaded} projectInfo={projectFromList} />            
 
         );
     }
@@ -88,17 +82,13 @@ const ProjectsList = () => {
 
         <Container>
 
-            {
-                isloading ?
-                    <LoopCircleLoading /> :
-                    projectListItems
-            }
-
-            {/* {
-                isloading ?
-                    <LoopCircleLoading /> :
-                    projectListItems 
-            } */}
+            <ContentContainer>
+                {
+                    isloading ?
+                        <LoopCircleLoading /> :
+                        projectListItems
+                }
+            </ContentContainer>
 
         </Container>
 

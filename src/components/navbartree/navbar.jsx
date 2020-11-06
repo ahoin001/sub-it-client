@@ -19,11 +19,19 @@ const Navbar = (props) => {
 
                 <React.Fragment>
 
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+
+                        <NavLink>
+                            Home
+                        </NavLink>
+
+                    </Link>
+
                     <Link to="/dashboard" style={{ textDecoration: 'none' }}>
 
                         <NavLink>
                             Dashboard
-                    </NavLink>
+                        </NavLink>
 
                     </Link>
 

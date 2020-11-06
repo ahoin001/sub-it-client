@@ -373,7 +373,7 @@ const SubtitleCreation = (props) => {
 
         console.log('INSEIDE DELETE $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$,', subId)
 
-        props.setLoading(true)
+        // props.setLoading(true)
 
         // * Get subtitles that belong to project
         axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
@@ -383,7 +383,7 @@ const SubtitleCreation = (props) => {
                 console.log("* RESPONSE AFTER DELETING SUBTITLE", response.data);
 
                 setShouldRefetch(true);
-                props.setLoading(false)
+                // props.setLoading(false)
 
             })
             .catch(function (error) {

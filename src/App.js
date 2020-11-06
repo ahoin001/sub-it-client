@@ -89,7 +89,7 @@ const App = () => {
 
     <Router>
 
-      <Container>
+      <Container className="AppContainer" >
 
         {/* <StyledHeader links={navLinks} /> */}
 
@@ -100,12 +100,11 @@ const App = () => {
           logOut: logOut
         }}>
 
-          {/* <div className="container"> */}
-
-          <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
-
           {/* Persist Navbar */}
           <NavbarTree logOut={logOut} />
+          
+          <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+
 
           <Route exact path="/signup" component={SignUpTree} />
           <Route exact path="/login" component={LoginTree} />

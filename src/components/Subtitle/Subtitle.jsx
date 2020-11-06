@@ -43,11 +43,11 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
                     </textarea> */}
 
-                    <FormInput type="text"
+                    <FormInput
                     type="text"
+                    name="text"
                     onChange={(e) => genericSync(e)}
                     value={formInputs.text}
-                    name="inTimeVTT"
                     className="editSub"
                 />
 
@@ -58,7 +58,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
             <TableData>
 
-                <FormInput type="text"
+                <FormInput 
                     type="text"
                     onChange={(e) => genericSync(e)}
                     value={formInputs.inTimeVTT}
@@ -71,7 +71,7 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
             <TableData>
                 <p>
-                    <FormInput type="text"
+                    <FormInput 
                         type="text"
                         onChange={(e) => genericSync(e)}
                         value={formInputs.outTimeVTT}

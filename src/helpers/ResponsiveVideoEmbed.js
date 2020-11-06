@@ -25,6 +25,21 @@ export default ({ url, background="black", className="video" }) => {
         src={url}
         frameBorder="0"
       />
+      <video 
+        controls
+        preload="metadata"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%"
+        }}
+        >
+          <source src={url} />
+        
+        </video>
+
     </div>
   );
 };

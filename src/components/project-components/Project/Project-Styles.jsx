@@ -2,24 +2,31 @@ import tw from "twin.macro";
 import styled from "styled-components";
 
 export const Article = styled.article`
+
 ${tw`
 flex flex-col items-center justify-center w-full 
-pt-4 my-6 
-max-w-lg
+bg-gray-400
+
 overflow-hidden 
 rounded-lg shadow-lg
 hover:bg-primary-100
 hocus:text-white focus:shadow-outline  transition duration-300
 `}
 
-
+/* max-width: 420px; */
 
 video {
-  ${tw`block w-11/12 p-2`}
+  /* ${tw` 
+  p-2
+  w-full 
+  border-2
+  border-primary-500
+        `}; */
+  /* max-height:14em; */
 }
 
-header {
-  ${tw`p-4 hocus:text-white`} 
+h1 {
+  ${tw`p-4 text-4xl hocus:text-white`} 
 }
 
 .a {
@@ -37,15 +44,22 @@ header {
 export const Header = styled.header`
 ${tw`
 flex flex-col items-center justify-center w-full 
+pb-6
 text-primary-500 font-bold leading-tight
 focus:shadow-outline transition duration-75
-md:p-4
+hocus:text-white focus:shadow-outline  transition duration-300
+
 `}
+
+/* resize: both;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden; */
 
 
 /* hocus:bg-primary-500 hocus:text-gray-100 focus:shadow-outline  transition duration-300 */
 h1 {
-  ${tw`text-xl font-bold `}
+  ${tw`text-2xl font-bold `}
 }
 
 a {
@@ -53,6 +67,6 @@ a {
 }
 
 p {
-  ${tw`text-gray-700 text-base`}
+  ${tw`text-lg text-gray-700`}
 }
 `;

@@ -9,7 +9,7 @@ import Header, { NavLink, NavLinks, PrimaryLink, LogoLink, NavToggle, DesktopNav
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
 
 const Container = styled.div`
-  ${tw`relative max-w-screen-xl mx-auto  bg-center bg-cover`}
+  ${tw`relative mx-auto  bg-center bg-cover py-4`}
   background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
 `;
 
@@ -136,7 +136,7 @@ export default (props) => {
 
       <HeroContainer>
 
-        <StyledHeader links={navLinks} />
+        {/* <StyledHeader links={navLinks} /> */}
 
         <TwoColumn>
 
@@ -161,7 +161,7 @@ export default (props) => {
           <RightColumn>
 
             <StyledResponsiveVideoEmbed
-              url="//player.vimeo.com/video/374265101?title=0&portrait=0&byline=0&autoplay=0&responsive=1"
+              url="https://res.cloudinary.com/damclaohv/video/upload/v1604190899/Demo_Video_fmayb9.mp4"
               background="transparent"
             />
 

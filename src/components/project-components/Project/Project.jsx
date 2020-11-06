@@ -19,7 +19,7 @@ const Project = (props) => {
     const hoverplayVideo = (e) => {
 
         // console.log(props.projectInfo)
-        
+
         // References video with "vidRef" ref attribute, then plays the video
         videoRef.current.play();
         videoRef.current.currentTime = 0
@@ -35,6 +35,12 @@ const Project = (props) => {
 
     };
 
+    let clippedTitleText;
+
+    if (props.projectInfo.title.length > 19 ) {
+        clippedTitleText = props.projectInfo.title.substr(0, 19) + "...";
+    }
+
     return (
 
         <React.Fragment>
@@ -45,15 +51,14 @@ const Project = (props) => {
                     projectInfo: props.projectInfo
                 }
             }}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', margin:0,padding:0 }}
             >
 
                 <Article
-                // style={{ backgroundColor: 'none' }}
                 >
 
                     <video
-                        src={props.projectInfo.videoURL}
+                        src={`${props.projectInfo.videoURL}#t=2`}
                         type="video/mp4"
                         ref={videoRef}
                         onLoadedData={props.onVideoLoaded}
@@ -66,6 +71,7 @@ const Project = (props) => {
                         <h1>
                             {/* <a class="text-primary-900 no-underline" href="#"> */}
                             {props.projectInfo.title}
+                            {/* {clippedTitleText} */}
                             {/* </a> */}
                         </h1>
 
@@ -76,6 +82,7 @@ const Project = (props) => {
                     </Header>
 
                 </Article>
+
             </Link>
 
         </React.Fragment>
