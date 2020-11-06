@@ -13,7 +13,7 @@ hover:bg-primary-100
 hocus:text-white focus:shadow-outline  transition duration-300
 `}
 
-/* max-width: 420px; */
+/* max-height: 275px; */
 
 video {
   /* ${tw` 
@@ -43,23 +43,27 @@ h1 {
 
 export const Header = styled.header`
 ${tw`
-flex flex-col items-center justify-center w-full 
+flex flex-col items-center justify-center
 pb-6
-text-primary-500 font-bold leading-tight
+text-primary-500 text-center font-bold leading-tight
 focus:shadow-outline transition duration-75
 hocus:text-white focus:shadow-outline  transition duration-300
 
 `}
 
-/* resize: both;
-text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden; */
 
 
-/* hocus:bg-primary-500 hocus:text-gray-100 focus:shadow-outline  transition duration-300 */
+ 
+
 h1 {
   ${tw`text-2xl font-bold `}
+  
+  width:320px;
+  display: inline-block;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;  
+
 }
 
 a {
