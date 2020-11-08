@@ -9,18 +9,19 @@ import Table from '../../shared/Table/Table'
 import Alert from '../../shared/Alerts/Alert'
 
 import {
-    SubtitleCreationContainer
+    SubtitleCreationContainer,
+    ButtonsContainer
 } from './SubtitleCreation-Styles'
 
 import {
     SolidButton,
-    ButtonsColumnContainer
 } from '../../shared/Buttons/Buttons'
 
 import CustomModal from '../../shared/ModalCustom/Modal'
 import Subtitle from '../Subtitle/Subtitle'
 
 // TODO I would like to make table more responsive and scroll without body
+// TODO After using content background and container, need to readjust responsive behavior
 
 const SubtitleCreation = (props) => {
 
@@ -215,7 +216,7 @@ const SubtitleCreation = (props) => {
             }
         }
 
-        console.log('LISTING TRACK', tracks)
+        // console.log('LISTING TRACK', tracks)
 
         // * Keep Subs in order for user
         subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime));
@@ -416,7 +417,7 @@ const SubtitleCreation = (props) => {
 
         <React.Fragment>
 
-            <ButtonsColumnContainer>
+            <ButtonsContainer>
 
                 <SolidButton
                     id='creation-button'
@@ -443,8 +444,19 @@ const SubtitleCreation = (props) => {
 
                 </SolidButton>
 
+            </ButtonsContainer>
+
+            <ButtonsContainer>
                 <SolidButton
-                    // onClick={deleteVideo}
+                    onClick={() => setTheDeleteSubModalVisible(true)}
+                    primaryColor='isBlue'
+                >
+
+                    Edit Info
+
+                </SolidButton>
+
+                <SolidButton
                     onClick={() => setTheDeleteSubModalVisible(true)}
                     primaryColor='isRed'
                 >
@@ -453,7 +465,7 @@ const SubtitleCreation = (props) => {
 
                 </SolidButton>
 
-            </ButtonsColumnContainer>
+            </ButtonsContainer>
 
             <SubtitleCreationContainer>
 

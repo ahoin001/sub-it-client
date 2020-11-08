@@ -60,6 +60,9 @@ export const SolidButton = styled.button(({ primaryColor }) => [
      hover:bg-primary-900 
      focus:shadow-outline focus:outline-none
      `,
+
+ 
+
   primaryColor === 'isIntime' && tw`text-2xl 
                                     bg-green-400
                                     hover:text-white hover:bg-green-600  `,
@@ -75,6 +78,9 @@ export const SolidButton = styled.button(({ primaryColor }) => [
   primaryColor === 'isGray' && tw` text-2xl 
                                    bg-gray-500
                                    hover:text-white hover:bg-gray-700  `,
+  primaryColor === 'isBlue' && tw` text-2xl 
+                                   bg-blue-500
+                                   hover:text-white hover:bg-blue-700  `,
 
 
 ]);

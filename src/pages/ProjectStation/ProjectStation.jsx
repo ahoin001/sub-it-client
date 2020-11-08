@@ -4,7 +4,7 @@ import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
 import SubtitleCreation from '../../components/SubtitleCreation/SubtitleCreation'
 
-import { StationContainer } from './Project-Station-styles'
+import { StationContainer, ContentContainer } from './Project-Station-styles'
 
 import VideoPlayer from '../../components/VideoPlayer'
 
@@ -26,28 +26,30 @@ const ProjectStation = (props) => {
 
         <StationContainer>
 
-            {
-                isLoading ?
+            <ContentContainer>
+                {
+                    isLoading ?
 
-                    <LoopCircleLoading /> :
+                        <LoopCircleLoading /> :
 
-                    <React.Fragment>
+                        <React.Fragment>
 
-                        <div className="video">
-                            {content ? content : <LoopCircleLoading />}
-                        </div>
+                            <div className="video">
+                                {content ? content : <LoopCircleLoading />}
+                            </div>
 
-                        <SubtitleCreation
-                            isLoading={isLoading}
-                            setLoading={setIsLoading}
-                            projectInfo={projectInfo}
-                            projectId={projectInfo.id}
-                            videoURL={projectInfo.videoURL}
-                        />
+                            <SubtitleCreation
+                                isLoading={isLoading}
+                                setLoading={setIsLoading}
+                                projectInfo={projectInfo}
+                                projectId={projectInfo.id}
+                                videoURL={projectInfo.videoURL}
+                            />
 
-                    </React.Fragment>
+                        </React.Fragment>
 
-            }
+                }
+            </ContentContainer>
 
         </StationContainer>
 

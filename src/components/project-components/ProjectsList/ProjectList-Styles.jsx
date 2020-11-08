@@ -26,7 +26,7 @@ export const ContentContainer = styled.div`
           shadow
           rounded-lg `}               
                               
-          @media (max-width: 1155px) {
+          @media (max-width: 1226px) {
                 justify-content: center;   
           }
 

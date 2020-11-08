@@ -35,14 +35,6 @@ const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
                 <div>
 
-                    {/* <textarea rows="6"
-                        onChange={(e) => genericSync(e)}
-                        value={formInputs.text}
-                        name="text"
-                        className="editSub" >
-
-                    </textarea> */}
-
                     <FormInput
                     type="text"
                     name="text"

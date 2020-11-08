@@ -8,6 +8,8 @@ export const SubtitleCreationContainer = styled.div`
        w-full overflow-x-auto
        mx-auto p-8
        `}
+
+       
        /* bg-gray-800  */
 
 
@@ -21,3 +23,12 @@ export const SubtitleCreationContainer = styled.div`
   }
 
 `;
+
+export const ButtonsContainer = tw.div`
+flex flex-col items-center content-center
+w-4/12
+py-2 px-4 mx-auto
+
+`;
+
+

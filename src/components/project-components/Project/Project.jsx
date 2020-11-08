@@ -71,7 +71,6 @@ const Project = (props) => {
                         <h1>
                             {/* <a class="text-primary-900 no-underline" href="#"> */}
                             {props.projectInfo.title}
-                            {/* {clippedTitleText} */}
                             {/* </a> */}
                         </h1>
 
