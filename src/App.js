@@ -5,6 +5,8 @@ import { Container } from './App-Styles.jsx'
 
 import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom'
 
+import ProtectedRoute from './util/ProtectedRoute'
+
 // import Home from './components/Home'
 import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/Home/Home.jsx'
@@ -102,14 +104,16 @@ const App = () => {
 
           {/* Persist Navbar */}
           <NavbarTree logOut={logOut} />
-          
+
+          <ProtectedRoute exact path="/form" component={AddProjectForm} ></ProtectedRoute>
+
           <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
 
 
           <Route exact path="/signup" component={SignUpTree} />
           <Route exact path="/login" component={LoginTree} />
           <Route path="/dashboard" component={ProjectsList} />
-          <Route exact path="/form" component={AddProjectForm} />
+          {/* <Route exact path="/form" component={AddProjectForm} /> */}
           <Route path="/project/:projectId" component={ProjectStation} />
 
           <Route path="/dashboard2" component={ProjectListTry} />

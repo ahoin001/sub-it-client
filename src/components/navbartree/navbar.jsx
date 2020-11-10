@@ -19,29 +19,29 @@ const Navbar = (props) => {
 
                 <React.Fragment>
 
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    {/* <Link to="/" style={{ textDecoration: 'none' }}> */}
 
-                        <NavLink>
-                            Home
+                    <NavLink to="/" style={{ textDecoration: 'none' }}>
+                        Home
                         </NavLink>
 
-                    </Link>
+                    {/* </Link> */}
 
-                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                    {/* <Link to="/dashboard" style={{ textDecoration: 'none' }}> */}
 
-                        <NavLink>
-                            Dashboard
+                    <NavLink to="/dashboard" style={{ textDecoration: 'none' }}>
+                        Dashboard
                         </NavLink>
 
-                    </Link>
+                    {/* </Link> */}
 
-                    <Link to="/form" style={{ textDecoration: 'none' }}>
+                    {/* <Link to="/form" style={{ textDecoration: 'none' }}> */}
 
-                        <NavLink>
-                            Add Project
+                    <NavLink to="/form" style={{ textDecoration: 'none' }}>
+                        Add Project
                         </NavLink>
 
-                    </Link>
+                    {/* </Link> */}
 
                 </React.Fragment>
 
@@ -51,19 +51,19 @@ const Navbar = (props) => {
                 <React.Fragment>
 
 
-                    <NavLink href="#">
+                    <NavLink to="#">
                         About
                     </NavLink>
 
-                    <NavLink href="#">
+                    <NavLink to="#">
                         Blog
                     </NavLink>
 
-                    <NavLink href="#">
+                    <NavLink to="#">
                         Locations
                     </NavLink>
 
-                    <NavLink href="#">
+                    <NavLink to="#">
                         Pricing
                     </NavLink>
 
@@ -80,21 +80,21 @@ const Navbar = (props) => {
             {localStorage.getItem('userId')
                 ?
 
-                <Link to="/">
-                    <PrimaryLink onClick={() => logOut()} href="#">
-                        Logout
-                    </PrimaryLink>
-                </Link>
+
+                <PrimaryLink to="/" onClick={() => logOut()} >
+                    Logout
+                </PrimaryLink>
+
 
                 :
 
                 <React.Fragment>
 
-                    <Link to="/login">
-                        <PrimaryLink href="#">
-                            Login
+                    {/* <Link to="/login"> */}
+                    <PrimaryLink to="/login">
+                        Login
                         </PrimaryLink>
-                    </Link>
+                    {/* </Link> */}
 
                 </React.Fragment>
 

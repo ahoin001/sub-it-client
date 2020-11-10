@@ -8,8 +8,8 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.svg";
-import subItLogo from "../../images/OriginalImgs/SubitLogo.png";
+// import logo from "../../images/logo.svg";
+// import subItLogo from "../../images/OriginalImgs/SubitLogo.png";
 
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
@@ -24,7 +24,7 @@ export const NavLinks = tw.div`inline-block`;
 /* hocus: stands for "on hover or focus"
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
-export const NavLink = tw.span`
+export const NavLink = tw(Link)`
   text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
   cursor-pointer
   font-semibold tracking-wide transition duration-300
@@ -109,10 +109,14 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-    <LogoLink href="/">
-      <img src={subItLogo} alt="logo" />
-      SubIt
-    </LogoLink>
+    // <Link to="/">
+
+      <LogoLink to="/">
+        {/* <img src={subItLogo} alt="logo" /> */}
+        SubIt
+      </LogoLink>
+
+    // </Link>
   );
 
   logoLink = logoLink || defaultLogoLink;

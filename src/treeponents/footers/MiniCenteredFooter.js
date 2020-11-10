@@ -1,7 +1,7 @@
 import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
-import {Container as ContainerBase } from "../misc/Layouts"
+import { Container as ContainerBase } from "../misc/Layouts"
 import logo from "../../images/logo.svg";
 import { ReactComponent as FacebookIcon } from "../../images/facebook-icon.svg";
 import { ReactComponent as TwitterIcon } from "../../images/twitter-icon.svg";
@@ -32,19 +32,26 @@ const CopyrightText = tw.p`text-center mt-10 font-medium tracking-wide text-sm t
 export default () => {
   return (
     <Container>
+
       <Content>
+
         <Row>
+
           <LogoContainer>
-            <LogoImg src={logo} />
-            <LogoText>Treact</LogoText>
+
+            {/* Not sure if will use logo or just text */}
+            {/* <LogoImg src={logo} /> */}
+            <LogoText>Subit</LogoText>
           </LogoContainer>
+
           <LinksContainer>
-            <Link href="#">Home</Link>
-            <Link href="#">About</Link>
-            <Link href="#">Contact Us</Link>
-            <Link href="#">Blog</Link>
-            <Link href="#">Reviews</Link>
+            <Link href="#">For demo purposes only</Link>
+            {/* <Link href="#">About</Link>
+            <Link href="#">Contact Us</Link> */}
+            {/* <Link href="#">Blog</Link>
+            <Link href="#">Reviews</Link> */}
           </LinksContainer>
+
           <SocialLinksContainer>
             <SocialLink href="https://facebook.com">
               <FacebookIcon />
@@ -56,11 +63,15 @@ export default () => {
               <YoutubeIcon />
             </SocialLink>
           </SocialLinksContainer>
+
           <CopyrightText>
             &copy; Copyright 2020, Built By Ironhack Grads, Enjoy!
           </CopyrightText>
+
         </Row>
+
       </Content>
+
     </Container>
   );
 };

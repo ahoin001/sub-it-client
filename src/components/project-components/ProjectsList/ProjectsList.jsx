@@ -24,8 +24,8 @@ const ProjectsList = () => {
     const videoLoaded = () => {
 
         counter.current += 1;
-        console.log('VIDEO LOADING LENGTH: ', projectsOfUser.length)
-        console.log('VIDEO LOADING COUNTER: ', counter.current)
+        // console.log('VIDEO LOADING LENGTH: ', projectsOfUser.length)
+        // console.log('VIDEO LOADING COUNTER: ', counter.current)
 
         if (counter.current >= projectsOfUser.length) {
             setIsloading(false);
@@ -72,7 +72,9 @@ const ProjectsList = () => {
 
         projectListItems = projectsOfUser.map((projectFromList, i) =>
 
-                <Project onVideoLoaded={videoLoaded} projectInfo={projectFromList} />            
+            <React.Fragment key={projectFromList.id}>
+                <Project onVideoLoaded={videoLoaded} projectInfo={projectFromList} />
+            </React.Fragment>
 
         );
     }
