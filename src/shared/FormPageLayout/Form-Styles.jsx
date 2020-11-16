@@ -15,7 +15,6 @@ export const Content = tw.div`flex justify-center flex-1
                               sm:mx-20 sm:my-16 sm:rounded-lg `;
 
 export const MainContainer = tw.div`p-6 
-                                    
                                     sm:p-12 lg:w-8/12 xl:w-7/12`;
 
 export const MainContent = tw.div`flex flex-col items-center

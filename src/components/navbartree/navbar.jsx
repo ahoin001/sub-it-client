@@ -19,40 +19,26 @@ const Navbar = (props) => {
 
                 <React.Fragment>
 
-                    {/* <Link to="/" style={{ textDecoration: 'none' }}> */}
-
                     <NavLink to="/" style={{ textDecoration: 'none' }}>
                         Home
-                        </NavLink>
-
-                    {/* </Link> */}
-
-                    {/* <Link to="/dashboard" style={{ textDecoration: 'none' }}> */}
+                    </NavLink>
 
                     <NavLink to="/dashboard" style={{ textDecoration: 'none' }}>
                         Dashboard
-                        </NavLink>
-
-                    {/* </Link> */}
-
-                    {/* <Link to="/form" style={{ textDecoration: 'none' }}> */}
+                    </NavLink>
 
                     <NavLink to="/form" style={{ textDecoration: 'none' }}>
                         Add Project
-                        </NavLink>
-
-                    {/* </Link> */}
-
+                    </NavLink>
+                    
                 </React.Fragment>
-
 
                 :
 
                 <React.Fragment>
 
-
-                    <NavLink to="#">
-                        About
+                    <NavLink to="/">
+                        FROM CUSTOM
                     </NavLink>
 
                     <NavLink to="#">
@@ -76,15 +62,12 @@ const Navbar = (props) => {
 
         <NavLinks key={2}>
 
-            {/* {console.log(localStorage)} */}
             {localStorage.getItem('userId')
                 ?
-
 
                 <PrimaryLink to="/" onClick={() => logOut()} >
                     Logout
                 </PrimaryLink>
-
 
                 :
 
@@ -100,12 +83,13 @@ const Navbar = (props) => {
 
             }
 
-
         </NavLinks>
+
     ];
 
     return (
         <StyledHeader links={navLinks} />
+        // <Header links={navLinks} />
     );
 };
 

@@ -1,7 +1,11 @@
 // **** NAV
 import tw from "twin.macro";
 import styled from "styled-components";
-import Header, {
+
+// import Header from './navstyles'
+import 
+Header, 
+{
   NavLink,
   // NavLinks,
   // PrimaryLink,

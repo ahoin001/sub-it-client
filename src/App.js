@@ -3,9 +3,10 @@ import axios from 'axios'
 
 import { Container } from './App-Styles.jsx'
 
-import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './util/ProtectedRoute'
+import PageNotFound from './pages/PageNotFound/PageNotFound.jsx'
 
 // import Home from './components/Home'
 import NavbarTree from './components/navbartree/navbar'
@@ -79,10 +80,10 @@ const App = () => {
         return response.data.LoggedInUser
 
       })
-      .catch(err => {
-        console.log('ERROR FROM Login')
-        console.log(err)
-      })
+      // .catch(err => {
+      //   console.log('ERROR FROM Login')
+      //   console.log(err)
+      // })
 
   }
 
@@ -105,18 +106,23 @@ const App = () => {
           {/* Persist Navbar */}
           <NavbarTree logOut={logOut} />
 
-          <ProtectedRoute exact path="/form" component={AddProjectForm} ></ProtectedRoute>
+          <Switch>
 
-          <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+            <ProtectedRoute exact path="/form" component={AddProjectForm} ></ProtectedRoute>
+
+            <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+            <Route exact path="/signup" component={SignUpTree} />
+            <Route exact path="/login" component={LoginTree} />
+
+            <Route path="/dashboard" component={ProjectsList} />
+            {/* <Route exact path="/form" component={AddProjectForm} /> */}
+            <Route path="/project/:projectId" component={ProjectStation} />
+
+            <Route component={PageNotFound} />
+          
+          </Switch>
 
 
-          <Route exact path="/signup" component={SignUpTree} />
-          <Route exact path="/login" component={LoginTree} />
-          <Route path="/dashboard" component={ProjectsList} />
-          {/* <Route exact path="/form" component={AddProjectForm} /> */}
-          <Route path="/project/:projectId" component={ProjectStation} />
-
-          <Route path="/dashboard2" component={ProjectListTry} />
 
         </AuthContext.Provider>
 

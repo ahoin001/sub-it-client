@@ -9,8 +9,6 @@ const ProtectedRoute = ({ component: ComponentPassedIntoComponentProp, ...restOf
 
     // console.log('Rest +++++++++++++++++++++++++', restOfProps)
 
-
-
     return (
 
         <Route {...restOfProps} render={

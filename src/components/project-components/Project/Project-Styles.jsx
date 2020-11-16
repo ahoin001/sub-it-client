@@ -5,7 +5,7 @@ export const Article = styled.article`
 
 ${tw`
 flex flex-col items-center justify-center w-full 
-bg-gray-400
+bg-gray-100
 
 overflow-hidden 
 rounded-lg shadow-lg

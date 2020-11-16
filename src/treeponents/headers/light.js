@@ -94,7 +94,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
+      <NavLink href="/#">WOWZZERS</NavLink>
       <NavLink href="/#">Blog</NavLink>
       <NavLink href="/#">Pricing</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
@@ -111,10 +111,10 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLogoLink = (
     // <Link to="/">
 
-      <LogoLink to="/">
-        {/* <img src={subItLogo} alt="logo" /> */}
+    <LogoLink to="/">
+      {/* <img src={subItLogo} alt="logo" /> */}
         SubIt
-      </LogoLink>
+    </LogoLink>
 
     // </Link>
   );
@@ -135,7 +135,11 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
         {logoLink}
 
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
-          {links}
+
+          <div onClick={toggleNavbar}>
+            {links}
+          </div>
+
         </MobileNavLinks>
 
         <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>

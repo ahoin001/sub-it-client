@@ -10,7 +10,7 @@ import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
 
 const Container = styled.div`
   ${tw`relative mx-auto  bg-center bg-cover py-4`}
-  background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
+  background-image: url("https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
 `;
 
 const StyledHeader = styled(Header)`
