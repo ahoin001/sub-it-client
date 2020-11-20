@@ -108,7 +108,7 @@ const SignUpTree = () => {
 
               <FormContainer>
 
-                <SocialButtonsContainer>
+                {/* <SocialButtonsContainer>
 
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton key={index} href={socialButton.url}>
@@ -119,10 +119,10 @@ const SignUpTree = () => {
                     </SocialButton>
                   ))}
 
-                </SocialButtonsContainer>
+                </SocialButtonsContainer> */}
 
                 <DividerTextContainer>
-                  <DividerText>Or Sign up with your e-mail</DividerText>
+                  {/* <DividerText>Or Sign up with your e-mail</DividerText> */}
                 </DividerTextContainer>
 
                 <Form onSubmit={handleSubmit(submitUser)} >
@@ -190,7 +190,6 @@ const SignUpTree = () => {
     </AnimationRevealPage>
 
   );
-
 
 };
 

@@ -18,15 +18,11 @@ import {
   Container,
   Content,
   MainContainer,
-  // LogoLink,
   LogoImage,
   MainContent,
   Heading,
   FormContainer,
-  SocialButtonsContainer,
-  SocialButton,
   DividerTextContainer,
-  DividerText,
   Form,
   Input,
   SubmitButton,
@@ -105,7 +101,7 @@ const Login = (props) => {
 
               <FormContainer>
 
-                <SocialButtonsContainer>
+                {/* <SocialButtonsContainer>
                   {socialButtons.map((socialButton, index) => (
                     <SocialButton key={index} href={socialButton.url}>
                       <span className="iconContainer">
@@ -114,10 +110,10 @@ const Login = (props) => {
                       <span className="text">{socialButton.text}</span>
                     </SocialButton>
                   ))}
-                </SocialButtonsContainer>
+                </SocialButtonsContainer> */}
 
                 <DividerTextContainer>
-                  <DividerText>Or Sign in with your e-mail</DividerText>
+                  {/* <DividerText>Or Sign in with your e-mail</DividerText> */}
                 </DividerTextContainer>
 
                 {/* handleSubmit will validate inputs before excecuting submission function */}

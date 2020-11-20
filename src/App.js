@@ -80,13 +80,8 @@ const App = () => {
         return response.data.LoggedInUser
 
       })
-      // .catch(err => {
-      //   console.log('ERROR FROM Login')
-      //   console.log(err)
-      // })
 
   }
-
 
   return (
 
