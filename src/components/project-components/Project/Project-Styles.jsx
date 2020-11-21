@@ -33,8 +33,8 @@ h1 {
   ${tw`no-underline hover:underline text-black`}
 }
 
-.p {
-  ${tw`text-gray-700 text-sm`}
+p {
+  ${tw`text-gray-700 text-sm hover:text-white`}
 }
 
 `;
@@ -50,10 +50,6 @@ focus:shadow-outline transition duration-75
 hocus:text-white focus:shadow-outline  transition duration-300
 
 `}
-
-
-
- 
 
 h1 {
   ${tw`text-2xl font-bold `}

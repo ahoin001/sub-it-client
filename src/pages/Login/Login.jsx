@@ -45,8 +45,6 @@ const Login = (props) => {
   // * Data provided by react form hook
   const submitUser = async (data) => {
 
-    // console.log("FORM DATA &&&&&&&&&&: ", data)
-
     const { email, password } = data
 
     const newUserInfo = {
