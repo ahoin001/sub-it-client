@@ -53,6 +53,7 @@
     ]
   },
   "babelMacros": {
+    "styledComponents": {},
     "twin": {
       "preset": "styled-components",
       "styled": {
