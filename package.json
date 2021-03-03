@@ -3,29 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
-    "bulma": "^0.8.0",
+    "@emotion/styled": "^11.1.5",
+    "axios": "^0.19.2",
+    "bulma": "^0.8.2",
     "feather-icons": "^4.28.0",
-    "file-saver": "^2.0.2",
+    "file-saver": "^2.0.5",
     "file-server": "^2.1.0",
-    "framer-motion": "^2.6.15",
-    "jquery": "^3.4.1",
+    "framer-motion": "^2.9.5",
+    "jquery": "^3.6.0",
     "multer": "^1.4.2",
-    "node-sass": "^4.13.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "node-sass": "^4.14.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-file-viewer": "^1.2.1",
-    "react-google-login": "^5.0.7",
-    "react-hook-form": "^6.9.5",
-    "react-modal": "^3.11.2",
-    "react-player": "^1.13.0",
-    "react-router-dom": "^5.1.2",
+    "react-google-login": "^5.2.2",
+    "react-hook-form": "^6.15.4",
+    "react-modal": "^3.12.1",
+    "react-player": "^1.15.3",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0",
-    "react-slick": "^0.27.11",
+    "react-slick": "^0.27.14",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.2.0",
-    "tailwindcss": "^1.8.10",
-    "twin.macro": "^1.9.0",
+    "styled-components": "^5.2.1",
+    "tailwindcss": "^1.9.6",
+    "twin.macro": "^1.12.1",
     "use-in-view": "^1.0.15"
   },
   "scripts": {
@@ -51,7 +52,7 @@
       "last 1 safari version"
     ]
   },
-    "babelMacros": {
-      "styledComponents": {}
-    }
+  "babelMacros": {
+    "styledComponents": {}
+  }
 }
