@@ -63,6 +63,7 @@ const SignUpTree = () => {
       url: "https://twitter.com"
     }
   ]
+  
   let submitButtonText = "Sign Up"
   let SubmitButtonIcon = SignUpIcon
 
