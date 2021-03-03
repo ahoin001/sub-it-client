@@ -22,10 +22,10 @@ import {
   MainContent,
   Heading,
   FormContainer,
-  SocialButtonsContainer,
-  SocialButton,
+  // SocialButtonsContainer,
+  // SocialButton,
   DividerTextContainer,
-  DividerText,
+  // DividerText,
   Form,
   Input,
   SubmitButton
@@ -33,31 +33,8 @@ import {
 
 const SignUpTree = () => {
 
-  const [values, setValues] = useState({ username: '', email: '', password: '' })
-
   // ** React Hook Form 
   const { register, handleSubmit, errors } = useForm()
-
-  // dynamically keep track of form field in state
-  // const handleInputChange = e => {
-  //   // console.log('EVENT TARGET',e.target.type)
-  //   const { type, value } = e.target
-  //   setValues({ ...values, [type]: value })
-  // }
-
-  // const submitUser = (e) => {
-  //   e.preventDefault()
-  //   const { username, email, password } = values
-
-  //   const newUserInfo = {
-  //     username,
-  //     email,
-  //     password
-  //   }
-
-  //   register(newUserInfo);
-
-  // }
 
   const submitUser = (data) => {
 

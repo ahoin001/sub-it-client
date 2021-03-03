@@ -68,7 +68,7 @@ export default ({
     },
     {
       heading: "Download subtitle file!",
-      description: "After subtitle your video as needed, hit download to get your desired subtitle file to send to client."
+      description: "After adding subtitles to your video as needed, hit download to get your desired subtitle file to send to client."
     }
   ];
 

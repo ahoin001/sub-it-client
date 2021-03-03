@@ -8,9 +8,6 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router
 import ProtectedRoute from './util/ProtectedRoute'
 import PageNotFound from './pages/PageNotFound/PageNotFound.jsx'
 
-// import Home from './components/Home'
-// import ProjectFormTree from './components/project-components/ProjectForm/ProjectForm'
-
 import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/Home/Home.jsx'
 import SignUpTree from './pages/SignUp/SignUp.jsx'
@@ -20,10 +17,7 @@ import AddProjectForm from './pages/AddProject/Add-Project'
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/ProjectStation/ProjectStation'
 
-import ProjectListTry from './pages/UserProjects/UserProjects'
-
 import AuthContext from './shared/context/auth-context'
-
 
 const App = () => {
 
@@ -114,10 +108,8 @@ const App = () => {
             <Route path="/project/:projectId" component={ProjectStation} />
 
             <Route component={PageNotFound} />
-          
+
           </Switch>
-
-
 
         </AuthContext.Provider>
 
