@@ -33,7 +33,7 @@ import {
 
 const SignUpTree = () => {
 
-  // ** React Hook Form 
+  // ** React Hook Form Made this much easier, future alex use this please
   const { register, handleSubmit, errors } = useForm()
 
   const submitUser = (data) => {
