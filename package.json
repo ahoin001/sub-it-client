@@ -53,6 +53,8 @@
     ]
   },
   "babelMacros": {
-    "styledComponents": {}
+    "styledComponents": {},
+    "twin.macro":{},
+    "@emotion/styled":{}
   }
 }
