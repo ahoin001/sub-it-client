@@ -59,10 +59,7 @@
         "import": "default",
         "from": "styled-components"
       },
-      "css": {
-        "import": "css",
-        "from": "styled-components"
-      }
+      "config": "./src/tailwind.config.js"
     }
   }
 }
