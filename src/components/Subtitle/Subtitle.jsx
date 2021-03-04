@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 
 import { TableData } from '../../shared/Table/Table-Styles'
 import { FormInput } from './subtitle.styles'
+
 import {
     ButtonsContainer,
     ActionButton
 } from '../../shared/Buttons/Buttons'
-
-// import { FormInput } from './Subtitle.styles'
-
 
 const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
