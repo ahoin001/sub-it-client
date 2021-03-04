@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/styled": "^11.1.5",
     "axios": "^0.19.2",
+    "browserslist": "^4.16.3",
     "bulma": "^0.8.2",
     "feather-icons": "^4.28.0",
     "file-saver": "^2.0.5",
