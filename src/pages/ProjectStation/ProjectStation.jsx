@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
-import SubtitleCreation from '../../components/SubtitleCreation/SubtitleCreation'
+import SubtitleCreation from '../../components/subtitlecreation/subtitlecreation'
 
 import { StationContainer, ContentContainer } from './Project-Station-styles'
 

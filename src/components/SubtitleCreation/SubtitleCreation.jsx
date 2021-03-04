@@ -11,7 +11,7 @@ import Alert from '../../shared/Alerts/Alert'
 import {
     SubtitleCreationContainer,
     ButtonsContainer
-} from './SubtitleCreation-Styles'
+} from './subtitlecreation-Styles'
 
 import {
     SolidButton,
