@@ -13,7 +13,7 @@ import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/home/homepage'
 import SignUpTree from './pages/signup/signup.jsx'
 import LoginTree from './pages/login/login.jsx'
-import AddProjectForm from './pages/addproject/Add-Project'
+import AddProjectForm from './pages/addproject/add-project'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/projectstation/ProjectStation'

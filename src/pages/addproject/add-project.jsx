@@ -19,8 +19,8 @@ import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 import Alert from '../../shared/Alerts/Alert'
 import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
-import { AddButton } from "./Add-Project-Styles";
-import { Form } from './Add-Project-Styles.jsx'
+import { AddButton } from "./add-project-styles";
+import { Form } from './add-project-styles.jsx'
 
 import { SolidButton } from '../../shared/Buttons/Buttons'
 import {
