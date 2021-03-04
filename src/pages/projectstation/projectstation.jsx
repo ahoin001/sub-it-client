@@ -4,7 +4,7 @@ import LoopCircleLoading from '../../shared/CircleLoading/CircleLoading'
 
 import SubtitleCreation from '../../components/subtitlecreation/subtitlecreation'
 
-import { StationContainer, ContentContainer } from './Project-Station-styles'
+import { StationContainer, ContentContainer } from './project-station-styles'
 
 import VideoPlayer from '../../components/VideoPlayer'
 

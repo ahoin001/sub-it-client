@@ -16,7 +16,7 @@ import LoginTree from './pages/login/login.jsx'
 import AddProjectForm from './pages/addproject/add-project'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
-import ProjectStation from './pages/projectstation/ProjectStation'
+import ProjectStation from './pages/projectstation/projectstation'
 
 import AuthContext from './shared/context/auth-context'
 
