@@ -10,7 +10,7 @@ import ProtectedRoute from './util/ProtectedRoute'
 import PageNotFound from './pages/pagenotfound/pagenotfound.jsx'
 
 import NavbarTree from './components/navbartree/navbar'
-import HomeTree from './pages/home/Home.jsx'
+import HomeTree from './pages/home/Home'
 import SignUpTree from './pages/signup/SignUp.jsx'
 import LoginTree from './pages/login/Login.jsx'
 import AddProjectForm from './pages/addproject/Add-Project'
