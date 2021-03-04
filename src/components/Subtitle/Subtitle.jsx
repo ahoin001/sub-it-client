@@ -7,7 +7,8 @@ import {
     ActionButton
 } from '../../shared/Buttons/Buttons'
 
-import { FormInput } from './Subtitle-Styles'
+import { FormInput } from './Subtitle.styles'
+// import { StyledHeader } from './navbar.styled'
 
 const Subtitle = ({ Subtitle, onDeleteClick, onSaveEdit, refreshTable }) => {
 
