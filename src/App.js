@@ -6,16 +6,16 @@ import { Container } from './App-Styles.jsx'
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './util/ProtectedRoute'
-import PageNotFound from './pages/PageNotFound/PageNotFound.jsx'
+import PageNotFound from './pages/pagenotfound/PageNotFound.jsx'
 
 import NavbarTree from './components/navbartree/navbar'
-import HomeTree from './pages/Home/Home.jsx'
-import SignUpTree from './pages/SignUp/SignUp.jsx'
-import LoginTree from './pages/Login/Login.jsx'
-import AddProjectForm from './pages/AddProject/Add-Project'
+import HomeTree from './pages/home/Home.jsx'
+import SignUpTree from './pages/signup/SignUp.jsx'
+import LoginTree from './pages/login/Login.jsx'
+import AddProjectForm from './pages/addproject/Add-Project'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
-import ProjectStation from './pages/ProjectStation/ProjectStation'
+import ProjectStation from './pages/projectstation/ProjectStation'
 
 import AuthContext from './shared/context/auth-context'
 
