@@ -6,7 +6,7 @@ import { Container } from './App-Styles.jsx'
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom'
 
 import ProtectedRoute from './util/ProtectedRoute'
-import PageNotFound from './pages/pagenotfound/PageNotFound.jsx'
+import PageNotFound from './pages/pagenotfound/pagenotfound.jsx'
 
 import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/home/Home.jsx'

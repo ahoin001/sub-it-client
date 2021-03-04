@@ -11,7 +11,7 @@ import {
     Header,
     Text,
     RedirectLink
-} from './NotFoundStyles'
+} from './notfoundstyles'
 
 import Cat from './Cat.svg'
 
