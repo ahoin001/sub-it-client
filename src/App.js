@@ -11,8 +11,8 @@ import PageNotFound from './pages/pagenotfound/pagenotfound.jsx'
 
 import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/home/homepage'
-import SignUpTree from './pages/signup/SignUp.jsx'
-import LoginTree from './pages/login/Login.jsx'
+import SignUpTree from './pages/signup/signup.jsx'
+import LoginTree from './pages/login/login.jsx'
 import AddProjectForm from './pages/addproject/Add-Project'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
