@@ -18,7 +18,7 @@ import {
 } from '../../shared/Buttons/Buttons'
 
 import CustomModal from '../../shared/ModalCustom/Modal'
-import Subtitle from '../Subtitle/Subtitle'
+import Subtitle from '../subtitle/subtitle'
 
 // TODO I would like to make table more responsive and scroll without body
 // TODO After using content background and container, need to readjust responsive behavior

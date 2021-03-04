@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { TableData } from '../../shared/Table/Table-Styles'
-import { FormInput } from './Subtitle.styles'
+import { FormInput } from './subtitle.styles'
 import {
     ButtonsContainer,
     ActionButton
