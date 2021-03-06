@@ -160,7 +160,7 @@ const SubtitleCreation = (props) => {
             inTimeVTT: formInputs.inTimeVTT,
             outTimeVTT: formInputs.outTimeVTT
         }
-        
+
         axios.put(`${process.env.REACT_APP_API_URL}subtitles/api/${Subtitle.id}/edit-sub`, dataToEditInSubtitle)
             .then(response => {
 
@@ -190,6 +190,7 @@ const SubtitleCreation = (props) => {
 
     const listSubtitles = () => {
 
+        // ? Activates chrome debug for react
         // debugger;
 
         let tracks = document.querySelector('video').textTracks;
