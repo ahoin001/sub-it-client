@@ -30,6 +30,7 @@
     "twin.macro": "^1.12.1",
     "use-in-view": "^1.0.15"
   },
+  "proxy": "https://subtitle-hero-backend.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build-dev": "dotenv -e .env.development react-scripts build",
