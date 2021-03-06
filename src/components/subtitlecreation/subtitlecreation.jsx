@@ -112,7 +112,10 @@ const SubtitleCreation = (props) => {
             props.setLoading(true);
 
             const response = await axios.delete(`${process.env.REACT_APP_API_URL}projects/api/deleteProject/${props.projectId}`);
-            console.log("* Deleted Successfully!", response);
+            console.log("* Deleted Successfully! ", response);
+            console.log("Redirecting!")
+
+            history.push("/dashboard");
 
         } catch (error) {
             console.log('FAILURE DELETING PROJECT')

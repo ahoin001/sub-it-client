@@ -33,6 +33,8 @@ import {
 
 const SignUpTree = () => {
 
+  console.log(`YOU'RE IN ${process.env.REACT_APP_API_URL}`)
+
   // ** React Hook Form Made this much easier, future alex use this please
   const { register, handleSubmit, errors } = useForm()
 

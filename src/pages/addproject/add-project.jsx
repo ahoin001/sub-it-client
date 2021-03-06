@@ -49,7 +49,7 @@ const ProjectPage = (props) => {
 
     const [preview, setPreview] = useState()
 
-    // let history = useHistory();
+    let history = useHistory();
 
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
@@ -104,6 +104,8 @@ const ProjectPage = (props) => {
             .then((responseFromCreatingProject) => {
 
                 console.log(responseFromCreatingProject.data);
+                console.log('Should redirect')
+                history.push("/dashboard");
                 setIsLoading(false)
 
             })
