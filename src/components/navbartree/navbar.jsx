@@ -38,19 +38,19 @@ const Navbar = (props) => {
                 <React.Fragment>
 
                     <NavLink to="/">
-                        FROM CUSTOM
+                        {/* FROM CUSTOM */}
                     </NavLink>
 
                     <NavLink to="#">
-                        Blog
+                        {/* Blog */}
                     </NavLink>
 
                     <NavLink to="#">
-                        Locations
+                        {/* Locations */}
                     </NavLink>
 
                     <NavLink to="#">
-                        Pricing
+                        {/* Pricing */}
                     </NavLink>
 
                 </React.Fragment>

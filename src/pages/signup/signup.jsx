@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form'
 import { signUpUser } from '../../util/UtilityUserFunctions'
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 
 import Alert from '../../shared/Alerts/Alert'
 import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'
@@ -38,6 +38,8 @@ const SignUpTree = () => {
   // ** React Hook Form Made this much easier, future alex use this please
   const { register, handleSubmit, errors } = useForm()
 
+  let history = useHistory();
+
   const submitUser = (data) => {
 
     const { email, password } = data
@@ -48,6 +50,7 @@ const SignUpTree = () => {
     }
 
     signUpUser(newUserInfo);
+    history.push("/login");
 
   }
 
