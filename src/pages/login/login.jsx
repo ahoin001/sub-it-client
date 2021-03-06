@@ -33,6 +33,8 @@ import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 
 const Login = (props) => {
 
+  console.log(`YOUR IN ${process.env.REACT_APP_API_URL}`)
+
   // ** React Hook Form 
   const { register, handleSubmit, errors } = useForm()
 
