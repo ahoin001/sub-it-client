@@ -33,7 +33,7 @@ const ProjectList = () => {
             console.log('BEFORE FETCHING VIDS FOR DASHBOARD: ', userId)
 
             // * Get Projects that belong to signed in user
-            await axios.get(`http://localhost:8000/projects/api/dashboard/${userId}`)
+            await axios.get(`${process.env.REACT_APP_API_URL}projects/api/dashboard/${userId}`)
                 .then(response => {
                     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!..............................", response.data);
                     setProjectsOfUser(response.data);

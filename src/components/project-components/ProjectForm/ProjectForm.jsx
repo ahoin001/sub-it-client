@@ -69,7 +69,7 @@ const ProjectForm = () => {
 
         axios({
             method: 'post',
-            url: `http://localhost:8000/projects/api/create-project/${projectInfo.userId}`,
+            url: `${process.env.REACT_APP_API_URL}projects/api/create-project/${projectInfo.userId}`,
             headers: { 'Content-Type': `multipart/form-data` },
             data
         })

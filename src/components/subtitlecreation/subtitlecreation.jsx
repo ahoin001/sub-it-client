@@ -68,7 +68,7 @@ const SubtitleCreation = (props) => {
                 console.log('INSIDE Effect IF')
 
                 // * Get subtitles that belong to project
-                axios.get(`http://localhost:8000/projects/api/subtitles/${props.projectId}`)
+                axios.get(`${process.env.REACT_APP_API_URL}projects/api/subtitles/${props.projectId}`)
                     .then(response => {
 
                         // console.log("* Get Subtitles that belong to signed in user", response.data);
@@ -111,7 +111,7 @@ const SubtitleCreation = (props) => {
 
             props.setLoading(true);
 
-            const response = await axios.delete(`http://localhost:8000/projects/api/deleteProject/${props.projectId}`);
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}projects/api/deleteProject/${props.projectId}`);
             console.log("* Deleted Successfully!", response);
 
         } catch (error) {
@@ -398,7 +398,7 @@ const SubtitleCreation = (props) => {
 
         let downloadVTT = `WEBVTT`
 
-        axios.get(`http://localhost:8000/projects/api/subtitles/${props.projectId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}projects/api/subtitles/${props.projectId}`)
             .then((response) => {
 
                 let finishedSubs = subTitleState.subtitles;

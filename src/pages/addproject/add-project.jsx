@@ -98,7 +98,6 @@ const ProjectPage = (props) => {
         axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}projects/api/create-project/${userId}`,
-            // url: `http://localhost:8000/projects/api/create-project/${userId}`,
             headers: { 'Content-Type': `multipart/form-data` },
             data
         })

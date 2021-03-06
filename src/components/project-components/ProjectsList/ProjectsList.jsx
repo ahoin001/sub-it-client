@@ -46,7 +46,7 @@ const ProjectsList = () => {
             setIsloading(true);
 
             // * Get Projects that belong to signed in user
-            await axios.get(`http://localhost:8000/projects/api/dashboard/${localStorage.getItem('currentUserId')}`)
+            await axios.get(`${process.env.REACT_APP_API_URL}projects/api/dashboard/${localStorage.getItem('currentUserId')}`)
                 .then(response => {
 
                     console.log("REQUEST COMPLETE, CAN STOP LOADING", response.data);
