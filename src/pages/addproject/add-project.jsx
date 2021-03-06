@@ -37,7 +37,7 @@ import {
 } from '../../shared/FormPageLayout/Form-Styles'
 
 
-// TODO Need user errors for inputs amd to only allow video formats on input
+// TODO Need user errors for inputs amd to only allow video formats on input (Can submit m4a and audio files)
 
 const ProjectPage = (props) => {
 
@@ -97,7 +97,8 @@ const ProjectPage = (props) => {
 
         axios({
             method: 'post',
-            url: `http://localhost:8000/projects/api/create-project/${userId}`,
+            url: `${process.env.REACT_APP_API_URL}projects/api/create-project/${userId}`,
+            // url: `http://localhost:8000/projects/api/create-project/${userId}`,
             headers: { 'Content-Type': `multipart/form-data` },
             data
         })

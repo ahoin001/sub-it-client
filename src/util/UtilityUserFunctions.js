@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export const signUpUser = newUserInfo => {
+  
+  console.log(process.env.REACT_APP_API_URL)
 
   return axios
-    // .post(`${process.env.REACT_APP_API_URL}/signup`, {
-    .post(`http://localhost:8000/users/signup`, {
-      // `${process.env.REACT_APP_API_URL}/some-route`
+    .post(`${process.env.REACT_APP_API_URL}users/signup`, {
       userName: newUserInfo.userName,
       email: newUserInfo.email,
       password: newUserInfo.password
@@ -13,7 +13,7 @@ export const signUpUser = newUserInfo => {
     .then(response => {
       console.log(response)
       console.log('Registered')
-      console.log(`RESPONSE ON LOGIN BACKEND: `,response.data.newUser)
+      console.log(`RESPONSE ON LOGIN BACKEND: `, response.data.newUser)
       localStorage.setItem('usertoken', response.data.newUser.email)
       return response.data
     })
@@ -35,8 +35,7 @@ export const googleRegister = newUser => {
 
 export const login = user => {
   return axios
-    // .post(`${process.env.REACT_APP_API_URL}/login`, {
-    .post(`http://localhost:8000/users/login`, {
+    .post(`${process.env.REACT_APP_API_URL}login`, {
       userName: user.userName,
       email: user.email,
       password: user.password
@@ -44,12 +43,12 @@ export const login = user => {
     .then(response => {
 
       // The Logged In User Data
-      console.log(`RESPONSE ON LOGIN BACKEND: `,response)
-      console.log(`RESPONSE ON LOGIN BACKEND: `,response.data.LoggedInUser)
+      console.log(`RESPONSE ON LOGIN BACKEND: `, response)
+      console.log(`RESPONSE ON LOGIN BACKEND: `, response.data.LoggedInUser)
 
       // Set User data to localstorage to keep track of user
       localStorage.setItem('usertoken', response.data.LoggedInUser.id)
-      
+
       return response.data.LoggedInUser
 
     })
