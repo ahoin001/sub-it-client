@@ -160,8 +160,8 @@ const SubtitleCreation = (props) => {
             inTimeVTT: formInputs.inTimeVTT,
             outTimeVTT: formInputs.outTimeVTT
         }
-
-        axios.put(`http://localhost:8000/subtitles/api/${Subtitle.id}/edit-sub`, dataToEditInSubtitle)
+        
+        axios.put(`${process.env.REACT_APP_API_URL}subtitles/api/${Subtitle.id}/edit-sub`, dataToEditInSubtitle)
             .then(response => {
 
                 console.log("* RESPONSE AFTER EDITING SUBS", response.data);
@@ -350,7 +350,7 @@ const SubtitleCreation = (props) => {
 
         try {
 
-            let savedSubtitle = await axios.post(`http://localhost:8000/subtitles/api/${props.projectId}/add-sub`, thisSubtitle)
+            let savedSubtitle = await axios.post(`${process.env.REACT_APP_API_URL}subtitles/api/${props.projectId}/add-sub`, thisSubtitle)
 
             console.log('SAVED SUBTITLE: ', savedSubtitle.data)
 
@@ -377,7 +377,7 @@ const SubtitleCreation = (props) => {
         // props.setLoading(true)
 
         // * Get subtitles that belong to project
-        axios.delete(`http://localhost:8000/subtitles/api/${subId}/delete-sub`)
+        axios.delete(`${process.env.REACT_APP_API_URL}subtitles/api/${subId}/delete-sub`)
             .then(response => {
 
                 console.log("* RESPONSE AFTER DELETING SUBTITLE");

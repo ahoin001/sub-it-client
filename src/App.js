@@ -9,14 +9,14 @@ import ProtectedRoute from './util/ProtectedRoute'
 // import PageNotFound from './pages/pagenotfoundoriginal/pagenotfound.jsx'
 import PageNotFound from './pages/pagenotfound/pagenotfound.jsx'
 
-import NavbarTree from './components/navbartree/navbar'
 import HomeTree from './pages/home/homepage'
 import SignUpTree from './pages/signup/signup.jsx'
 import LoginTree from './pages/login/login.jsx'
 import AddProjectForm from './pages/addproject/add-project'
-
-import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 import ProjectStation from './pages/projectstation/projectstation'
+
+import NavbarTree from './components/navbartree/navbar'
+import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 
 import AuthContext from './shared/context/auth-context'
 
