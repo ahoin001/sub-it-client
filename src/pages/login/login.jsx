@@ -33,14 +33,14 @@ import AnimationRevealPage from "../../helpers/AnimationRevealPage";
 
 const Login = (props) => {
 
-  console.log(`YOU'RE IN ${process.env.REACT_APP_API_URL}`)
+  // console.log(`YOU'RE IN ${process.env.REACT_APP_API_URL}`)
 
   // ** React Hook Form 
   const { register, handleSubmit, errors } = useForm()
 
   const { login, secret } = useContext(AuthContext)
 
-  console.log('THE SECRET IS !!!!!!!!!!!!!!!! ', secret)
+  // console.log('THE SECRET IS !!!!!!!!!!!!!!!! ', secret)
 
   let history = useHistory();
 
@@ -56,7 +56,8 @@ const Login = (props) => {
 
     try {
 
-      let res = await login(newUserInfo)
+      await login(newUserInfo)
+      // let res = await login(newUserInfo)
       // console.log('********************************* res From Login: ', res)
 
       history.push("/dashboard");

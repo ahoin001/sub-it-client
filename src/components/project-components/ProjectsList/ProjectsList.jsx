@@ -49,7 +49,8 @@ const ProjectsList = () => {
             await axios.get(`${process.env.REACT_APP_API_URL}projects/api/dashboard/${localStorage.getItem('currentUserId')}`)
                 .then(response => {
 
-                    console.log("REQUEST COMPLETE, CAN STOP LOADING", response.data);
+                    // console.log("REQUEST COMPLETE, CAN STOP LOADING", response.data);
+
                     setProjectsOfUser(response.data);
 
                     setIsloading(false);

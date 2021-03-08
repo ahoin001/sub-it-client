@@ -17,11 +17,13 @@ const ProjectStation = (props) => {
     let content;
 
     if (projectInfo) {
-        console.log(" IN IF BROOOOOOOOOOO")
+
         content = <VideoPlayer onVideoLoaded={setIsLoading} videoURL={projectInfo.videoURL} />;
+
     } else {
-        console.log(" IN ELSE BROOOOOOOOOOO")
+
         content = <LoopCircleLoading />;
+
     }
 
     return (

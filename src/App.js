@@ -64,11 +64,13 @@ const App = () => {
 
         // Set User data to localstorage to keep track of user
         localStorage.setItem('userId', response.data.LoggedInUser.id);
+        
         // Might Use context instead but for now it's okay
         localStorage.setItem('currentUserId', response.data.LoggedInUser.id);
         localStorage.setItem('currentUserName', response.data.LoggedInUser.email);
 
-        console.log('SETTING USER TO TRUE AT APP LEVEL COMPONENT')
+        // console.log('SETTING USER TO TRUE AT APP LEVEL COMPONENT')
+
         setUserSignedIn(true)
 
         return response.data.LoggedInUser

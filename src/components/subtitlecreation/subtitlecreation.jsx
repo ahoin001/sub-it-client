@@ -63,11 +63,11 @@ const SubtitleCreation = (props) => {
 
         const fetchData = () => {
 
-            console.log('Running Sub Creation Effect')
+            // console.log('Running Sub Creation Effect')
 
             if (shouldRefetch) {
 
-                console.log('INSIDE Effect IF')
+                // console.log('INSIDE Effect IF')
 
                 // * Get subtitles that belong to project
                 axios.get(`${process.env.REACT_APP_API_URL}projects/api/subtitles/${props.projectId}`)
