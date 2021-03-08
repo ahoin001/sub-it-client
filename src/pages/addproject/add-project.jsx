@@ -74,7 +74,7 @@ const ProjectPage = (props) => {
             return
         }
 
-        // I've kept this example simple by using the first image instead of multiple
+        // I've kept this example simple by using the first file instead of multiple
         setSelectedFile(e.target.files[0])
     }
 
@@ -95,7 +95,7 @@ const ProjectPage = (props) => {
         data.append('description', description);
         data.append('videoFile', videoFile[0]);
 
-        console.log(">>>>>>>>>>>>>>> ADD DATA")
+        // console.log(">>>>>>>>>>>>>>> ADD DATA")
 
         // Display the values
         for (var value of data.values()) {
@@ -211,6 +211,7 @@ const ProjectPage = (props) => {
                                             id="videoFile"
                                             className="file-input"
                                             placeholder="Upload File"
+                                            accept="video/*"
                                             ref={register({ required: true })}
                                             onChange={onSelectFile}
                                         />
