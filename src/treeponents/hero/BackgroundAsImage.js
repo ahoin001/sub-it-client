@@ -13,17 +13,17 @@ const Container = styled.div`
   background-image: url("https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
 `;
 
-const StyledHeader = styled(Header)`
-  ${tw`pt-8 max-w-none`}
+// const StyledHeader = styled(Header)`
+//   ${tw`pt-8 max-w-none`}
   
-  ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
-    ${tw`text-gray-100 hover:border-gray-300 hover:text-gray-300`}
-  }
+//   ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
+//     ${tw`text-gray-100 hover:border-gray-300 hover:text-gray-300`}
+//   }
 
-  ${NavToggle}.closed {
-    ${tw`text-gray-100 hover:text-primary-500`}
-  }
-`;
+//   ${NavToggle}.closed {
+//     ${tw`text-gray-100 hover:text-primary-500`}
+//   }
+// `;
 
 const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-primary-500 opacity-25`;
 
@@ -142,11 +142,10 @@ export default (props) => {
 
           <LeftColumn>
 
-            <Notification>Demo Only Please use Short Videos</Notification>
-           
-            <Notification>Login  <br />
-            Email: demo@demo.com  <br />
-            Password: demo
+            <Notification>
+              Login  <br />
+              Email: demo@demo.com  <br />
+              Password: demo
             </Notification>
 
             <Heading>
