@@ -46,7 +46,7 @@ export const ModalHeader = tw.div`flex w-full h-auto justify-center items-center
 
 export const ModalHeaderTitle = tw.div`flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold`;
 
-export const ModalContent = tw.textarea`w-full h-auto 
+export const ModalTextArea = tw.textarea`w-full h-auto 
                                         p-4 mb-4
                                         bg-gray-200 
                                         text-black font-bold

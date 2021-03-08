@@ -142,7 +142,12 @@ export default (props) => {
 
           <LeftColumn>
 
-            <Notification>Demo Only Sorry for Slow CRUD Operations </Notification>
+            <Notification>Demo Only Please use Short Videos</Notification>
+           
+            <Notification>Login  <br />
+            Email: demo@demo.com  <br />
+            Password: demo
+            </Notification>
 
             <Heading>
               <span>Easier Playback</span>
@@ -152,7 +157,7 @@ export default (props) => {
 
             <Link to="signup">
 
-              <PrimaryAction>Get Started</PrimaryAction>
+              <PrimaryAction>Sign Up Here ! </PrimaryAction>
 
             </Link>
 

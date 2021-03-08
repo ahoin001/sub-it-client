@@ -33,6 +33,8 @@ const SubtitleCreation = (props) => {
 
     const [theDeleteSubModalVisible, setTheDeleteSubModalVisible] = useState(false)
 
+    const [theEditSubModalVisible, setTheEditSubModalVisible] = useState(false)
+
     const [subtitleRows, setSubtitleRows] = useState([])
 
     const [subTitleState, setSubTitleState] = useState({
@@ -125,6 +127,27 @@ const SubtitleCreation = (props) => {
         props.setLoading(false)
 
     }
+
+    // const editVideo = async () => {
+
+    //     try {
+
+    //         // props.setLoading(true);
+
+    //         const response = await axios.put(`${process.env.REACT_APP_API_URL}projects/api/${props.projectId}/updateProject`);
+    //         console.log("* Edited Successfully! ", response);
+    //         // console.log("Redirecting!")
+
+    //         // history.push("/dashboard");
+
+    //     } catch (error) {
+    //         console.log('FAILURE DELETING PROJECT')
+    //         console.log(error)
+    //     }
+
+    //     props.setLoading(false)
+
+    // }
 
 
     const vttToSeconds = (timeAsVTT) => {
@@ -219,8 +242,6 @@ const SubtitleCreation = (props) => {
 
             }
         }
-
-        // console.log('LISTING TRACK', tracks)
 
         // * Keep Subs in order for user
         subTitleState.subtitles.sort((a, b) => (a.inTime) - (b.inTime));
@@ -452,11 +473,11 @@ const SubtitleCreation = (props) => {
 
             <ButtonsContainer>
                 <SolidButton
-                    onClick={() => setTheDeleteSubModalVisible(true)}
+                    onClick={() => setTheEditSubModalVisible(true)}
                     primaryColor='isBlue'
                 >
 
-                    Edit Info
+                    Edit Project Info
 
                 </SolidButton>
 
@@ -504,9 +525,21 @@ const SubtitleCreation = (props) => {
                 theDeleteSubModalVisible &&
                 <CustomModal
                     isConfirmation
-                    visible={theDeleteSubModalVisible}
+                    // visible={theDeleteSubModalVisible}
                     toggle={setTheDeleteSubModalVisible}
                     deleteProject={deleteVideo}
+                />
+            }
+
+            {/* When editing project info  */}
+            {
+                theEditSubModalVisible &&
+                <CustomModal
+                    isForm
+                    projectInfo={props.projectInfo}
+                    visible={theEditSubModalVisible}
+                    toggle={setTheEditSubModalVisible}
+                // editProject={editVideo} 
                 />
             }
 

@@ -74,6 +74,9 @@ export const SolidButton = styled.button(({ primaryColor }) => [
   primaryColor === 'isRed' && tw`text-2xl 
                                      bg-red-400
                                      hover:text-white hover:bg-red-600  `,
+  primaryColor === 'isGreen' && tw`text-2xl 
+                                     bg-green-400
+                                     hover:text-white hover:bg-green-600  `,
 
   primaryColor === 'isGray' && tw` text-2xl 
                                    bg-gray-500

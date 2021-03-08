@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form'
-import { signUpUser } from '../../util/UtilityUserFunctions'
 import { Link,useHistory } from 'react-router-dom'
+import { signUpUser } from '../../util/UtilityUserFunctions'
 
 import Alert from '../../shared/Alerts/Alert'
 import { ReactComponent as Warning } from '../../shared/Alerts/Icons/Warning.svg'

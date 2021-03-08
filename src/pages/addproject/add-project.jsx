@@ -95,6 +95,13 @@ const ProjectPage = (props) => {
         data.append('description', description);
         data.append('videoFile', videoFile[0]);
 
+        console.log(">>>>>>>>>>>>>>> ADD DATA")
+
+        // Display the values
+        for (var value of data.values()) {
+            console.log(value);
+        }
+
         axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}projects/api/create-project/${userId}`,
@@ -157,7 +164,7 @@ const ProjectPage = (props) => {
 
                                             errors.title &&
                                             <>
-                                                <Alert type="isWarning" logo={Warning}>Email is required</Alert>
+                                                <Alert type="isWarning" logo={Warning}>Name is required</Alert>
                                             </>
 
                                         }

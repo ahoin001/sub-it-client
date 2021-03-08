@@ -9,7 +9,7 @@ import ProtectedRoute from './util/ProtectedRoute'
 
 import PageNotFound from './pages/pagenotfound/pagenotfound.jsx'
 
-import HomeTree from './pages/home/homepage'
+import HomePage from './pages/home/homepage'
 import SignUpTree from './pages/signup/signup.jsx'
 import LoginTree from './pages/login/login.jsx'
 import AddProjectForm from './pages/addproject/add-project'
@@ -59,8 +59,8 @@ const App = () => {
       .then(response => {
 
         // The Logged In User Data
-        console.log(`RESPONSE ON LOGIN BACKEND: `, response)
-        console.log(`RESPONSE ON LOGIN BACKEND: `, response.data.LoggedInUser)
+        // console.log(`RESPONSE ON LOGIN BACKEND: `, response)
+        // console.log(`RESPONSE ON LOGIN BACKEND: `, response.data.LoggedInUser)
 
         // Set User data to localstorage to keep track of user
         localStorage.setItem('userId', response.data.LoggedInUser.id);
@@ -99,7 +99,7 @@ const App = () => {
 
             <ProtectedRoute exact path="/form" component={AddProjectForm} ></ProtectedRoute>
 
-            <Route exact path="/" component={() => <HomeTree login={login} logOut={logOut} />} />
+            <Route exact path="/" component={() => <HomePage login={login} logOut={logOut} />} />
             <Route exact path="/signup" component={SignUpTree} />
             <Route exact path="/login" component={LoginTree} />
 

@@ -57,7 +57,7 @@ const Login = (props) => {
     try {
 
       let res = await login(newUserInfo)
-      console.log('********************************* res From Login: ', res)
+      // console.log('********************************* res From Login: ', res)
 
       history.push("/dashboard");
 

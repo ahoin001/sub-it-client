@@ -7,7 +7,7 @@ export const Container = tw(ContainerBase)`flex justify-center
                                            min-h-screen `;
 
 export const Content = tw.div`flex justify-center flex-1
-                              pt-24
+                              
                               text-gray-900
                               bg-white
                               max-w-screen-xl 
@@ -19,6 +19,10 @@ export const MainContainer = tw.div`p-6
 
 export const MainContent = tw.div`flex flex-col items-center
                                   mt-12 
+                                  `;
+
+export const EditFormContent = tw.div`flex flex-col items-center
+                                      mb-4
                                   `;
 
 
