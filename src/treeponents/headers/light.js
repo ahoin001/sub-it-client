@@ -16,7 +16,7 @@ import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
 const Header = tw.header`
   flex justify-between items-center h-20
-  mx-auto
+  mx-auto cursor-pointer
   `;
 
 export const NavLinks = tw.div`inline-block`;
