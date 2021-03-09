@@ -136,7 +136,10 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
 
-          <div onClick={toggleNavbar}>
+          <div 
+          // onClick={toggleNavbar} 
+          onTap={toggleNavbar}
+          >
             {links}
           </div>
 
