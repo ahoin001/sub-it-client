@@ -61,9 +61,9 @@ export const MobileNavLinks = motion.custom(styled.div`
   ${tw` p-4
         fixed top-0  inset-x-0 
         text-gray-900 text-center 
-        bg-red-900
+        bg-white
         lg:hidden z-30 
-        border  rounded-lg`}
+        border rounded-lg`}
         /* fixed top-0 inset-x-0   */
         
   ${NavLinks} {
@@ -154,6 +154,8 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       </MobileNavLinksContainer>
 
     </Header>
+
+    
   );
 };
 
@@ -165,7 +167,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
 const collapseBreakPointCssMap = {
   sm: {
-    mobileNavLinks: tw`sm:hidden`,
+    mobileNavLinks: tw`sm:flex`,
     desktopNavLinks: tw`sm:flex`,
     mobileNavLinksContainer: tw`sm:hidden`
   },
