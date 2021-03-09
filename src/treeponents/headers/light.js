@@ -94,13 +94,13 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">WOWZZERS</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
+      <NavLink href="/#">Some</NavLink>
+      <NavLink href="/#">Default</NavLink>
+      <NavLink href="/#">Links</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
+      {/* <NavLink href="/#" tw="lg:ml-12!">
         Login
-      </NavLink>
+      </NavLink> */}
       <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">Sign Up</PrimaryLink>
     </NavLinks>
   ];
@@ -133,18 +133,18 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
 
         {logoLink}
-
-        <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
+        {links}
+        {/* <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
 
           <div onClick={toggleNavbar}>
             {links}
           </div>
 
-        </MobileNavLinks>
+        </MobileNavLinks> */}
 
-        <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
+        {/* <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
           {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-        </NavToggle>
+        </NavToggle> */}
 
       </MobileNavLinksContainer>
 

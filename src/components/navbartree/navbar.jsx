@@ -30,28 +30,32 @@ const Navbar = (props) => {
                     <NavLink to="/form" style={{ textDecoration: 'none' }}>
                         Add Project
                     </NavLink>
-                    
+
                 </React.Fragment>
 
                 :
 
                 <React.Fragment>
 
+                    {/* <PrimaryLink to="/login">
+                        Login
+                        </PrimaryLink>
+
                     <NavLink to="/">
-                        {/* FROM CUSTOM */}
+                        FROM CUSTOM
                     </NavLink>
 
                     <NavLink to="#">
-                        {/* Blog */}
+                        Blog
                     </NavLink>
 
                     <NavLink to="#">
-                        {/* Locations */}
+                        Locations
                     </NavLink>
 
                     <NavLink to="#">
-                        {/* Pricing */}
-                    </NavLink>
+                        Pricing
+                    </NavLink> */}
 
                 </React.Fragment>
 
