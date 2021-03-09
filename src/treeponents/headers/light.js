@@ -133,18 +133,18 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
 
         {logoLink}
-        {links}
-        {/* <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
 
-          <div onClick={toggleNavbar}>
+        <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
+
+          <div onClick={toggleNavbar} onTouchStart={toggleNavbar}>
             {links}
           </div>
 
-        </MobileNavLinks> */}
+        </MobileNavLinks> 
 
-        {/* <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
+        <NavToggle onClick={toggleNavbar} onTouchStart={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
           {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-        </NavToggle> */}
+        </NavToggle>
 
       </MobileNavLinksContainer>
 

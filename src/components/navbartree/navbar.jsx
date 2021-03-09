@@ -37,6 +37,10 @@ const Navbar = (props) => {
 
                 <React.Fragment>
 
+                        {/* <PrimaryLink to="/signup">
+                            Sign-Up
+                        </PrimaryLink> */}
+
                     {/* <PrimaryLink to="/login">
                         Login
                         </PrimaryLink>
@@ -92,8 +96,9 @@ const Navbar = (props) => {
     ];
 
     return (
+
         <StyledHeader links={navLinks} />
-        // <Header links={navLinks} />
+
     );
 };
 
