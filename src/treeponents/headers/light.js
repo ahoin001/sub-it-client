@@ -54,9 +54,10 @@ export const LogoLink = styled(NavLink)`
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
 
-export const NavToggle = tw.button`
+export const NavToggle = motion.custom(tw.button`
   lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
-`;
+`);
+
 export const MobileNavLinks = motion.custom(styled.div`
   ${tw` p-4
         fixed top-0  inset-x-0 
@@ -137,23 +138,20 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
 
-          <div
+          <motion.div
             onClick={toggleNavbar}
           >
             {links}
-          </div>
+          </motion.div>
 
         </MobileNavLinks>
 
-        <motion.button onTap={toggleNavbar}>
-
           <NavToggle
             // onClick={toggleNavbar}
+            onTap={toggleNavbar}
             className={showNavLinks ? "open" : "closed"}>
             {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
           </NavToggle>
-
-        </motion.button>
 
       </MobileNavLinksContainer>
 
