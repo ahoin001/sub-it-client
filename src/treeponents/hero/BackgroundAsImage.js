@@ -165,7 +165,7 @@ export default (props) => {
           <RightColumn>
 
             <StyledResponsiveVideoEmbed
-              url="https://res.cloudinary.com/damclaohv/video/upload/v1604190899/Demo_Video_fmayb9.mp4"
+              url="https://res.cloudinary.com/damclaohv/video/upload/v1615320032/SubtitleHERO-Demo_hqnhjq.mov"
               background="transparent"
             />
 

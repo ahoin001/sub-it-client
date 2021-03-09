@@ -152,7 +152,7 @@ const ProjectList = () => {
                         <Article>
 
                             <video
-                                src="http://res.cloudinary.com/damclaohv/video/upload/v1601144854/subit/oklvyovwtnv45xpydlko.mp4"
+                                src="https://res.cloudinary.com/damclaohv/video/upload/v1615319346/Subtitle-Hero-demo_bemolm.mov"
                                 type="video/mp4"
                                 ref={videoRef}
                                 onMouseOver={hoverplayVideo}
