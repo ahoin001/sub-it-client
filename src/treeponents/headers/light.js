@@ -19,6 +19,11 @@ const Header = tw.header`
   mx-auto cursor-pointer
   `;
 
+export const MotionHeader = motion.custom(tw.header`
+  flex justify-between items-center h-20
+  mx-auto cursor-pointer
+`);
+
 export const NavLinks = tw.div`inline-block`;
 
 /* hocus: stands for "on hover or focus"
@@ -52,9 +57,11 @@ export const LogoLink = styled(NavLink)`
   }
 `;
 
-export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
+// export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
 
-export const NavToggle = motion.custom(tw.button`
+export const MotionMobileNavLinksContainer = motion.custom(styled.nav`${tw.nav`flex flex-1 items-center justify-between`}`);
+
+export const NavToggle = (tw.div`
   lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
 `);
 
@@ -125,14 +132,14 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   links = links || defaultLinks;
 
   return (
-    <Header className={className || "header-light"}>
+    <MotionHeader className={className || "header-light"}>
 
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}
       </DesktopNavLinks>
 
-      <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
+      <MotionMobileNavLinksContainer css={collapseBreakpointCss.MotionMobileNavLinksContainer}>
 
         {logoLink}
 
@@ -146,16 +153,27 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
         </MobileNavLinks>
 
-          <NavToggle
-            // onClick={toggleNavbar}
-            onTap={toggleNavbar}
-            className={showNavLinks ? "open" : "closed"}>
+        <NavToggle
+          // onClick={toggleNavbar}
+          
+          className={showNavLinks ? "open" : "closed"}
+        >
+
+          {/* {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />} */}
+
+          {/* ** Attempt Fix  */}
+
+          <motion.button onTap={toggleNavbar}>
+
             {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-          </NavToggle>
 
-      </MobileNavLinksContainer>
+          </motion.button>
 
-    </Header>
+        </NavToggle>
+
+      </MotionMobileNavLinksContainer>
+
+    </MotionHeader>
 
 
   );
@@ -171,21 +189,21 @@ const collapseBreakPointCssMap = {
   sm: {
     mobileNavLinks: tw`sm:hidden`,
     desktopNavLinks: tw`sm:flex`,
-    mobileNavLinksContainer: tw`sm:flex`
+    MotionMobileNavLinksContainer: tw`sm:flex`
   },
   md: {
     mobileNavLinks: tw`md:hidden`,
     desktopNavLinks: tw`md:flex`,
-    mobileNavLinksContainer: tw`md:hidden`
+    MotionMobileNavLinksContainer: tw`md:hidden`
   },
   lg: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden`
+    MotionMobileNavLinksContainer: tw`lg:hidden`
   },
   xl: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden`
+    MotionMobileNavLinksContainer: tw`lg:hidden`
   }
 };
