@@ -145,9 +145,6 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   return (
     <>
-      {/* <motion.div animate className={className} {...props}>
-      <motion.div animate />
-    </motion.div> */}
 
       <motion.div>
         <motion.div
@@ -156,7 +153,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
         //css={collapseBreakpointCss.mobileNavLinks}
         >
           {/* <motion.div onClick={toggleNavbar}>{links}</motion.div> */}
-          <motion.div onClick={toggleNavbar}>
+          <motion.div onClick={toggleNavbar} style={{backgroundColor:"blue"}}>
             I should be sliding on each button click
         </motion.div>
         </motion.div>
@@ -174,6 +171,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
           </div>
         </motion.button>
       </motion.div>
+
     </>
   );
 };
