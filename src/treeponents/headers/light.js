@@ -14,14 +14,14 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
-  const headerStyles = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    margin: "0 auto",
-    height: "5rem",
-    cursor: "pointer",
-  };
+const headerStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  margin: "0 auto",
+  height: "5rem",
+  cursor: "pointer",
+};
 
 export const NavLinks = tw.div`inline-block`;
 
@@ -60,7 +60,7 @@ const mobileNavLinksContainerStyles = {
   display: "flex",
   justifyContent: "justify-between",
   alignItems: "center",
-	flex: "1 1 0%"
+  flex: "1 1 0%"
 };
 
 export const NavToggle = (tw.div`
@@ -144,58 +144,37 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   links = links || defaultLinks;
 
   return (
-    <motion.div className={className || "header-light"}>
+    <>
+      {/* <motion.div animate className={className} {...props}>
+      <motion.div animate />
+    </motion.div> */}
 
-      <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
-        {logoLink}
-        {links}
-      </DesktopNavLinks>
-
-      <motion.div css={collapseBreakpointCss.MotionMobileNavLinksContainer}>
-
-        {logoLink}
-
-        {/* <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
-
-          <motion.div
-            onClick={toggleNavbar}
-          >
-            {links}
-          </motion.div>
-
-        </MobileNavLinks> */}
-        
-        <motion.div initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
-
-          <motion.div
-            onClick={toggleNavbar}
-          >
-            {links}
-          </motion.div>
-
+      <motion.div>
+        <motion.div
+          initial={{ x: "150%", display: "none" }}
+          animate={animation}
+        //css={collapseBreakpointCss.mobileNavLinks}
+        >
+          {/* <motion.div onClick={toggleNavbar}>{links}</motion.div> */}
+          <motion.div onClick={toggleNavbar}>
+            I should be sliding on each button click
+        </motion.div>
         </motion.div>
 
-        <NavToggle
-          className={showNavLinks ? "open" : "closed"}
-        >
-
-          {/* {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />} */}
-
-          {/* ** Attempt Fix  */}
-
-          <motion.button onTap={toggleNavbar}>
-
-            {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-
-          </motion.button>
-
-        </NavToggle>
-
+        <motion.button onTap={toggleNavbar}>
+          <div
+            // onClick={toggleNavbar}
+            className={showNavLinks ? "open" : "closed"}
+          >
+            {showNavLinks ? (
+              <div tw="w-6 h-6"> XXX </div>
+            ) : (
+              <div tw="w-6 h-6"> OOO </div>
+            )}
+          </div>
+        </motion.button>
       </motion.div>
-
-    </motion.div>
-
-
+    </>
   );
 };
 
