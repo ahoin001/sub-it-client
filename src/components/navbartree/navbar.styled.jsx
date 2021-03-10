@@ -16,7 +16,7 @@ Header,
 
 export const StyledHeader = styled(Header)`
   
-  ${tw`p-5 bg-primary-100
+  ${tw`p-5 bg-primary-500
        bg-gradient-to-bl from-primary-200 
        `}
   
