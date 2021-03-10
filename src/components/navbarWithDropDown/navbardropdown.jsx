@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import tw from "twin.macro";
 // import styled from "styled-components";
 
-import { DropDownToggler } from '../../helpers/useAnimatedNavToggler'
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
-import { motion } from 'framer-motion';
 
 
 export const NavbarContainer = tw.header`
@@ -58,10 +56,9 @@ md:pb-0 hidden md:flex md:justify-end md:flex-row
 
 export const Navlink = tw.nav`
 px-4 py-2 mt-2 bg-green-200
-w-full
 text-sm 
 font-semibold 
-rounded-lg 
+bg-transparent rounded-lg 
 md:mt-0 md:ml-4 
 hover:text-gray-900 hover:bg-gray-200
 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline
@@ -70,9 +67,7 @@ focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline
 
 const Navbardropdown = () => {
 
-    // const [showDropDown, setshowDropDown] = useState(false)
-
-    const { showDropDown, toggleDropdown, dropDownVariants } = DropDownToggler()
+    const [showDropDown, setshowDropDown] = useState(false)
 
     return (
         <>
@@ -81,10 +76,10 @@ const Navbardropdown = () => {
                 <NavbarContainer2>
 
                     <LogoContainer>
-                        <Logo>SubIt Animation</Logo>
+                        <Logo>Flowtrail UI</Logo>
 
                         <HamburgerIcon
-                            onClick={() => toggleDropdown()}
+                            onClick={() => setshowDropDown(!showDropDown)}
                         >
 
                             {showDropDown ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
@@ -95,47 +90,22 @@ const Navbardropdown = () => {
                     <NavlinksContainer>
 
                         <Navlink href="#">Blog</Navlink>
-                        <Navlink onClick={() => toggleDropdown()} href="#">Portfolio</Navlink>
-                        <Navlink onClick={() => toggleDropdown()} href="#">About</Navlink>
-                        <Navlink onClick={() => toggleDropdown()} href="#">Contact</Navlink>
+                        <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Portfolio</Navlink>
+                        <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">About</Navlink>
+                        <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Contact</Navlink>
 
                     </NavlinksContainer>
 
                 </NavbarContainer2>
 
-                {
-                    showDropDown ?
-                        <>
-                            <motion.div
-                                initial="exit"
-                                animate={showDropDown ? "enter" : "exit"}
-                                variants={dropDownVariants}
-                            >
+                {showDropDown ? <DropDownLinkContainer>
 
-                                <DropDownLinkContainer>
+                    <Navlink href="#">Blog</Navlink>
+                    <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Portfolio</Navlink>
+                    <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">About</Navlink>
+                    <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Contact</Navlink>
 
-                                    <Navlink href="#">Blog</Navlink>
-                                    <Navlink onClick={() => toggleDropdown(!showDropDown)} href="#">Portfolio</Navlink>
-                                    <Navlink onClick={() => toggleDropdown(!showDropDown)} href="#">About</Navlink>
-                                    <Navlink onClick={() => toggleDropdown(!showDropDown)} href="#">Contact</Navlink>
-
-                                </DropDownLinkContainer>
-
-                            </motion.div>
-
-                            {/* <DropDownLinkContainer>
-
-                                <Navlink href="#">Blog</Navlink>
-                                <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Portfolio</Navlink>
-                                <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">About</Navlink>
-                                <Navlink onClick={() => setshowDropDown(!showDropDown)} href="#">Contact</Navlink>
-
-                            </DropDownLinkContainer> : '' */}
-                        </>
-
-                        : ''
-
-                }
+                </DropDownLinkContainer> : ''}
 
             </NavbarContainer>
         </>

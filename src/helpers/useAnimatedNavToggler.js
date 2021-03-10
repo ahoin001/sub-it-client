@@ -31,10 +31,10 @@ const dropDownVariants = {
   },
   exit: {
     opacity: 0,
-    rotateX: -15,
+    // rotateX: -15,
     transition: {
-      duration: 0.2,
-      //delay: 0.3
+      duration: 0.6,
+      // delay: 0.3
     },
     transitionEnd: {
       display: "none"
