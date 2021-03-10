@@ -85,6 +85,16 @@ export const MobileNavLinks = motion.custom(styled.div`
   }
 `);
 
+const MobileNavLinksStyles = {
+  position: "fixed",
+  top: "0px",
+  right: "0px",
+  bottom: "0px",
+  left: "0px",
+  textAlign: "center"
+};
+
+
 export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
@@ -145,7 +155,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
         {logoLink}
 
-        <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
+        {/* <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
 
           <motion.div
             onClick={toggleNavbar}
@@ -153,11 +163,19 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
             {links}
           </motion.div>
 
-        </MobileNavLinks>
+        </MobileNavLinks> */}
+        
+        <motion.div initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
+
+          <motion.div
+            onClick={toggleNavbar}
+          >
+            {links}
+          </motion.div>
+
+        </motion.div>
 
         <NavToggle
-          // onClick={toggleNavbar}
-          
           className={showNavLinks ? "open" : "closed"}
         >
 
