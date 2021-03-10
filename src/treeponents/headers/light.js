@@ -14,15 +14,14 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
-const Header = tw.header`
-  flex justify-between items-center h-20
-  mx-auto cursor-pointer
-  `;
-
-export const MotionHeader = motion.custom(tw.header`
-  flex justify-between items-center h-20
-  mx-auto cursor-pointer
-`);
+  const headerStyles = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: "0 auto",
+    height: "5rem",
+    cursor: "pointer",
+  };
 
 export const NavLinks = tw.div`inline-block`;
 
@@ -57,9 +56,12 @@ export const LogoLink = styled(NavLink)`
   }
 `;
 
-// export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
-
-export const MotionMobileNavLinksContainer = motion.custom(styled.nav`${tw.nav`flex flex-1 items-center justify-between`}`);
+const mobileNavLinksContainerStyles = {
+  display: "flex",
+  justifyContent: "justify-between",
+  alignItems: "center",
+	flex: "1 1 0%"
+};
 
 export const NavToggle = (tw.div`
   lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
@@ -132,14 +134,14 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   links = links || defaultLinks;
 
   return (
-    <MotionHeader className={className || "header-light"}>
+    <motion.div className={className || "header-light"}>
 
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}
       </DesktopNavLinks>
 
-      <MotionMobileNavLinksContainer css={collapseBreakpointCss.MotionMobileNavLinksContainer}>
+      <motion.div css={collapseBreakpointCss.MotionMobileNavLinksContainer}>
 
         {logoLink}
 
@@ -171,9 +173,9 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
         </NavToggle>
 
-      </MotionMobileNavLinksContainer>
+      </motion.div>
 
-    </MotionHeader>
+    </motion.div>
 
 
   );
