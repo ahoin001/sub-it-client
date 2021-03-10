@@ -11,13 +11,10 @@ import Summary from '../../treeponents/features/ThreeColWithSideImage'
 
 import Footer from '../../treeponents/footers/MiniCenteredFooter'
 
-import OriginalHero from '../../treeponents/pages/BackgroundAsImage'
-
 const Home = (props) => {
     return (
         <AnimationRevealPage disabled >
-            {/* <Hero login={props.login} logOut={props.logOut}/> */}
-            <OriginalHero/>
+            <Hero login={props.login} logOut={props.logOut}/>
             <Features />
             <Summary />
             <Footer />

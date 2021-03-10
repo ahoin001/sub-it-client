@@ -16,6 +16,8 @@ import AddProjectForm from './pages/addproject/add-project'
 import ProjectStation from './pages/projectstation/projectstation'
 
 import NavbarTree from './components/navbartree/navbar'
+import NavbarDropDown from './components/navbarWithDropDown/navbardropdown'
+
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 
 import AuthContext from './shared/context/auth-context'
@@ -96,6 +98,7 @@ const App = () => {
 
           {/* Persist Navbar */}
           <NavbarTree logOut={logOut} />
+          <NavbarDropDown/>
 
           <Switch>
 

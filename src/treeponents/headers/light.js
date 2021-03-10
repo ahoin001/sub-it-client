@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+
 import { motion } from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
@@ -6,25 +8,34 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 
-import logo from "../../images/logo.svg";
+// import logo from "../../images/logo.svg";
+// import subItLogo from "../../images/OriginalImgs/SubitLogo.png";
+
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
 
 const Header = tw.header`
-  flex justify-between items-center
-  max-w-screen-xl mx-auto
-`;
+  flex justify-between items-center h-20
+  mx-auto cursor-pointer
+  `;
 
 export const NavLinks = tw.div`inline-block`;
 
 /* hocus: stands for "on hover or focus"
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
-export const NavLink = tw.a`
+export const NavLink = tw(Link)`
   text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
+  cursor-pointer
   font-semibold tracking-wide transition duration-300
   pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
 `;
+// export const NavLink2 = styled(Link)`
+//  ${tw` text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
+//   font-semibold tracking-wide transition duration-300
+//   pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500`};
+
+// `;
 
 export const PrimaryLink = tw(NavLink)`
   lg:mx-0
@@ -42,13 +53,26 @@ export const LogoLink = styled(NavLink)`
 `;
 
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
-export const NavToggle = tw.button`
-  lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
-`;
+
+export const NavToggle = motion.custom(tw.button`
+  lg:hidden z-50 focus:outline-none hocus:text-primary-500 transition duration-300
+`);
+
 export const MobileNavLinks = motion.custom(styled.div`
-  ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
+  ${tw` p-4
+        fixed top-0  inset-x-0 
+        text-gray-900 text-center 
+        bg-white
+        lg:hidden z-30 
+        border rounded-lg`}
+        /* fixed top-0 inset-x-0   */
+        
   ${NavLinks} {
-    ${tw`flex flex-col items-center`}
+    ${tw` flex flex-col items-center
+          my-8 
+          
+        `
+  }
   }
 `);
 
@@ -72,14 +96,14 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
+      <NavLink href="/#">Some</NavLink>
+      <NavLink href="/#">Default</NavLink>
+      <NavLink href="/#">Links</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
+      {/* <NavLink href="/#" tw="lg:ml-12!">
         Login
-      </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      </NavLink> */}
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">Sign Up</PrimaryLink>
     </NavLinks>
   ];
 
@@ -87,10 +111,14 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
-    <LogoLink href="/">
-      <img src={logo} alt="logo" />
-      Treact
+    // <Link to="/">
+
+    <LogoLink to="/">
+      {/* <img src={subItLogo} alt="logo" /> */}
+        SubIt
     </LogoLink>
+
+    // </Link>
   );
 
   logoLink = logoLink || defaultLogoLink;
@@ -98,21 +126,38 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   return (
     <Header className={className || "header-light"}>
+
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}
       </DesktopNavLinks>
 
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
+
         {logoLink}
+
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
-          {links}
+
+          <motion.div
+            onClick={toggleNavbar}
+          >
+            {links}
+          </motion.div>
+
         </MobileNavLinks>
-        <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
-          {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-        </NavToggle>
+
+          <NavToggle
+            // onClick={toggleNavbar}
+            onTap={toggleNavbar}
+            className={showNavLinks ? "open" : "closed"}>
+            {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
+          </NavToggle>
+
       </MobileNavLinksContainer>
+
     </Header>
+
+
   );
 };
 
@@ -126,7 +171,7 @@ const collapseBreakPointCssMap = {
   sm: {
     mobileNavLinks: tw`sm:hidden`,
     desktopNavLinks: tw`sm:flex`,
-    mobileNavLinksContainer: tw`sm:hidden`
+    mobileNavLinksContainer: tw`sm:flex`
   },
   md: {
     mobileNavLinks: tw`md:hidden`,
