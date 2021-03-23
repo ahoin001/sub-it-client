@@ -3,17 +3,6 @@ import { Link } from "react-router-dom";
 
 import tw from "twin.macro";
 import styled from "styled-components";
-import { css } from "styled-components/macro"; //eslint-disable-line
-
-import Header, {
-    NavLink,
-    NavLinks,
-    PrimaryLink,
-    LogoLink,
-    NavToggle,
-    DesktopNavLinks,
-} from "../headers/light.js";
-import NavBarWithDropDown from "../../components/navbarWithDropDown/navbardropdown";
 
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
 
@@ -62,53 +51,6 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
 `;
 
 export default (props) => {
-    // const logOut = (e) => {
-    //   e.preventDefault()
-    //   localStorage.removeItem('usertoken');
-    //   localStorage.removeItem('currentUserId');
-    //   localStorage.removeItem('currentUserName');
-    //   // this.props.history.push(`/login`)
-    // }
-
-    const navLinks = [
-        <NavLinks key={1}>
-            {/* <Link to="/"> */}
-
-            {/* <NavLink href="#">
-        About
-       </NavLink> */}
-
-            {/* </Link> */}
-
-            {/* <NavLink href="#">
-        Blog
-      </NavLink> */}
-
-            {/* <NavLink href="#">
-        Locations
-      </NavLink> */}
-
-            {/* <NavLink href="#">
-        Pricing
-      </NavLink> */}
-
-            <div></div>
-        </NavLinks>,
-
-        <NavLinks key={2}>
-            {localStorage.currentUserId ? (
-                <Link to="/">
-                    <PrimaryLink onClick={(e) => props.logOut(e)} href="#">
-                        Logout
-                    </PrimaryLink>
-                </Link>
-            ) : (
-                <Link to="/login">
-                    <PrimaryLink href="#">Login</PrimaryLink>
-                </Link>
-            )}
-        </NavLinks>,
-    ];
 
     return (
         <Container>
@@ -133,7 +75,7 @@ export default (props) => {
                             </SlantedBackground>
                         </Heading>
 
-                        <Link to="signup">
+                        <Link to="/signup">
                             <PrimaryAction>Sign Up Here ! </PrimaryAction>
                         </Link>
                     </LeftColumn>

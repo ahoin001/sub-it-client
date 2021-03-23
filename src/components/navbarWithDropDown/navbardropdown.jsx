@@ -77,19 +77,22 @@ const NavbarDropDown = ({ logOut }) => {
                     <DropDownLinkContainer>
                         <DropDownNavLink
                             onClick={() => setshowDropDown(!showDropDown)}
-                            href="#"
+                            to="/form"
                         >
                             Add Project
                         </DropDownNavLink>
                         <DropDownNavLink
                             onClick={() => setshowDropDown(!showDropDown)}
-                            href="#"
+                            to="/dashboard"
                         >
                             Dashboard
                         </DropDownNavLink>
                         <DropDownNavLink
-                            onClick={() => setshowDropDown(!showDropDown)}
-                            href="#"
+                            onClick={() => {
+                                setshowDropDown(!showDropDown);
+                                logOut();
+                            }}
+                            to="/"
                         >
                             Logout
                         </DropDownNavLink>
@@ -109,7 +112,12 @@ const NavbarDropDown = ({ logOut }) => {
                             Why use Subit
                         </DropDownNavLink>
 
-                        <AuthLink to="/login">Login</AuthLink>
+                        <AuthLink
+                            to="/login"
+                            onClick={() => setshowDropDown(!showDropDown)}
+                        >
+                            Login
+                        </AuthLink>
                     </DropDownLinkContainer>
                 ) : (
                     ""
