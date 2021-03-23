@@ -22,10 +22,10 @@ export default ({ url, background="black", className="video" }) => {
           width: "100%",
           height: "100%"
         }}
-        src={url}
+        src={"https://www.youtube.com/embed?v=h4r7PrFIGF8"}
         frameBorder="0"
       />
-      <video 
+      {/* <video 
         controls
         preload="metadata"
         style={{
@@ -36,9 +36,9 @@ export default ({ url, background="black", className="video" }) => {
           height: "100%"
         }}
         >
-          <source src={url} />
+          <source src={"https://www.youtube.com/embed?v=h4r7PrFIGF8"} />
         
-        </video>
+        </video> */}
 
     </div>
   );

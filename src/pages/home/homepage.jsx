@@ -1,7 +1,5 @@
 import React from 'react';
 
-// *** Treact Things
-// import "style.css"
 import "tailwindcss/dist/base.css"
 
 import AnimationRevealPage from "../../helpers/AnimationRevealPage"

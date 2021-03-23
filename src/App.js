@@ -15,7 +15,7 @@ import LoginTree from './pages/login/login.jsx'
 import AddProjectForm from './pages/addproject/add-project'
 import ProjectStation from './pages/projectstation/projectstation'
 
-import NavbarTree from './components/navbartree/navbar'
+import NavbarDropDown from './components/navbarWithDropDown/navbardropdown.jsx'
 
 import ProjectsList from './components/project-components/ProjectsList/ProjectsList'
 
@@ -96,8 +96,8 @@ const App = () => {
         }}>
 
           {/* Persist Navbar */}
-          <NavbarTree logOut={logOut} />
-  
+          <NavbarDropDown logOut={logOut}/>
+          
           <Switch>
 
             <ProtectedRoute exact path="/form" component={AddProjectForm} ></ProtectedRoute>
