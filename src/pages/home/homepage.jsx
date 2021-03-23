@@ -3,11 +3,11 @@ import React from 'react';
 import "tailwindcss/dist/base.css"
 
 import AnimationRevealPage from "../../helpers/AnimationRevealPage"
-import Hero from "../../treeponents/hero/BackgroundAsImage"
-import Features from '../../treeponents/features/TwoColWithSteps'
-import Summary from '../../treeponents/features/ThreeColWithSideImage'
+import Hero from "../../components/hero/BackgroundAsImage"
+import Features from '../../components/features/TwoColWithSteps'
+import Summary from '../../components/features/ThreeColWithSideImage'
 
-import Footer from '../../treeponents/footers/MiniCenteredFooter'
+import Footer from '../../components/footers/MiniCenteredFooter'
 
 const Home = (props) => {
     return (

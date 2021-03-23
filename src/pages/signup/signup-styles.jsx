@@ -1,6 +1,6 @@
 // import { Link, withRouter } from 'react-router-dom'
 
-import { Container as ContainerBase } from "../../treeponents/misc/Layouts";
+import { Container as ContainerBase } from "../../components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 // import { css } from "styled-components/macro"; //eslint-disable-line
