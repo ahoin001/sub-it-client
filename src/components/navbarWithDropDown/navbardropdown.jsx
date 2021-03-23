@@ -57,9 +57,10 @@ const NavbarDropDown = ({ logOut }) => {
                     </DesktopLinksContainer>
 
                     <AuthandToggleContainer>
+
                         {userAuthentication}
 
-                        <HamburgerIcon
+					{localStorage.getItem("userId") ? <HamburgerIcon
                             onClick={() => setshowDropDown(!showDropDown)}
                             className={showDropDown ? "open" : "closed"}
                         >
@@ -68,8 +69,14 @@ const NavbarDropDown = ({ logOut }) => {
                             ) : (
                                 <MenuIcon tw="w-6 h-6" />
                             )}
-                        </HamburgerIcon>
+                        </HamburgerIcon> :
+				    
+						""
+
+				    }
+
                     </AuthandToggleContainer>
+
                 </NavbarContainer>
 
                 {/* Dropdown Mobile Links Container  */}
@@ -103,7 +110,7 @@ const NavbarDropDown = ({ logOut }) => {
                             onClick={() => setshowDropDown(!showDropDown)}
                             href="#"
                         >
-                            How it works
+					    
                         </DropDownNavLink>
                         <DropDownNavLink
                             onClick={() => setshowDropDown(!showDropDown)}
