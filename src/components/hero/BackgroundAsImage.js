@@ -51,7 +51,6 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
 `;
 
 export default (props) => {
-
     return (
         <Container>
             <OpacityOverlay />
@@ -75,9 +74,15 @@ export default (props) => {
                             </SlantedBackground>
                         </Heading>
 
-                        <Link to="/signup">
-                            <PrimaryAction>Sign Up Here ! </PrimaryAction>
-                        </Link>
+                        {localStorage.getItem("currentUserId") ? (
+                            <Link to="/dashboard">
+                                <PrimaryAction>Dashboard </PrimaryAction>
+                            </Link>
+                        ) : (
+                            <Link to="/signup">
+                                <PrimaryAction>Sign Up Here ! </PrimaryAction>
+                            </Link>
+                        )}
                     </LeftColumn>
 
                     <RightColumn>

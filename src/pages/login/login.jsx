@@ -77,7 +77,7 @@ const Login = (props) => {
       url: "https://google.com"
     }
   ]
-  let submitButtonText = "Sign n"
+  let submitButtonText = "Sign In"
   let SubmitButtonIcon = LoginIcon
 
   return (
